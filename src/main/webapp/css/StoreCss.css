@@ -1,0 +1,105 @@
+
+  #tab {
+    
+  margin : 0 auto;
+  margin-top : 50px;
+  text-align : center;
+  border: 1px #a39485 solid;
+  font-size: .9em;
+  box-shadow: 0 2px 5px rgba(0,0,0,.25);
+  width: 80%;
+  border-collapse: collapse;
+  border-radius: 5px;
+  overflow: hidden;
+  }
+  th, td {
+  font-size:17px;
+  padding: 1em .5em;
+  vertical-align: middle;
+    
+  }
+  
+  #div {
+  font-size:17px;
+  }
+  
+  thead {
+  
+  font-weight: bold;
+  color: #fff;
+  background: #F5AE3A;
+  }
+  
+  h2 {
+  margin-top : 80px;
+  text-align : center; 
+   }
+  
+ .pagination {
+  display: inline-block;
+  margin-top : 50px;
+
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 14px;
+  font-size : 16px;
+  font-weight : bold;
+  text-decoration: none;
+}
+
+#div {
+font-size : 16px;
+}
+
+
+.outer {
+  text-align: center;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+}
+
+#menu{
+	color : red;
+}
+  
+.button {
+border:none;
+border-radius: 4px;
+background-Color:#dc3545;
+font-size:14px;
+font-weight:bold;
+color:white;
+width:80px;height:30px;
+box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.agree {
+border:none;
+border-radius: 4px;
+background-Color:rgb(21, 234, 69);
+font-size:14px;
+font-weight:bold;
+color:white;
+width:80px;height:30px;
+box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+	
+}
+
+.agree:active,
+.agree:hover,
+.agree:focus {
+  background: rgb(43, 213, 51);
+  outline: 0;
+}
+
+.button:active,
+.button:hover,
+.button:focus {
+  background: #c82333;
+  outline: 0;
+}

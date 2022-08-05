@@ -1,0 +1,31 @@
+h1 {
+	margin-bottom: 60px;
+	font-size: 30px;
+}
+
+
+.container_mypage {
+  position: absolute;
+  width: 1000px;
+  /* background-color: aqua; */
+  text-align: center;
+  margin: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.table_mypage {
+  border-collapse: collapse;
+  margin: auto;
+}
+
+.table_mypage td {
+  /* border: 1px solid black; */
+  padding: 10px;
+}
+
+.table_mypage input {
+	border: 1px solid black;
+	padding: 5px;
+}

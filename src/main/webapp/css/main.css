@@ -1,0 +1,16 @@
+* {
+  box-sizing: border-box;
+}
+
+.ul_store_list li{
+	list-style:none;
+	display:inline-block;
+}
+#container_main{
+	width:80%;
+	margin:0 auto;
+}
+
+#search-container{
+	text-align:center;
+}
