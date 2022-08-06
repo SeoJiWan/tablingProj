@@ -91,4 +91,30 @@ public class InterestedStoreRepository extends DAO {
 		return list;
 	}
 
+	public boolean likeAdd(InterestedStore interestedStore) {
+		String sql="insert into interested_stores values (?, ?)";
+		connect();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, interestedStore.getMembeId());
+			ps.setString(2, interestedStore.getStoreName());
+			
+			int result = ps.executeUpdate();
+			
+			if(result > 0) {
+				System.out.println(result+"건 입력됨");
+			} else {
+				System.out.println("입력 실패");
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		
+		return false;
+	}
+
 }

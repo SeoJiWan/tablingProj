@@ -8,7 +8,7 @@ public class InterestedStore {
 	private String storeName;
 	private int storeId;
 	private String storeImgUrl;
-
+	private int like;
 	
 	/*
 	 * Method
@@ -37,6 +37,14 @@ public class InterestedStore {
 	public void setStoreImgUrl(String storeImgUrl) {
 		this.storeImgUrl = storeImgUrl;
 	}
+	
+	public int getLike() {
+		return like;
+	}
+	public void setLike(int like) {
+		this.like = like;
+	}
+
 	@Override
 	public String toString() {
 		return "InterestedStore [membeId=" + membeId + ", storeName=" + storeName + ", storeId=" + storeId
