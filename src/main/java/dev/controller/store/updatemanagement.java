@@ -9,18 +9,22 @@ import javax.servlet.http.HttpServletResponse;
 import dev.controller.Controller;
 import dev.controller.Utils;
 import dev.domain.Member;
+import dev.domain.Store;
 
 public class updatemanagement implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-		String loginId = (String) req.getSession().getAttribute("loginId");
-
-		Member member = memberService.findOneMember(loginId);
+		req.setCharacterEncoding("utf-8");
+//		String memberId = (String)req.getSession().getAttribute("loginId");
+//		System.out.println("로그인 멤버 = " + memberId);
 		
-		System.out.println("member = " + member);
+		String memberId = "store2";	
+		Store st = storeService.storemanagement(memberId);
 		
-		req.setAttribute("member", member);
+		System.out.println("member = " + memberId);
+		
+		req.setAttribute("stores", st);
 		
 		Utils.forward(req, resp, "/store/storeupdatemanager.tiles");
 	}

@@ -165,4 +165,13 @@ public class StoreService {
 	public boolean updateStore(String store_name) {
 		return storeRepository.updateStore(store_name);
 	}
+	
+	public void mypageupdatestore(Store st) {
+		storeRepository.mypageupdatestore(st);		
+	}
+
+	public Store storemanagement(String storeName) {
+		Store store = storeRepository.storemanagement(storeName);
+		return store;
+	}
 }
