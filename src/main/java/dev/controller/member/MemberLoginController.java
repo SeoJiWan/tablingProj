@@ -21,12 +21,14 @@ public class MemberLoginController implements Controller {
 		Member loginMember = memberService.login(id, pwd);
 		System.out.println("loginMember = " + loginMember);
 		
+		
 		if (loginMember == null) {
 			System.out.println("로그인 실패");
 			resp.getWriter().write("loginFail");
 		}
 		else {
 			System.out.println("로그인 성공");
+			// 세션에 로그인한 멤버 저장 
 			ss.setAttribute("loginMember", loginMember);
 			
 			if (loginMember.getRole() == 0) {

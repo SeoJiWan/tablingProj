@@ -35,10 +35,11 @@ public class MemberService {
 		memberRepository.insert(member);
 	}
 
-	// 회원 정보 수정
+	// 회원 정보 수정 --> 세션의 로그인 멤버를 가져와 비밀번호 
 	public void modifyMember(Member member) {
 		member.setPassword(encryption(member.getPassword()));
 		memberRepository.update(member);
+		member.setPassword(decryption(member.getPassword()));
 	}
 
 	// 회원 정보 삭제

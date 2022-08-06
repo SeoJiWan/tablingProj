@@ -18,7 +18,7 @@ pageEncoding="UTF-8"%>
     <div class="navigation">
       <ul>
         <li class="list active">
-          <a href="${pageContext.request.contextPath }/memberUpdateForm.do">
+          <a href="#" onclick="show_memberInfo()">
             <span class="icon">
               <i class="input-icon uil uil-user-exclamation"></i>
             </span>
@@ -26,19 +26,27 @@ pageEncoding="UTF-8"%>
           </a>
         </li>
         <li class="list">
-          <a href="${pageContext.request.contextPath }/interestedStoreList.do">
+          <a href="#" onclick="show_zzim_list()">
             <span class="icon">
               <i class="input-icon uil uil-store"></i>
             </span>
-            <span class="title">찜목록</span>
+            <span class="title">찜한가게</span>
           </a>
         </li>
         <li class="list">
-          <a href="${pageContext.request.contextPath }/reservationList.do">
+          <a href="#" onclick="show_reservationlist()">
             <span class="icon">
-              <i class="input-icon uil uil-server"></i>
+              <i class="input-icon uil uil-file-check"></i>
             </span>
             <span class="title">예약확인</span>
+          </a>
+        </li>
+        <li class="list">
+          <a href="#" onclick="show_myreviews()">
+            <span class="icon">
+              <i class="input-icon uil uil-list-ul"></i>
+            </span>
+            <span class="title">내가 쓴 리뷰</span>
           </a>
         </li>
       </ul>

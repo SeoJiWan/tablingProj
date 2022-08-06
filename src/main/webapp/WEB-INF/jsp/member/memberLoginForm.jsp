@@ -165,6 +165,7 @@ pageEncoding="UTF-8"%>
         </div>
       </div>
     </div>
+ 
 
 	<!-- JQUERY AJAX 사용 -->
     <script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -252,7 +253,7 @@ pageEncoding="UTF-8"%>
     <!-- 로그인 AJAX -->
     <script type="text/javascript">
     $("#btn_login").click(function () {
-
+    	  
     	  $.ajax({
     	    type: "POST",
 
@@ -273,8 +274,8 @@ pageEncoding="UTF-8"%>
     	        $("#log_id").focus();
     	      } else {
     	    	alert("로그인 성공!");
-    	    	window.location.href = "main.do";
-    	        //window.location.href = "admin_main.do?pageNum=1&postNum=10";
+    	    	//window.location.href = "admin_main.do?pageNum=1&postNum=10";
+    	    	//window.location.href = "main.do";
     	        //window.location.href = "owner_main.do";
     	      }
     	      console.log(data);

@@ -10,28 +10,35 @@ public class MemberUpdateController implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		
+
 		// 수정 폼에서 멤버 정보 받아오기
-		String id = req.getParameter("id");
-		String pwd = req.getParameter("pwd");
-		String nickName = req.getParameter("nn");
-		String phoneNum = req.getParameter("ph");
-		
-		
-		Member member = new Member();
-		member.setMemberId(id);
-		member.setPassword(pwd);
-		member.setNickName(nickName);
-		member.setPhoneNum(phoneNum);
-		
-		memberService.modifyMember(member);
-		
-		resp.getWriter().write("modifySuccess");
+		Member loginMember = (Member) req.getSession().getAttribute("loginMember");
 
+		if (req.getParameter("nn") != null) {
+			if (!req.getParameter("nn").equals("")) {
+				loginMember.setNickName(req.getParameter("nn"));
+				memberService.modifyMember(loginMember);
+				resp.getWriter().write("modifySuccess");
+			}
+		}
 
+		if (req.getParameter("ph") != null) {
+			if (!req.getParameter("ph").equals("")) {
+				loginMember.setPhoneNum(req.getParameter("ph"));
+				memberService.modifyMember(loginMember);
+				resp.getWriter().write("modifySuccess");
+			}
+		}
 
-		
-		
+		if (req.getParameter("pwd") != null) {
+			if (!req.getParameter("pwd").equals("")) {
+				loginMember.setPassword(req.getParameter("pwd"));
+				System.out.println("입력 비밀번호 == " + req.getParameter("pwd"));
+				System.out.println("loginMember.getPassword() = " + loginMember.getPassword());
+				memberService.modifyMember(loginMember);
+				System.out.println("loginMember.getPassword() = " + loginMember.getPassword());
+				resp.getWriter().write("modifySuccess");
+			}
+		}
 	}
-
 }
