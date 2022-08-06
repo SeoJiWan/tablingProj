@@ -3,7 +3,6 @@ package dev.service;
 import java.util.List;
 
 import dev.domain.Review;
-import dev.repository.DAO;
 import dev.repository.ReviewRepository;
 
 public class ReviewService {
@@ -34,6 +33,6 @@ public class ReviewService {
 	
 	//가게 당 별점 조회
 	public int getAvgTasteScore(String storeName) {
-		return revierepo.reviewAvgTateScore(storeName).getAvgScore();
+		return reviewrepo.reviewAvgTateScore(storeName).getAvgScore();
 	}
 }

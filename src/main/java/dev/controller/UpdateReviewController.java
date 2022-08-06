@@ -6,8 +6,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dev.service.ReviewService;
-
 public class UpdateReviewController implements Controller {
 
 	@Override

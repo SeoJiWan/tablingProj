@@ -9,10 +9,8 @@ import dev.controller.Controller;
 import dev.controller.Utils;
 import dev.domain.Board;
 import dev.domain.Criteria;
-import dev.domain.Member;
 import dev.domain.Page;
 import dev.service.BoardService;
-import dev.service.MemberService;
 
 
 public class PostListPagingController implements Controller {
@@ -23,12 +21,11 @@ public class PostListPagingController implements Controller {
 		String pageNum = req.getParameter("pageNum");
 		String postNum = req.getParameter("postNum");
 		
+		
 		//---------criteria객체에 pageNum,postNum 속성 담기
 		Criteria criteria = new Criteria();
 		criteria.setPageNum(Integer.parseInt(pageNum));
 		criteria.setPostNum(Integer.parseInt(postNum));
-		
-		System.out.println(pageNum+postNum);
 		
 		//---------PageList서비스 호출
 		BoardService bdService = BoardService.getBoardService();
@@ -40,6 +37,9 @@ public class PostListPagingController implements Controller {
 		List<Board> boardTotalList = bdService.boardList();
 		int total = boardTotalList.size();
 		req.setAttribute("pageInfo", new Page(criteria, total));
+		
+		//>>TEST
+		System.out.println("postListPaging Controller test : " +  pageNum + " : " + postNum);
 		
 		//---------boardList전송
 		Utils.forward(req, resp, "/board/postList.tiles");

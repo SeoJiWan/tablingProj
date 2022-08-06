@@ -12,22 +12,12 @@ public class PostListController implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-
-		HttpSession ss = req.getSession();
 		
-//		.setAttribute("loginId", loginId);
-		
-	
-		
-		String loginId = (String) ss.getAttribute("memberId");
-		req.setAttribute("memberId", loginId);
-		
+		//변수 boardList 속성값에 글목록 실행 서비스 담기
 		BoardService boardService = BoardService.getBoardService();
-		
-		//속성값에 boardService.boardList()넣어줌
 		req.setAttribute("boardList", boardService.boardList());
 		
-		//postList(게시판 목록)뷰로 보냄
+		//게시판 목록뷰 실행
 		Utils.forward(req, resp, "/board/postList.tiles");
 	}
 
