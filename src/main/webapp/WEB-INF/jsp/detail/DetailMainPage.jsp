@@ -101,19 +101,48 @@
 				<tr>
 					<td>${review.reviewId }</td>
 					<td>${review.memberId }</td>
-					<td id=content><textarea id="content" cols="30" rows="10" readonly>${review.content }</textarea></td>
+					<td>${review.content }</td>
 					<td>${review.storeName }</td>
 					<td>${review.tasteScore }</td>
 					<td>${review.createDate }</td>
 					<td>
 					<%-- <c:if test="${review.memberId eq loginMember.memberId }"> --%>
 					<button value="삭제" onclick='deleteCallback(event)' class=delete >삭제</button>
-					<button value="수정" onclick='updateReview(this.id)'class=update id="${review.reviewId }" >수정</button>
+					<button value="수정" onclick='updateCallback(${review.reviewId}, event)' class=update >수정</button>
 					<%-- </c:if> --%>
 					</td>
 				</tr>
 			</c:forEach>
 		</table>
+		
+		<!-- 찜하기 -->
+		<h3>찜하기</h3>
+		<div>
+		<button id=like value=1 class=liked style="display:none" onclick="hideHeart()">🖤</button>
+		<button id=unlike value=0 class=unliked onclick="showHeart()">🤍</button>
+		</div>
+		
+		<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
+		
+		<!-- 찜하기 Ajax -->
+		<script type="text/javascript">
+		/* 찜 */
+		function showHeart() {
+			$('#like').show();
+			$('#unlike').hide();
+			
+		}
+		/* 찜취소 */
+		function hideHeart() {
+			$('#like').hide();
+			$('#unlike').show();
+			
+		}
+
+
+		
+	    
+		</script>
 		
 		<!-- 삭제 Ajax -->
 		<script >
@@ -149,57 +178,32 @@
 		}
 		</script>
 		
-		<!-- jquery ajax사용 -->
-		<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
-		
-		<!-- 수정 Ajax -->
-		<script type="text/javascript">
-
-		$('#edit').click(function(){
-			let content = $("#content").val();
-			let reviewId = $("#reviewId").val();
-			console.log("content = " + content);
-			
-			if(content != ""){
-				$.ajax({
-					type: 'POST',
-					
-					url: 'updateReviewAjax.do',
-					
-					data:{
-					 //넘겨줄 파라미터 이름 : value;
-						reviewContent: content,
-						reviewId: reviewId
-					},
-					
-					dataType: 'text',
-					
-					success: function(data) {
-	                    if (data == 'isUpdate') {
-							alert("")
-	    					$('#reg_id').focus();
-	                    } else {
-	                     
-	               
-	                        $('#reg_pwd').focus();
-	                    }  
-	                    
-		                },
-				})
-			}
-		})
-		
-		</script>
 		<script>
-		function updateReview(id){
-			$("#content").attr("readonly", false);
+		/* let w = window.open("about:blank","_blank"); */
+		
+		function updateCallback(reviewId, e){
+			let id = reviewId;
+			//let content = ('#(${review.content })');
+			
+			let content = "contetn 요소 찾기 : " + e.target.parentElement.parentElement;
+			console.log(id);
+			console.log(content);
+			if(confirm('리뷰를 수정하시겠습니까?')){
+				let upAjax = new XMLHttpRequest();
+				upAjax.open('POST', 'updateReviewAjax.do');
+				upAjax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+				upAjax.send('reviewId='+id, 'content='+content);
+				upAjax.onload = function(){
+					let result = JSON.parse(upAjx.responseText);
+					if(result.retCode == 'Success') {
+						w.location.href = "popup.jsp";
+					} else {
+						alert('Error');
+					}
+				}
+			}
 		}
- 				/* $("#contentbtn").click(function() { */
-                    
-/*                     $(".edit").click(function(event) {
-                   $("#textarea").attr("readonly", false);
-                    }); */
-                /* }); */
 		</script>
+		
 </body>
 </html>

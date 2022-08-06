@@ -1,0 +1,32 @@
+@import
+	url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400&display=swap')
+	;
+
+body {
+	color: grey;
+	font-family: 'Noto Serif KR', serif;
+	font-size: small;
+	margin: 100px auto;
+}
+
+table {
+	width: 80%;
+}
+
+#trHead {
+	background-color: #dddd;
+}
+
+th {
+	text-align: left;
+}
+
+td {
+	padding: 2% 1%;
+}
+
+input[type="button"] {
+	float: right;
+	margin-right: 5%;
+	text-align: center;
+}

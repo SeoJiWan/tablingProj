@@ -45,6 +45,7 @@ import dev.controller.store.degreeStoreAjaxController;
 import dev.controller.store.storeFilterSearchPagingController;
 import dev.controller.store.updateStoreAjaxController;
 import dev.controller.store.updatemanagement;
+import dev.controller.store.updatestore;
 
 // .
 public class FrontController extends HttpServlet {
@@ -100,10 +101,19 @@ public class FrontController extends HttpServlet {
 		mappings.put("/degreeStoreAjax.do", new degreeStoreAjaxController());
 		mappings.put("/updateStoreAjax.do", new updateStoreAjaxController());
 		mappings.put("/updatemanagement.do", new updatemanagement());
+		mappings.put("/ownerupdate.do", new updatemanagement());
+		mappings.put("/updatestore.do", new updatestore());
 		
 		//InterestedStore
+<<<<<<< HEAD
 	
 		//Review
+=======
+		mappings.put("/interestedStoreList.do", new InterestedStoreListController());
+		mappings.put("/likeStoreAjax.do", new LikeStoreController());
+		
+		//DetailReview
+>>>>>>> 934ca77123a7666810b34a82bcc64e99a786b51f
 		mappings.put("/addReview.do", new AddReviewController());
 		//은하와 연결 - mappings.put("/detailPage.do", new ReviewListController());
 		mappings.put("/reviewList.do", new ReviewListController());

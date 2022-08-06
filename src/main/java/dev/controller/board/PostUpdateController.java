@@ -1,7 +1,6 @@
 package dev.controller.board;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -38,13 +37,6 @@ public class PostUpdateController implements Controller {
 		// 요청에 board 속성 값 담을 변수 지정
 		req.setAttribute("boardDetail", boardDetail);
 
-
-//		resp.setContentType("text/html;charset=utf-8");
-//		resp.setCharacterEncoding("UTF-8");
-//		PrintWriter writer = resp.getWriter();
-//		writer.println("<script type='text/javascript'>");
-//		writer.println("alert('존재하지 않는 아이디입니다. ')");
-//		writer.println("</script>");
 		Utils.forward(req, resp, "postDetail.do");
 	}
 

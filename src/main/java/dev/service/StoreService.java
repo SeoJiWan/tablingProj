@@ -58,6 +58,8 @@ public class StoreService {
 		return store;
 	}
 
+	
+
 	// 리스트페이지에 사용 -> 사진 한장
 	private static List<Store> getRandomImg(List<Store> list) {
 
@@ -131,38 +133,69 @@ public class StoreService {
 		return newlist;
 	}
 
-	// 메인:랜덤 조회
+	// 메인:랜덤 조회 수정
 	public List<Store> findRandomStore() {
 		List<Store> list = new ArrayList<>();
-		for (int i = 0; i < 6; i++) {
-			Store store = storeRepository.getStore();
-			list.add(store);
+		Store store1 = storeRepository.getStore();
+		list.add(store1);
+		//첫번째 store 담기
+		for(int i=1; ; i++) { //무한 반복
+			Store store2 = storeRepository.getStore();
+			list.add(store2);
+			if(list.get(i).equals(list.get(i-1))) {
+			list.remove(i);
+			}
+			//같으면 제거
+		if(list.size()==6){ //list size가 6이 되면 루프 탈출
+			break;
+			}
 		}
 		List<Store> newlist = getRandomImg(list);
 		return newlist;
 	}
+	
+	// 메인:랜덤 조회
+//		public List<Store> findRandomStore() {
+//			List<Store> list = new ArrayList<>();
+//			for (int i = 0; i < 6; i++) {
+//				Store store = storeRepository.getStore();
+//				list.add(store);
+//				}
+//			List<Store> newlist = getRandomImg(list);
+//			return newlist;
+//		}
 
-	public List<Store> storeList() {
+		public List<Store> storeList() {
 		return storeRepository.getList();
-	}
-
+	}	
 	public List<Store> getListPaging(Criteria cri) {
 		return storeRepository.getListPaging(cri);
 	}
-
 	public List<Store> acceptstoreList() {
 		return storeRepository.getacceptList();
 	}
-
+	
 	public List<Store> getacceptstoreList(Criteria cri) {
 		return storeRepository.getacceptListPaging(cri);
 	}
-
+	
 	public boolean removeStore(String store_name) {
 		return storeRepository.deleteStore(store_name);
 	}
-
+	
 	public boolean updateStore(String store_name) {
 		return storeRepository.updateStore(store_name);
 	}
+	
+	public void mypageupdatestore(Store st) {
+		storeRepository.mypageupdatestore(st);		
+	}
+
+	public Store storemanagement(String storeName) {
+		Store store = storeRepository.storemanagement(storeName);
+		return store;
+	}
 }
+
+}
+

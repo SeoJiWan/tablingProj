@@ -13,7 +13,7 @@ public class CommentRepository extends DAO{
 	//댓글등록
 		public void insertComment(Comment cm) {
 			connect();
-			String sql = "insert into comments(comment_id, member_id, board_id, content, create_date) values(comment_id_seq.nextval, ?, ?, ?, sysdate)";
+			String sql = "INSERT INTO comments VALUES(comment_id_seq.nextval, ?, ?, ?, SYSDATE)";
 			
 			try {
 				ps = conn.prepareStatement(sql);
@@ -38,11 +38,12 @@ public class CommentRepository extends DAO{
 		//댓글목록
 		public List<Comment> getCommentList(int boardId) {
 			connect();
-			String sql = "select b.board_id c.comment_id, c.member_id ,m.nickname, c.content, c.create_date "
-					+ "from comments c inner join boards b on c.member_id = b.member_id "
-					+ "inner join members m on b.member_id = m.member_id "
-					+ "where b.boarder_id=? order by c.comment_id desc";
 			ArrayList<Comment> commentList = new ArrayList<>();
+			String sql = "SELECT c.board_id, c.member_id ,m.nickname, c.content, c.create_date "
+						  + "FROM comments c "
+						  + "JOIN members m ON (c.member_id = m.member_id) "
+						  + "WHERE c.board_id=? "
+						  + "ORDER BY c.comment_id desc";
 			
 			try {
 				ps = conn.prepareStatement(sql);
@@ -56,6 +57,7 @@ public class CommentRepository extends DAO{
 										 rs.getString("nickname"),
 										 rs.getString("content"),
 										 rs.getString("create_date"));
+					
 					commentList.add(comment);
 				}
 			} catch (SQLException e) {
@@ -65,15 +67,11 @@ public class CommentRepository extends DAO{
 			}
 			return commentList;
 		}
-		private int getNext() {
-			// TODO Auto-generated method stub
-			return 0;
-		}
 
 		//댓글 디테일(단건조회) - 쓸 일 있?
 		public Comment getComment(int commentId) {
 			connect();
-			String sql = "select * from comments where board_id=?";
+			String sql = "SELECT * FROM comments WHERE board_id=?";
 			
 			try {
 				ps = conn.prepareStatement(sql);
@@ -98,10 +96,10 @@ public class CommentRepository extends DAO{
 			System.out.println("조회된 값이 없습니다");
 			return null;
 		}
-		//뎃글 내용 수정
+		//댓글 내용 수정
 		public void updateComment(Comment comment) {
 			connect();
-			String sql = "update comments set content=? where comment_id=?";
+			String sql = "UPDATE comments SET content=? WHERE comment_id=?";
 			
 			try {
 				ps = conn.prepareStatement(sql);
@@ -122,7 +120,7 @@ public class CommentRepository extends DAO{
 		//게시글 삭제
 		public void deletePost(Board bd) {
 			connect();
-			String sql = "delete from boards where board_id=?";
+			String sql = "DELETE FROM comments WHERE comment_id=?";
 			
 			try {
 				ps = conn.prepareStatement(sql);
@@ -166,13 +164,13 @@ public class CommentRepository extends DAO{
 			return null;
 		}
 		//페이징
-		public List<Board> getListPaging(Criteria criteria) {
+		public List<Comment> getListPaging(Criteria criteria) {
 			connect();
-			List<Board> pageList = new ArrayList<>();
-			String sql = "select board_id, member_id, title, create_date, hits "
-					+ "from (select rownum rn, board_id, member_id, title,create_date, hits "
-					+ "      from (select rownum rn, board_id, member_id, title,create_date, hits "
-					+ "            from boards order by board_id desc) "
+			List<Comment> cmtPageList = new ArrayList<>();
+			String sql = "select board_id, member_id, comment_id, create_date "
+					+ "from (select rownum rn, board_id, member_id, comment_id, create_date "
+					+ "      from (select rownum rn, board_id, member_id, comment_id, create_date "
+					+ "            from comments order by comment_id desc) "
 					+ "      where rownum <= ?) "
 					+ "where rn>?"; 
 			try {
@@ -182,20 +180,21 @@ public class CommentRepository extends DAO{
 				
 				rs=ps.executeQuery();
 				while(rs.next()) {
-					Board board = new Board();
-					board.setBoardId(rs.getInt("board_id"));
-					board.setMemberId(rs.getString("member_id"));
-					board.setTitle(rs.getString("title"));
-					board.setCreateDate(rs.getString("create_date"));
-					board.setHits(rs.getInt("hits"));
+					Comment comment = new Comment();
+					comment.setCommentId(rs.getInt("comment_id"));
+					comment.setBoardId(rs.getInt("board_id"));
+					comment.setMemberId(rs.getString("member_id"));
+					comment.setNickName(rs.getString("nickname"));
+					comment.setContent(rs.getString("content"));
+					comment.setCommentDate(rs.getString("create_date"));
 					
-					pageList.add(board);
+					cmtPageList.add(comment);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} finally {
 				disconnect();
 			}
-			return pageList;
+			return cmtPageList;
 		}
 	}

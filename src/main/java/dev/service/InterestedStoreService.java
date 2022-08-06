@@ -1,10 +1,8 @@
 package dev.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import dev.domain.InterestedStore;
-import dev.domain.Store;
 import dev.repository.InterestedStoreRepository;
 
 public class InterestedStoreService {
@@ -45,6 +43,10 @@ public class InterestedStoreService {
 			store.setStoreImgUrl(url.substring(0, url.indexOf("-")));
 		}
 		return list;
+	}
+
+	public boolean addLike(InterestedStore interestedStore) {
+		return interestedStoreRepository.likeAdd(interestedStore);
 	}
 	
 }

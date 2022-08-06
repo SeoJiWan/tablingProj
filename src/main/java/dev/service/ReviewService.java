@@ -3,7 +3,6 @@ package dev.service;
 import java.util.List;
 
 import dev.domain.Review;
-import dev.repository.DAO;
 import dev.repository.ReviewRepository;
 
 public class ReviewService {
@@ -35,10 +34,13 @@ public class ReviewService {
 	//가게 당 별점 조회
 	public int getAvgTasteScore(String storeName) {
 		return reviewrepo.reviewAvgTateScore(storeName).getAvgScore();
+<<<<<<< HEAD
 	}
 	
 	// 유저별 리뷰리스트 조회
 	public List<Review> findAllReviewsByMemberId(String memberId){
 		return reviewrepo.selectAllByMemberId(memberId);
+=======
+>>>>>>> 934ca77123a7666810b34a82bcc64e99a786b51f
 	}
 }
