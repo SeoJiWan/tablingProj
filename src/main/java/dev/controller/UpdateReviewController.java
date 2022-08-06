@@ -16,7 +16,15 @@ public class UpdateReviewController implements Controller {
 		int reviewID = Integer.parseInt(req.getParameter("reviewId"));
 	
 		boolean isUpdate = reviewService.updateReview(content, reviewID);
-	
+		
+		try {
+			if(isUpdate)
+			resp.getWriter().print("{\"retCode\" : \"Success\"}");
+			else
+			resp.getWriter().print("{\"retCode\" : \"Fail\"}");
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
 	
 	}
 

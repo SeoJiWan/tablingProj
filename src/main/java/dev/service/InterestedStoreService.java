@@ -46,5 +46,9 @@ public class InterestedStoreService {
 		}
 		return list;
 	}
+
+	public boolean addLike(InterestedStore interestedStore) {
+		return interestedStoreRepository.likeAdd(interestedStore);
+	}
 	
 }
