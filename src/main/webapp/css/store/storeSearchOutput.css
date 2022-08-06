@@ -1,26 +1,53 @@
 #container{
-	width:72%;
+	width:50%;
 	margin: 0 auto;
 }
-
+/*필터*/
 a{
-	list-style: none;
+	text-decoration:none;
 	color: #aaa;
 }
-
+#a{
+	text-align:right;
+}
+/*리스트*/
+#list{
+	margin:0 auto;
+	padding-bottom:20px;
+}
 ul{
 	padding:0;
+	margin-bottom:0;
 }
-/*가운데 배치 해야함*/
 #container li{
 	list-style:none;
-	display: inline-block;
-	padding:20px;
+	padding:20px 20px 0 20px;
+	display:inline-block;
 }
-/* 리스트 이미지 왜 적용 안됨?*/
-#container li img{
-	width: 400px;
-	height: 300px;
+/*폼*/
+#form{
+	margin:0 auto;
+	border: solid 1px #aaa;
+}
+
+/*페이징*/
+#center{
+	display:inline-block;
+}
+
+/*별점*/
+span{
+	color:ffd729;
+	font-size:1.17em;
+}
+
+/*식당 이름*/
+h3{
+	margin:0;
+	padding-top:5px;
+	padding-bottom:5px;
+	display:inline-block;
+	font-weight:normal;
 }
 /* 레이어 팝업 박스 */
 .layer-popup {
@@ -45,7 +72,6 @@ ul{
 }
 
 .modal-content {
-  padding:5px 5px;
-  line-height: 40px;
+  padding:20px;
+  line-height: 30px;
 }
-

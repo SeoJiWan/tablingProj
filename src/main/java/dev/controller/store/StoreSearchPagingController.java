@@ -41,7 +41,7 @@ public class StoreSearchPagingController implements Controller {
 		List<Store> list = storeService.findAllStores(keyword);
 		int total = list.size();
 		req.setAttribute("pageInfo", new Page(cri, total));
-		Utils.forward(req, resp, "WEB-INF/jsp/store/storeSearchOutput.jsp");
+		Utils.forward(req, resp, "store/storeSearchOutput.tiles");
 	}
 
 }
