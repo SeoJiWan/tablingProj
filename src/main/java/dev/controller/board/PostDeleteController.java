@@ -6,10 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dev.controller.Controller;
-import dev.controller.Utils;
 import dev.domain.Board;
-import dev.repository.BoardRepository;
-import oracle.jdbc.oracore.Util;
 
 public class PostDeleteController implements Controller {
 
