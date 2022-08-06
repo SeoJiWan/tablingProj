@@ -6,8 +6,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dev.service.ReviewService;
-
 public class UpdateReviewController implements Controller {
 
 	@Override
@@ -16,7 +14,15 @@ public class UpdateReviewController implements Controller {
 		int reviewID = Integer.parseInt(req.getParameter("reviewId"));
 	
 		boolean isUpdate = reviewService.updateReview(content, reviewID);
-	
+		
+		try {
+			if(isUpdate)
+			resp.getWriter().print("{\"retCode\" : \"Success\"}");
+			else
+			resp.getWriter().print("{\"retCode\" : \"Fail\"}");
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
 	
 	}
 

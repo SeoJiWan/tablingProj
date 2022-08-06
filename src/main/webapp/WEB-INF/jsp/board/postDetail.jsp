@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>게시글 보기</title>
-<%-- <link href="${pageContext.request.contextPath}/css/board.css" rel="stylesheet"/> --%>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/board/basic.css" />
 </head>
 	<body>
 		<form action="postUpdateForm.do" method="post">
@@ -20,7 +20,7 @@
 					
 			<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 				<tbody style="text-align: left;">
-					<tr style="border-bottom:1px solid #cccccc;">
+					<tr id="trHead">
 						<th>${boardDetail.boardId}</th>
 						<th>${boardDetail.nickName}</th>
 						<th>${boardDetail.title}</th>
@@ -37,7 +37,30 @@
 		</form>
 			<a href= "postListPaging.do?pageNum=1&postNum=10"><button>목록으로</button></a>
 			<input type="button" id="postDelete" value="삭제" />
-		
+			<c:if test="${requestScope.commentList != null} ">
+				<c:forEach var="comment" items="${commentList}">
+					<tr>
+						<td width="150">
+							<div>${comment.comment_id}<br><font size="2" color="lightgray">${comment.create_date }</font></div>
+						</td>
+						<!-- 본문내용 -->
+						<td width="550">
+							<div class="text_wrapper">${comment.comment_content}</div>
+						</td>
+						<!-- 버튼 -->
+						<td width="100">
+							<div id="btn" style="text-align:center;">
+									<a href="#">[답변]</a><br>
+								<!-- 댓글 작성자만 수정, 삭제 가능 -->
+								<c:if test="${comment.comment_id == sessionScope.sessionId }">
+									<a href = "#">[수정]</a><br>
+									<a href = "#">[삭제]</a>
+								</c:if>
+							</div>
+						</td>
+					</tr>
+				</c:forEach>
+			</c:if>
 		<!-- 삭제확인 -->
 		<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
 		<script type="text/javascript">

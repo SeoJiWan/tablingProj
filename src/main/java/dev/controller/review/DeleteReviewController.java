@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dev.controller.Controller;
-import dev.service.ReviewService;
 
 public class DeleteReviewController implements Controller {
 

@@ -13,6 +13,8 @@ public class CommentService {
 	
 	//생성자
 	private CommentService() {};
+	
+	//싱글톤 객체 리턴하는 메소드
 	public static CommentService getCommentService() {
 		return commentService;
 	}

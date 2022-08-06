@@ -181,33 +181,30 @@ public class StoreRepository extends DAO {
 		String sql = "SELECT * FROM" + "(SELECT * FROM stores WHERE store_name like '%" + keyword + "%'"
 				+ " OR store_address like '%" + keyword + "%'" + " OR represent_menu like '%" + keyword + "%'"
 				+ " OR food_category like '%" + keyword + "%')";
-//				+ "WHERE 1=1 ";
-//        if(area.length>1||food.length>1) {
-//			sql += "OR store_address ='" + area[0] + "' OR food_category='" + food[0] + "'";
-//        }
-//		if(area.length>1) {
-//			sql += "AND( store_address LIKE '%"+area[1]+"%'"; 
-//			for (int i=2; i<area.length; i++) {
-//				sql += " OR store_address LIKE '%"+ area[i]+ "%'";
-//			}
-//			sql += ")";
-//		}
-//		if(food.length>1) {
-//			sql += "AND( store_address LIKE '%"+food[1]+"%'";
-//			for (int i=2; i<food.length; i++) {
-//				sql += " OR food LIKE '%"+ food[i]+ "%')";
-//			}
-//			sql += ")";
-//		}
-		if (area.length > 1 || food.length > 1) {
-			sql += "WHERE store_address ='" + area[0] + "' OR food_category='" + food[0] + "'";
-			for (int i = 1; i < area.length; i++) {
-				sql += " OR store_address LIKE '%" + area[i] + "%'";
+			sql += "WHERE approval_status = 1 ";
+			if(area.length>1) {
+			sql += "AND( store_address LIKE '%"+area[1]+"%'"; 
+			for (int i=2; i<area.length; i++) {
+				sql += " OR food_category LIKE '%"+ area[i]+ "%'";
 			}
-			for (int i = 1; i < food.length; i++) {
-				sql += " OR food_category='" + food[i] + "'";
+			sql += ")";
 			}
-		}
+			if(food.length>1) {
+			sql += "AND( food_category LIKE '%"+food[1]+"%'"; 
+			for (int i=2; i<food.length; i++) {
+				sql += " OR food_category LIKE '%"+ food[i]+ "%'";
+			}
+			sql += ")";
+			}
+//		if (area.length > 1 || food.length > 1) {
+//			sql += "WHERE store_address ='" + area[0] + "' OR food_category='" + food[0] + "'";
+//			for (int i = 1; i < area.length; i++) {
+//				sql += " OR store_address LIKE '%" + area[i] + "%'";
+//			}
+//			for (int i = 1; i < food.length; i++) {
+//				sql += " OR food_category='" + food[i] + "'";
+//			}
+//		}
 
 		List<Store> list = new ArrayList<>();
 		connect();
@@ -237,7 +234,7 @@ public class StoreRepository extends DAO {
 		} finally {
 			disconnect();
 		}
-		System.out.println("페이징x:"+sql);
+		//System.out.println("페이징x:"+sql);
 		return list;
 	}
 
@@ -392,33 +389,30 @@ public class StoreRepository extends DAO {
 				+ "OR store_address LIKE '%"+keyword+"%' "
                 + "OR represent_menu LIKE '%"+keyword+"%' "
                 + "OR food_category LIKE '%"+keyword+"%' ) ";
-//				+ "WHERE 1=1 ";
-//                if(area.length>1||food.length>1) {
-//    				sql += "OR store_address ='" + area[0] + "' OR food_category='" + food[0] + "'";
-//    		}
-//				if(area.length>1) {
-//					sql += " AND( store_address LIKE '%"+area[1]+"%'"; 
-//					for (int i=2; i<area.length; i++) {
-//						sql += " OR store_address LIKE '%"+ area[i]+ "%'";
-//					}
-//					sql += ")";
-//				}
-//				if(food.length>1) {
-//					sql += " AND( store_address LIKE '%"+food[1]+"%'";
-//					for (int i=2; i<food.length; i++) {
-//						sql += " OR food LIKE '%"+ food[i]+ "%'";
-//					}
-//					sql += ")";
-//				}
-			if (area.length > 1 || food.length > 1) {
-                	sql += "WHERE store_address ='"+area[0]+"' OR food_category='"+food[0]+"'";
-      			for (int i = 1; i < area.length; i++) {
-       				sql += " OR store_address LIKE '%" + area[i] + "%'";
-      			}
-       			for (int i = 1; i < food.length; i++) {
-       				sql += " OR food_category='" + food[i] + "')";
-        			}
-       		}
+			sql += "WHERE approval_status = 1 ";
+			if(area.length>1) {
+			sql += "AND( store_address LIKE '%"+area[1]+"%'"; 
+			for (int i=2; i<area.length; i++) {
+				sql += " OR food_category LIKE '%"+ area[i]+ "%'";
+			}
+			sql += ")";
+			}
+			if(food.length>1) {
+			sql += "AND( food_category LIKE '%"+food[1]+"%'"; 
+			for (int i=2; i<food.length; i++) {
+				sql += " OR food_category LIKE '%"+ food[i]+ "%'";
+			}
+			sql += ")";
+			}
+//			if (area.length > 1 || food.length > 1) {
+//                	sql += "WHERE store_address ='"+area[0]+"' OR food_category='"+food[0]+"'";
+//      			for (int i = 1; i < area.length; i++) {
+//       				sql += " OR store_address LIKE '%" + area[i] + "%'";
+//      			}
+//       			for (int i = 1; i < food.length; i++) {
+//       				sql += " OR food_category='" + food[i] + "')";
+//        			}
+//       		}
         		sql += ") a, (select store_name, sum(taste_score)/count(*) score from reviews group by store_name) b "
         				+ "WHERE "
         				+ "a.store_name = b.store_name(+) "
@@ -426,6 +420,7 @@ public class StoreRepository extends DAO {
         				+ ") WHERE "
         				+ "rn >" + cri.getPostNum() * (cri.getPageNum()-1)
         				+ " ORDER BY s desc";
+        System.out.println("페이징:"+sql);
 		List<Store> list = new ArrayList<>();
 		connect();
 		try {
@@ -455,7 +450,7 @@ public class StoreRepository extends DAO {
 		} finally {
 			disconnect();
 		}
-		System.out.println(sql);
+		//System.out.println(sql);
 		return list;
 	}
 
@@ -684,6 +679,7 @@ public class StoreRepository extends DAO {
 		return listPage;
 	}
 
+
 	public void mypageupdatestore(Store st) {
 		connect();
 		String sql = "UPDATE stores SET store_name = ?, store_address = ?, telephone = ?, food_category = ? where member_id = ?";
@@ -740,3 +736,6 @@ public class StoreRepository extends DAO {
 		return store;
 	}
 }
+
+}
+

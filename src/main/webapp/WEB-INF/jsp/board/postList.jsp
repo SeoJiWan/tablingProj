@@ -8,20 +8,19 @@
 <head>
 <meta charset="UTF-8">
 <title>커뮤니티 글목록</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/board.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/boardPaging.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/board/basic.css" />
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 </head>
 <body>
 <div style="text-align:center;"><h2>커뮤니티</h2></div>
 
-  <form action="postAddForm.do" method="post" id="frm">
-  	  <input type="hidden" id ="memberId" name="memberId" value="${boardList.memberId}">
-	  <button type="button" onclick="checkLogin()">글쓰기</button> <!-- location.href='postAddForm.do' -->
+	  <form action="postAddForm.do" method="post" id="frm">
+	  	  <%-- <input type="hidden" id ="memberId" name="memberId" value="${memberId}"> --%>
+		  <button type="submit">글쓰기</button> <!-- location.href='postAddForm.do' -->
 	  </form>
 	  <table>
 			<thead>
-				<tr>
+				<tr id="trHead">
 					<th>글 번호</th><th>닉네임</th><th>제목</th><th>작성일자</th><th>조회수</th>
 					
 				</tr>
@@ -54,17 +53,4 @@
 		</div>
 	</div>
 </body>
-<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
-<script type="text/javascript">
-	function checkLogin() {
-		if (frm.memberId.value == "") {  //memberId없을 시
-			 alert("로그인 해주세요! ");
-			 window.location.href = "memberLoginForm.do"; //로그인 폼으로 이동
-			 return;
-    	  }  else {  //memberId있으면 글쓰기 폼으로 이동
-    		  frm.submit();
-  	    	  	}
-			}
-	}
-</script>
 </html>

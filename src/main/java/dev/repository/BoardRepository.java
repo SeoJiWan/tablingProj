@@ -1,6 +1,5 @@
 package dev.repository;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,12 +8,18 @@ import dev.domain.Criteria;
 import dev.domain.Member;
 
 public class BoardRepository extends DAO{
-	//커뮤니티 : role=2면 -> 글 읽기&쓰기 가능
+	/*
+	 * 커뮤니티
+	 * role=0 -> 글 읽기&쓰기 가능
+	 * role=1 -> 글 읽기만 가능
+	 * role=2 -> 글 읽기&쓰기 가능
+	 */
+					
 	
 	//글등록
 	public void insertPost(Board bd) {
 		connect();
-		String sql = "insert into boards values((select nvl(max(board_id),2022100)+1 from boards), ?, ?, ?, sysdate,0)";
+		String sql = "INSERT INTO boards VALUES((select nvl(max(board_id),2022100)+1 from boards), ?, ?, ?, SYSDATE,0)";
 		
 		try {
 			ps = conn.prepareStatement(sql);
@@ -39,7 +44,10 @@ public class BoardRepository extends DAO{
 	//게시판 전체 목록
 	public List<Board> boardList() {
 		connect();
-		String sql = "select b.board_id, b.member_id ,m.nickname, b.title, b.content, b.create_date, b.hits from boards b join members m on (b.member_id = m.member_id) order by b.board_id desc";
+		String sql = "SELECT b.board_id, b.member_id ,m.nickname, b.title, b.content, b.create_date, b.hits "
+					  + "FROM boards b "
+					  + "JOIN members m ON (b.member_id = m.member_id) "
+					  + "ORDER BY b.board_id DESC";
 		List<Board> list = new ArrayList<>();
 		
 		try {
@@ -180,12 +188,28 @@ public class BoardRepository extends DAO{
 	public List<Board> getListPaging(Criteria criteria) {
 		connect();
 		List<Board> pageList = new ArrayList<>();
-		String sql = "select board_id, member_id, title, create_date, hits "
-				+ "from (select rownum rn, board_id, member_id, title,create_date, hits "
-				+ "      from (select rownum rn, board_id, member_id, title,create_date, hits "
-				+ "            from boards order by board_id desc) "
-				+ "      where rownum <= ?) "
-				+ "where rn>?"; 
+		String sql = "SELECT board_id, member_id, title, create_date, hits "
+				  	  + "FROM (SELECT rownum rn, board_id, member_id, title, create_date, hits "
+					  + "          FROM (SELECT rownum rn, board_id, member_id, title,create_date, hits "
+					  + "                    FROM boards ORDER BY board_id DESC) "
+					  + "          WHERE rownum <= ?) " //페이지 안의 글
+					  + "WHERE rn>?";  //페이지
+		
+		
+//		String sql = "SELECT b.board_id, b.member_id, m.nickname, b.title, b.create_date, b.hits "
+	//			  	  + "FROM (SELECT rownum rn, b.board_id, b.member_id, m.nickname, b.title, b.create_date, b.hits "
+	//				  + "          FROM (SELECT rownum rn, b.board_id, b.member_id, m.nickname, title, create_date, hits "
+	//				  + "                    FROM boards "
+	//		          + " ORDER BY board_id DESC) "
+	//				  + "          WHERE rownum <= ?) " //페이지 수
+	//				  + "WHERE rn>?"; 		
+		
+		
+//		String boardList = "SELECT b.board_id, b.member_id ,m.nickname, b.title, b.content, b.create_date, b.hits "
+//				  + "FROM boards b "
+//				  + "JOIN members m ON (b.member_id = m.member_id) "
+//				  + "ORDER BY b.board_id DESC";
+		
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, criteria.getPostNum()*criteria.getPageNum());//글갯수

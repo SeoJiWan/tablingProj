@@ -11,10 +11,6 @@
 </head>
 <body>
 	<!-- 로그인 값 확인 -->
-<%--  	<c:set var="user" value="${param.loginId}"></c:set>
-	<c:if test="${empty user}">
-		<c:redirect url="../memberView/memberLoginForm.jsp"></c:redirect>
-	</c:if> --%>
 
 	<!-- 글쓰기 영역 시작 -->
 	<div class="container">

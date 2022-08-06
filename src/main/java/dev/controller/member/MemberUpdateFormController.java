@@ -4,7 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import dev.controller.Utils;
 import dev.controller.Controller;
-import dev.domain.Member;
 
 public class MemberUpdateFormController implements Controller {
 
