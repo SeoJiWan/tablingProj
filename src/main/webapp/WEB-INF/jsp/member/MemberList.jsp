@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-   <link href="${pageContext.request.contextPath}/css/StoreCss.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath}/css/store/StoreCss.css" rel="stylesheet" type="text/css">
 </head>
 <jsp:include page="../../tiles/head.jsp"/>
 <jsp:include page="../../../adminsidebar.jsp"/>

@@ -678,4 +678,64 @@ public class StoreRepository extends DAO {
 		}
 		return listPage;
 	}
+
+
+	public void mypageupdatestore(Store st) {
+		connect();
+		String sql = "UPDATE stores SET store_name = ?, store_address = ?, telephone = ?, food_category = ? where member_id = ?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, st.getStoreName());
+			ps.setString(2, st.getStoreAddress());
+			ps.setString(3, st.getTelephone());
+			ps.setString(4, st.getFoodCategory());
+			ps.setString(5, st.getMemberId());
+			
+			int result = ps.executeUpdate();
+			
+			if (result > 0) {
+				System.out.println(result + "건 수정 완료");
+			} else {
+				System.out.println("수정 실패");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		
+	}
+	
+	public Store storemanagement(String member_id) {
+		Store store = null;
+		String sql = "select * from stores where member_id = ?";
+		connect();
+
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, member_id);
+
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				store = new Store();
+				store.setStoreName(rs.getString(2));
+				store.setMemberId(rs.getString(3));
+				store.setStoreAddress(rs.getString(4));
+				store.setTelephone(rs.getString(5));
+				store.setAvailableTime(rs.getString(7));
+				store.setFoodCategory(rs.getString(11));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return store;
+	}
 }
+
+}
+

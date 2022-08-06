@@ -45,6 +45,7 @@ import dev.controller.store.degreeStoreAjaxController;
 import dev.controller.store.storeFilterSearchPagingController;
 import dev.controller.store.updateStoreAjaxController;
 import dev.controller.store.updatemanagement;
+import dev.controller.store.updatestore;
 
 // .
 public class FrontController extends HttpServlet {
@@ -96,6 +97,8 @@ public class FrontController extends HttpServlet {
 		mappings.put("/degreeStoreAjax.do", new degreeStoreAjaxController());
 		mappings.put("/updateStoreAjax.do", new updateStoreAjaxController());
 		mappings.put("/updatemanagement.do", new updatemanagement());
+		mappings.put("/ownerupdate.do", new updatemanagement());
+		mappings.put("/updatestore.do", new updatestore());
 		
 		//InterestedStore
 		mappings.put("/interestedStoreList.do", new InterestedStoreListController());
