@@ -1,0 +1,12 @@
+.container_review_list {
+	text-align: center;
+}
+
+.table_review_list {
+	margin: auto;
+	margin-top: 100px;
+}
+
+.table_review_list td,th {
+	padding: 10px;
+}

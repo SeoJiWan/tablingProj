@@ -12,6 +12,11 @@ a {
   background-color: white;
 }
 
+.head_logo a {
+	font-size: 24px;
+	font-weight: bolder;
+}
+
 .head_table {
   width: 100%;
   border-collapse: collapse;

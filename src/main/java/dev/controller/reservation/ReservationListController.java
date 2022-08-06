@@ -17,16 +17,13 @@ public class ReservationListController implements Controller {
 		
 		Member loginMember = (Member) req.getSession().getAttribute("loginMember");
 		
-		// 테스트용
-//		loginId = "ccc";
-		
 		List<Reservations> list = reservationService.findReservationsByMemberId(loginMember.getMemberId());
 			
-		list.forEach(System.out::println);
+//		list.forEach(System.out::println);
 		
 		req.setAttribute("reservationList", list);
 		
-		Utils.forward(req, resp, "/reservation/reservationListResult.tiles");
+		Utils.forward(req, resp, "reviewListByMemberId.do");
 	
 	
 	

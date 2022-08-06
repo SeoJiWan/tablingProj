@@ -1,0 +1,10 @@
+#container_mypage_info_update {
+	margin: 0 auto;
+	width:50%;
+}
+
+.profile_img {
+	width: 220px;
+	height: 220px;
+	border-radius: 110px;
+}

@@ -34,6 +34,11 @@ public class ReviewService {
 	
 	//가게 당 별점 조회
 	public int getAvgTasteScore(String storeName) {
-		return revierepo.reviewAvgTateScore(storeName).getAvgScore();
+		return reviewrepo.reviewAvgTateScore(storeName).getAvgScore();
+	}
+	
+	// 유저별 리뷰리스트 조회
+	public List<Review> findAllReviewsByMemberId(String memberId){
+		return reviewrepo.selectAllByMemberId(memberId);
 	}
 }

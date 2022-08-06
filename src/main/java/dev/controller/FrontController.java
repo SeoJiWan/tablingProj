@@ -3,13 +3,11 @@ package dev.controller;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import dev.controller.board.CommentAddController;
 import dev.controller.board.PostAddController;
 import dev.controller.board.PostAddFormController;
@@ -23,6 +21,7 @@ import dev.controller.detail.DetailMainController;
 import dev.controller.interestedStore.InterestedStoreListController;
 import dev.controller.member.MemberCheckIdDuplController;
 import dev.controller.member.MemberDeleteController;
+import dev.controller.member.MemberInfoMyPageController;
 import dev.controller.member.MemberInsertController;
 import dev.controller.member.MemberListPagingControl;
 import dev.controller.member.MemberLoginController;
@@ -37,6 +36,7 @@ import dev.controller.reservation.ReservationFormController;
 import dev.controller.reservation.ReservationListController;
 import dev.controller.review.AddReviewController;
 import dev.controller.review.DeleteReviewController;
+import dev.controller.review.ReviewListByMemberIdController;
 import dev.controller.review.ReviewListController;
 import dev.controller.store.StoreAcceptListPagingControl;
 import dev.controller.store.StoreListPagingController;
@@ -80,10 +80,14 @@ public class FrontController extends HttpServlet {
 		mappings.put("/memberDelete.do", new MemberDeleteController());
 		mappings.put("/memberListPaging.do", new MemberListPagingControl());
 		mappings.put("/memberadminDelete.do", new MemberadminDeleteController());
-		mappings.put("/memberMyPage.do", new MemberMyPageController());
+		
+		// my page --> 순서대로 컨트롤러 로직 실행 후 마지막에 mypage.jsp 로 데이터 뿌려줌 
+		mappings.put("/memberInfoMyPage.do", new MemberInfoMyPageController());
+		mappings.put("/interestedStoreList.do", new InterestedStoreListController());
+		mappings.put("/reservationList.do", new ReservationListController());
+		mappings.put("/reviewListByMemberId.do", new ReviewListByMemberIdController());
 		
 		//Reservation
-		mappings.put("/reservationList.do", new ReservationListController());
 		mappings.put("/reservationDelete.do", new ReservationDeleteController());
 		mappings.put("/reserve.do", new ReservationFormController());
 		mappings.put("/reservationComplete.do", new ReservationCompleteController());
@@ -98,18 +102,14 @@ public class FrontController extends HttpServlet {
 		mappings.put("/updatemanagement.do", new updatemanagement());
 		
 		//InterestedStore
-		mappings.put("/interestedStoreList.do", new InterestedStoreListController());
 	
-		//DetailReview
+		//Review
 		mappings.put("/addReview.do", new AddReviewController());
 		//은하와 연결 - mappings.put("/detailPage.do", new ReviewListController());
 		mappings.put("/reviewList.do", new ReviewListController());
 		mappings.put("/deleteReviewAjax.do", new DeleteReviewController());
-		mappings.put("/updateReviewAjax.do/", new UpdateReviewController());
+		mappings.put("/updateReviewAjax.do", new UpdateReviewController());
 			
-		// board
-
-	
 		//Board
 		mappings.put("/postListPaging.do", new PostListPagingController()); //게시판 첫페이지->postList.tiles
 		mappings.put("/postList.do", new PostListController()); //게시판 목록->postList.tiles
