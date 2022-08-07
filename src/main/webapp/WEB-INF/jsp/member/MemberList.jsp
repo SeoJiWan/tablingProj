@@ -9,7 +9,7 @@
     <link href="${pageContext.request.contextPath}/css/store/StoreCss.css" rel="stylesheet" type="text/css">
 </head>
 <jsp:include page="../../tiles/head.jsp"/>
-<jsp:include page="../../../adminsidebar.jsp"/>
+<jsp:include page="/sidebar/sidebarMemberList.jsp"/>
 <body>
 	<h2>회원 목록</h2>
 	<table id="tab">

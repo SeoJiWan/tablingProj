@@ -1,5 +1,4 @@
-
-  #tab {
+#tab {
     
   margin : 0 auto;
   margin-top : 50px;
@@ -11,6 +10,8 @@
   border-collapse: collapse;
   border-radius: 5px;
   overflow: hidden;
+  
+  
   }
   th, td {
   font-size:17px;
@@ -27,7 +28,7 @@
   
   font-weight: bold;
   color: #fff;
-  background: #F5AE3A;
+  background: #ff993b;
   }
   
   h2 {

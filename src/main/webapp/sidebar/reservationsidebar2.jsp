@@ -18,31 +18,32 @@ pageEncoding="UTF-8"%>
     <div class="navigation">
       <ul>
         <li class="list">
-          <a href="${pageContext.request.contextPath }/admin_main.do?pageNum=1&postNum=10">
-            <span class="icon">
-              <i class="input-icon uil uil-server"></i>
-            </span>
-            <span class="title">승인 요청 목록</span>
-          </a>
-        </li>
-        <li class="list">
-          <a href="${pageContext.request.contextPath }/StoreAcceptListPaging.do?pageNum=1&postNum=10">
-            <span class="icon">
-              <i class="input-icon uil uil-store"></i>
-            </span>
-            <span class="title">승인 점포 목록</span>
-          </a>
-        </li>
-                  <li class="list active">
-          <a href="${pageContext.request.contextPath }/memberListPaging.do?pageNum=1&postNum=10">
+          <a href="${pageContext.request.contextPath }/StoreReserVation.do?pageNum=1&postNum=10">
             <span class="icon">
               <i class="input-icon uil uil-user-exclamation"></i>
             </span>
-            <span class="title">회원 관리</span>
+            <span class="title">예약자 현황</span>
+          </a>
+        </li>
+        <li class="list active">
+          <a href="${pageContext.request.contextPath }/ownerupdate.do">
+            <span class="icon">
+              <i class="input-icon uil uil-store"></i>
+            </span>
+            <span class="title">점포수정</span>
           </a>
         </li>
       </ul>
     </div>
-    <script src="${pageContext.request.contextPath }/js/sidebar.js"></script>
   </body>
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+  <script>
+  const list = document.querySelectorAll(".list");
+  function activeLink() {
+    list.forEach((item) => item.classList.remove("active"));
+    this.classList.add("active");
+  }
+
+  list.forEach((item) => item.addEventListener("click", activeLink));
+  </script>
 </html>
