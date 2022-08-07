@@ -3,7 +3,6 @@ package dev.repository;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import dev.domain.Criteria;
 import dev.domain.Store;
 
@@ -736,6 +735,5 @@ public class StoreRepository extends DAO {
 		return store;
 	}
 }
-
 
 

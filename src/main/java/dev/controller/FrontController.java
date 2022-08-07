@@ -108,14 +108,11 @@ public class FrontController extends HttpServlet {
 		
 		//InterestedStore
 
-	
 		//Review
-
 		mappings.put("/interestedStoreList.do", new InterestedStoreListController());
 		mappings.put("/likeStoreAjax.do", new LikeStoreController());
 		
 		//DetailReview
-
 		mappings.put("/addReview.do", new AddReviewController());
 		mappings.put("/detailPage.do", new ReviewListController());
 		//mappings.put("/reviewList.do", new ReviewListController());
