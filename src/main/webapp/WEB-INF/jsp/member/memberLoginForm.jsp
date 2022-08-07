@@ -118,6 +118,18 @@ pageEncoding="UTF-8"%>
                             />
                             <i class="input-icon uil uil-lock-alt"></i>
                           </div>
+                          
+                          <div class="form-group mt-2">
+                            <input
+                              type="password"
+                              name="reg_pwd_check"
+                              class="form-style"
+                              placeholder="Your Password Check"
+                              id="reg_pwd_check"
+                              autocomplete="off"
+                            />
+                            <i class="input-icon uil uil-lock-alt"></i>
+                          </div>
 
                           <div class="form-group mt-2">
                             <input
@@ -234,8 +246,17 @@ pageEncoding="UTF-8"%>
 		}
 
 		if (frm.reg_pwd.value == "") {
-			alert("패스워드를 입력하세요.");
+			alert("비밀번호를 입력하세요.");
 			frm.reg_pwd.focus();
+			return false;
+		}
+		
+		console.log("reg check : " + reg_pwd_check.value);
+		console.log("reg : " + reg_pwd.value);
+		if (frm.reg_pwd.value != frm.reg_pwd_check.value) {
+			alert("비밀번호를 확인하세요.");
+			$('#reg_pwd_check').val('');
+			frm.reg_pwd_check.focus();
 			return false;
 		}
 
@@ -275,7 +296,7 @@ pageEncoding="UTF-8"%>
     	      } else {
     	    	alert("로그인 성공!");
     	    	//window.location.href = "admin_main.do?pageNum=1&postNum=10";
-    	    	//window.location.href = "main.do";
+    	    	window.location.href = "main.do";
     	        //window.location.href = "owner_main.do";
     	      }
     	      console.log(data);

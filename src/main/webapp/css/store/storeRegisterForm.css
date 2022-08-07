@@ -1,0 +1,16 @@
+.container_store_regist {
+	width: 500px;
+	margin: 0 auto;
+	margin-top: 50px;
+	
+}
+
+.table_store_register {
+	border-collapse: collapse;
+	padding: 30px;
+}
+
+.table_store_register th {
+	width: 200px;
+}
+

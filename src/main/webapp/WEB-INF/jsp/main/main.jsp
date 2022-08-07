@@ -27,7 +27,7 @@
 		     		<li>
 		     			<!-- 이미지 -->
 		     			<c:forEach var="img" items="${store.storeImgUrl }">
-							<a href="${pageContext.request.contextPath }/detailPage.do?storName=${store.storeName}"><img src="${pageContext.request.contextPath }/img/store_img/${img }" width="400" height="300"></a>
+							<a href="${pageContext.request.contextPath }/detailPage.do?storeName=${store.storeName}"><img src="${pageContext.request.contextPath }/img/store_img/${img }" width="400" height="300"></a>
 						</c:forEach>
 						<!-- 가게 정보 -->
 						<br>${store.storeName }

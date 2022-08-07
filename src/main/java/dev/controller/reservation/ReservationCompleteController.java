@@ -16,6 +16,7 @@ public class ReservationCompleteController implements Controller {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		String loginId = "ccc";
+		Reservations reservation = (Reservations) req.getAttribute("reservation");
 		
 		List<Reservations> list = reservationService.findReservationsByMemberId(loginId);
 		list.forEach(System.out::println);

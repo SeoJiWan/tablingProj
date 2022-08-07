@@ -38,8 +38,10 @@ import dev.controller.review.AddReviewController;
 import dev.controller.review.DeleteReviewController;
 import dev.controller.review.ReviewListByMemberIdController;
 import dev.controller.review.ReviewListController;
+import dev.controller.store.StoreRegisterFormController;
 import dev.controller.store.StoreAcceptListPagingControl;
 import dev.controller.store.StoreListPagingController;
+import dev.controller.store.StoreRegisterController;
 import dev.controller.store.StoreSearchPagingController;
 import dev.controller.store.degreeStoreAjaxController;
 import dev.controller.store.storeFilterSearchPagingController;
@@ -103,19 +105,19 @@ public class FrontController extends HttpServlet {
 		mappings.put("/updatemanagement.do", new updatemanagement());
 		mappings.put("/ownerupdate.do", new updatemanagement());
 		mappings.put("/updatestore.do", new updatestore());
+		mappings.put("/storeRegisterForm.do", new StoreRegisterFormController());
+		mappings.put("/storeRegister.do", new StoreRegisterController());
 		
 		//InterestedStore
-<<<<<<< HEAD
 	
 		//Review
-=======
 		mappings.put("/interestedStoreList.do", new InterestedStoreListController());
 		mappings.put("/likeStoreAjax.do", new LikeStoreController());
 		
 		//DetailReview
->>>>>>> 934ca77123a7666810b34a82bcc64e99a786b51f
 		mappings.put("/addReview.do", new AddReviewController());
-		//은하와 연결 - mappings.put("/detailPage.do", new ReviewListController());
+		//은하와 연결 - 
+		mappings.put("/detailPage.do", new ReviewListController());
 		mappings.put("/reviewList.do", new ReviewListController());
 		mappings.put("/deleteReviewAjax.do", new DeleteReviewController());
 		mappings.put("/updateReviewAjax.do", new UpdateReviewController());

@@ -195,7 +195,10 @@ public class StoreService {
 		Store store = storeRepository.storemanagement(storeName);
 		return store;
 	}
-}
-
+	
+	// 가게 등록 - 점주 페이지
+	public void registerStore(Store store) {
+		storeRepository.insert(store);
+	}
 }
 
