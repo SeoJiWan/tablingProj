@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import dev.domain.Criteria;
+import dev.domain.Reservations;
 import dev.domain.Store;
 import dev.repository.StoreRepository;
 
@@ -200,5 +201,16 @@ public class StoreService {
 	public void registerStore(Store store) {
 		storeRepository.insert(store);
 	}
+	
+	public List<Reservations> getstorereservations(Criteria cri, String stroeName) {
+		return storeRepository.getstorereservation(cri, stroeName);
+	}
+	
+	public List<Reservations> reservationList(String stroeName) {
+		return storeRepository.reservationList(stroeName);
+	}
+	
+	
+	
 }
 

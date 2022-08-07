@@ -9,7 +9,7 @@
     <link href="${pageContext.request.contextPath}/css/store/StoreCss.css" rel="stylesheet" type="text/css">
 </head>
 <jsp:include page="../../tiles/head.jsp"/>
-<jsp:include page="../../../adminsidebar.jsp"/>
+<jsp:include page="/sidebar/sidebarList.jsp"/>
 <body>
 	<h2>승인 점포 목록</h2>
 	<table id=tab>
@@ -23,7 +23,7 @@
 			</tr>
 		</thead>
 
-		<tbody></tbody>
+		<tbody>
 		<c:set var="stores" value="${list }"></c:set>
 		<c:forEach var="vo" items="${stores }">
 			<tr>

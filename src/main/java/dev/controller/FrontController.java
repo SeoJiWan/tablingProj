@@ -45,6 +45,7 @@ import dev.controller.store.StoreAcceptListPagingControl;
 import dev.controller.store.StoreListPagingController;
 import dev.controller.store.StoreRegisterController;
 import dev.controller.store.StoreSearchPagingController;
+import dev.controller.store.Storereservation;
 import dev.controller.store.degreeStoreAjaxController;
 import dev.controller.store.storeFilterSearchPagingController;
 import dev.controller.store.updateStoreAjaxController;
@@ -109,6 +110,7 @@ public class FrontController extends HttpServlet {
 		mappings.put("/updatestore.do", new updatestore());
 		mappings.put("/storeRegisterForm.do", new StoreRegisterFormController());
 		mappings.put("/storeRegister.do", new StoreRegisterController());
+		mappings.put("/StoreReserVation.do", new Storereservation());
 		
 		//InterestedStore
 
