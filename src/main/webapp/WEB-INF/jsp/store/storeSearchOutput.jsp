@@ -105,12 +105,14 @@
 						</c:forEach>
 						<!-- 가게명 -->
 						<br><h3>${store.storeName }</h3><span> ${store.score }</span>
+						<div id="detial">
 						<c:set var="add" value="${store.storeAddress }" />
 						<c:set var="lo" value="${fn:indexOf(add, '로') }" />
 						<!-- 주소 -->
-						<br>${fn:substring(add,9,lo+1) } 
+						${fn:substring(add,9,lo+1) } 
 						<!-- 업태 -->
 						- ${store.foodCategory }
+						</div>
 					</li>
 				</c:forEach>
 			</ul>

@@ -43,6 +43,9 @@ public class storeFilterSearchPagingController implements Controller {
 		session.setAttribute("areaStr", areaStr);
 		session.setAttribute("foodStr", foodStr);
 		
+		req.setAttribute("area", area);
+		req.setAttribute("food", food);
+		
 		//세션에서 키워드 불러오기
 		String keyword = (String)session.getAttribute("keyword");
 		if(keyword.equals("중앙로")) {
@@ -59,7 +62,7 @@ public class storeFilterSearchPagingController implements Controller {
 		int total = list.size();
 		req.setAttribute("pageInfo", new Page(cri, total));
 		
-		Utils.forward(req, resp, "WEB-INF/jsp/store/storeSearchOutput.jsp");
+		Utils.forward(req, resp, "store/storeSearchOutput.tiles");
 	}
 
 }

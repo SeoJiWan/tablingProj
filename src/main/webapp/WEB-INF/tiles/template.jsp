@@ -36,7 +36,7 @@ function enterkey() {
 			$.ajax({
 				type: "POST",
 				// 통신할 컨트롤러 지정 (.do) --> 은하
-				url: "#", 
+				url: "${pageContext.request.contextPath }/storeSearchPaging.do", 
 				
 				data: {
 					// 앞에 변수는 데이터 받는 변수 이름
