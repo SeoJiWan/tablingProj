@@ -1,10 +1,12 @@
-package dev.controller;
+package dev.controller.review;
 
 import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import dev.controller.Controller;
 
 public class UpdateReviewController implements Controller {
 
