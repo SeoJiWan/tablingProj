@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dev.controller.Controller;
 import dev.controller.Utils;
+import dev.domain.Member;
 import dev.domain.Review;
 public class AddReviewController implements Controller {
 
@@ -14,8 +15,9 @@ public class AddReviewController implements Controller {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws SecurityException, IOException{
 		resp.setContentType("text/jsp; charset=utf-8");
 	
-//		String memberId = req.getSession().getAttribute("loginId");
-		String memberId = "store4";		
+		Member loginMember = (Member) req.getSession().getAttribute("loginMember");
+	    String loginMemberId = loginMember.getMemberId();
+		
 		String content = req.getParameter("content");
 		String storeName = req.getParameter("storeName");
 		System.out.println("storeName: "+storeName);
@@ -24,7 +26,7 @@ public class AddReviewController implements Controller {
 	
 		Review vo = new Review();
 		vo.setContent(content);
-		vo.setMemberId(memberId);
+		vo.setMemberId(loginMemberId);
 		vo.setTasteScore(tasteScore);
 		vo.setStoreName(storeName);
 
@@ -32,7 +34,7 @@ public class AddReviewController implements Controller {
 		
 //		resp.sendRedirect("WEB-INF/jsp/detail/detailTestPage.jsp");
 		req.setAttribute("storeName", storeName);
-		Utils.forward(req, resp, "reviewList.do");
+		Utils.forward(req, resp, "detailPage.do");
 	
 	}
 

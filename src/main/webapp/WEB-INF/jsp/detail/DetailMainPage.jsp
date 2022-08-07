@@ -13,7 +13,7 @@
 		<img src="img/store_img/${img }" width="320" height="320"></img>
 	</c:forEach>
 	<h3>가게 상세 정보</h3>
-	<p>가게명 : ${storeDetail.storeName }</p>
+	<p id="${storeDetail.storeName }">가게명 : ${storeDetail.storeName }</p>
 	<p>주소 : ${storeDetail.storeAddress }</p>
 	<p>전화번호 : ${storeDetail.telephone }</p>
 	<p>이용 시간 : ${storeDetail.availableTime }</p>
@@ -28,6 +28,7 @@
 	<div>
 	<form action="${pageContext.request.contextPath }/reserve.do">
 		<div>
+			<input type="hidden" name="storeName" value="${storeDetail.storeName }">
 			<label for="peopleNum">How many persons?</label>
 			<select id="peopleNum" name="peopleNum">
 				<option value="none">-</option>
@@ -127,17 +128,63 @@
 		<!-- 찜하기 Ajax -->
 		<script type="text/javascript">
 		/* 찜 */
-		function showHeart() {
-			$('#like').show();
-			$('#unlike').hide();
+		
+		let like = $("#like").val();
+		let unlike = $("#unlike").val();
+		let storeName = ${storeDetail.storeName };
+		
+		
+		console.log(like);
+		console.log(unlike);
+		console.log(storeName);
+		
+			function showHeart() {
+				$('#like').show();
+				$('#unlike').hide();
+				
+				$.ajax({
+   					type: 'POST',
+   					
+   					url: 'likeStoreAjax.do',
+   					
+   					data:{
+   						like: like,
+   						storeName : storeName,
+   					},
+   					dataType: 'text',
+   					success: function(data){
+   						if(data == 'isLiked'){
+   							$('#unlike').text('찜하기가 등록되었습니다.');
+   							//찜등록 안한 상태에서 찜등록으로 바꾸기
+   							$('#unlike').val(1);
+   						}
+   					}
+		    	})
+			}
 			
-		}
-		/* 찜취소 */
-		function hideHeart() {
-			$('#like').hide();
-			$('#unlike').show();
-			
-		}
+			/* 찜취소 */
+			function hideHeart() {
+				$('#like').hide();
+				$('#unlike').show();
+				$.ajax({
+   					type: 'POST',
+   					
+   					url: 'likeStoreAjax.do',
+   					
+   					data:{
+   						unlike: unlike,
+   						storeName : storeName,
+   					},
+   					dataType: 'text',
+   					success: function(data){
+   						if(data != 'isLiked'){
+   							$('#unlike').text('찜하기가 등록되었습니다.');
+   							//찜등록 안한 상태에서 찜등록으로 바꾸기
+   							$('#unlike').val(1);
+   						} 
+   					}
+   				})
+			}
 
 
 		

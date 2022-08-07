@@ -275,7 +275,7 @@ pageEncoding="UTF-8"%>
     	      } else {
     	    	alert("로그인 성공!");
     	    	//window.location.href = "admin_main.do?pageNum=1&postNum=10";
-    	    	//window.location.href = "main.do";
+    	    	window.location.href = "main.do";
     	        //window.location.href = "owner_main.do";
     	      }
     	      console.log(data);
