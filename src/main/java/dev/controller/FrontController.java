@@ -105,15 +105,12 @@ public class FrontController extends HttpServlet {
 		mappings.put("/updatestore.do", new updatestore());
 		
 		//InterestedStore
-<<<<<<< HEAD
 	
 		//Review
-=======
 		mappings.put("/interestedStoreList.do", new InterestedStoreListController());
 		mappings.put("/likeStoreAjax.do", new LikeStoreController());
 		
 		//DetailReview
->>>>>>> 934ca77123a7666810b34a82bcc64e99a786b51f
 		mappings.put("/addReview.do", new AddReviewController());
 		//은하와 연결 - mappings.put("/detailPage.do", new ReviewListController());
 		mappings.put("/reviewList.do", new ReviewListController());
