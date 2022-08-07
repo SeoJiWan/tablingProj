@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import dev.domain.Criteria;
+import dev.domain.Member;
 import dev.domain.Store;
 
 public class StoreRepository extends DAO {
@@ -180,21 +181,21 @@ public class StoreRepository extends DAO {
 		String sql = "SELECT * FROM" + "(SELECT * FROM stores WHERE store_name like '%" + keyword + "%'"
 				+ " OR store_address like '%" + keyword + "%'" + " OR represent_menu like '%" + keyword + "%'"
 				+ " OR food_category like '%" + keyword + "%')";
-			sql += "WHERE approval_status = 1 ";
-			if(area.length>1) {
-			sql += "AND( store_address LIKE '%"+area[1]+"%'"; 
-			for (int i=2; i<area.length; i++) {
-				sql += " OR food_category LIKE '%"+ area[i]+ "%'";
+		sql += "WHERE approval_status = 1 ";
+		if (area.length > 1) {
+			sql += "AND( store_address LIKE '%" + area[1] + "%'";
+			for (int i = 2; i < area.length; i++) {
+				sql += " OR food_category LIKE '%" + area[i] + "%'";
 			}
 			sql += ")";
-			}
-			if(food.length>1) {
-			sql += "AND( food_category LIKE '%"+food[1]+"%'"; 
-			for (int i=2; i<food.length; i++) {
-				sql += " OR food_category LIKE '%"+ food[i]+ "%'";
+		}
+		if (food.length > 1) {
+			sql += "AND( food_category LIKE '%" + food[1] + "%'";
+			for (int i = 2; i < food.length; i++) {
+				sql += " OR food_category LIKE '%" + food[i] + "%'";
 			}
 			sql += ")";
-			}
+		}
 //		if (area.length > 1 || food.length > 1) {
 //			sql += "WHERE store_address ='" + area[0] + "' OR food_category='" + food[0] + "'";
 //			for (int i = 1; i < area.length; i++) {
@@ -233,63 +234,31 @@ public class StoreRepository extends DAO {
 		} finally {
 			disconnect();
 		}
-		//System.out.println("페이징x:"+sql);
+		// System.out.println("페이징x:"+sql);
 		return list;
 	}
 
 	// 키워드 조회-페이징
 	public List<Store> searchPagingkeyword(Criteria cri, String keyword) {
-		String sql = "SELECT "
-				+ "    * "
-				+ "FROM "
-				+ "    ( "
-				+ "        SELECT "
-				+ "            ROWNUM rn, "
-				+ "            a.store_id, "
-				+ "            a.store_name, "
-				+ "            a.member_id, "
-				+ "            a.store_address, "
-				+ "            a.telephone, "
-				+ "            a.sit_capacity, "
-				+ "            a.available_time, "
-				+ "            a.holiday, "
-				+ "            a.represent_menu, "
-				+ "            a.store_img_url, "
-				+ "            a.food_category, "
-				+ "            a.approval_status, "
-				+ "            nvl(b.score, 0) s "
-				+ "        FROM "
-				+ "            ( "
-				+ "                SELECT "
-				+ "                    * "
-				+ "                FROM "
-				+ "                    ( "
-				+ "                        SELECT "
-				+ "                            * "
-				+ "                        FROM "
-				+ "                            stores "
-				+ "                        WHERE "
+		String sql = "SELECT " + "    * " + "FROM " + "    ( " + "        SELECT " + "            ROWNUM rn, "
+				+ "            a.store_id, " + "            a.store_name, " + "            a.member_id, "
+				+ "            a.store_address, " + "            a.telephone, " + "            a.sit_capacity, "
+				+ "            a.available_time, " + "            a.holiday, " + "            a.represent_menu, "
+				+ "            a.store_img_url, " + "            a.food_category, " + "            a.approval_status, "
+				+ "            nvl(b.score, 0) s " + "        FROM " + "            ( " + "                SELECT "
+				+ "                    * " + "                FROM " + "                    ( "
+				+ "                        SELECT " + "                            * " + "                        FROM "
+				+ "                            stores " + "                        WHERE "
 				+ "                            store_name LIKE '%'||?||'%' "
 				+ "                            OR store_address LIKE '%'||?||'%' "
 				+ "                            OR represent_menu LIKE '%'||?||'%' "
-				+ "                            OR food_category LIKE '%'||?||'%' "
-				+ "                    ) "
-				+ "            ) a, "
-				+ "            ( "
-				+ "                SELECT "
-				+ "                    store_name, "
-				+ "                    SUM(taste_score) / COUNT(*) score "
-				+ "                FROM "
-				+ "                    reviews "
-				+ "                GROUP BY "
-				+ "                    store_name "
-				+ "            ) b "
-				+ "        WHERE "
-				+ "                a.store_name = b.store_name(+) "
-				+ "            AND ROWNUM <= ? "
-				+ "    ) "
-				+ "WHERE "
-				+ "    rn > ? ORDER BY s desc";
+				+ "                            OR food_category LIKE '%'||?||'%' " + "                    ) "
+				+ "            ) a, " + "            ( " + "                SELECT "
+				+ "                    store_name, " + "                    SUM(taste_score) / COUNT(*) score "
+				+ "                FROM " + "                    reviews " + "                GROUP BY "
+				+ "                    store_name " + "            ) b " + "        WHERE "
+				+ "                a.store_name = b.store_name(+) " + "            AND ROWNUM <= ? " + "    ) "
+				+ "WHERE " + "    rn > ? ORDER BY s desc";
 //		String sql = "select * from(select rownum rn, store_id, store_name, member_id, store_address, telephone, sit_capacity, available_time, holiday, represent_menu, store_img_url, food_category, approval_status"
 //				+ " from (SELECT *" + " from stores" + " where store_name like '%'||?||'%' "
 //				+ " or store_address like '%'||?||'%' " + " or represent_menu like '%'||?||'%' "
@@ -354,55 +323,28 @@ public class StoreRepository extends DAO {
 //				+ cri.getPostNum() * (cri.getPageNum() - 1);
 //		
 //		System.out.println(sql);
-		String sql = "SELECT "
-				+ "* "
-				+ "FROM "
-				+ "("
-				+ "SELECT "
-				+ "ROWNUM rn, "
-				+ "a.store_id, "
-				+ "a.store_name, "
-				+ "a.member_id, "
-				+ "a.store_address, "
-				+ "a.telephone, "
-				+ "a.sit_capacity, "
-				+ "a.available_time, "
-				+ "a.holiday, "
-				+ "a.represent_menu, "
-				+ "a.store_img_url, "
-				+ "a.food_category, "
-				+ "a.approval_status, "
-				+ "nvl(b.score, 0) s "
-				+ "FROM "
-				+ "( "
-				+ "SELECT "
-				+ "* "
-				+ "FROM "
-				+ "( "
-				+ "SELECT "
-				+ "* "
-				+ "FROM "
-				+ "stores "
-				+ "WHERE "
-				+ "store_name LIKE '%"+keyword+"%' "
-				+ "OR store_address LIKE '%"+keyword+"%' "
-                + "OR represent_menu LIKE '%"+keyword+"%' "
-                + "OR food_category LIKE '%"+keyword+"%' ) ";
-			sql += "WHERE approval_status = 1 ";
-			if(area.length>1) {
-			sql += "AND( store_address LIKE '%"+area[1]+"%'"; 
-			for (int i=2; i<area.length; i++) {
-				sql += " OR food_category LIKE '%"+ area[i]+ "%'";
+		String sql = "SELECT " + "* " + "FROM " + "(" + "SELECT " + "ROWNUM rn, " + "a.store_id, " + "a.store_name, "
+				+ "a.member_id, " + "a.store_address, " + "a.telephone, " + "a.sit_capacity, " + "a.available_time, "
+				+ "a.holiday, " + "a.represent_menu, " + "a.store_img_url, " + "a.food_category, "
+				+ "a.approval_status, " + "nvl(b.score, 0) s " + "FROM " + "( " + "SELECT " + "* " + "FROM " + "( "
+				+ "SELECT " + "* " + "FROM " + "stores " + "WHERE " + "store_name LIKE '%" + keyword + "%' "
+				+ "OR store_address LIKE '%" + keyword + "%' " + "OR represent_menu LIKE '%" + keyword + "%' "
+				+ "OR food_category LIKE '%" + keyword + "%' ) ";
+		sql += "WHERE approval_status = 1 ";
+		if (area.length > 1) {
+			sql += "AND( store_address LIKE '%" + area[1] + "%'";
+			for (int i = 2; i < area.length; i++) {
+				sql += " OR food_category LIKE '%" + area[i] + "%'";
 			}
 			sql += ")";
-			}
-			if(food.length>1) {
-			sql += "AND( food_category LIKE '%"+food[1]+"%'"; 
-			for (int i=2; i<food.length; i++) {
-				sql += " OR food_category LIKE '%"+ food[i]+ "%'";
+		}
+		if (food.length > 1) {
+			sql += "AND( food_category LIKE '%" + food[1] + "%'";
+			for (int i = 2; i < food.length; i++) {
+				sql += " OR food_category LIKE '%" + food[i] + "%'";
 			}
 			sql += ")";
-			}
+		}
 //			if (area.length > 1 || food.length > 1) {
 //                	sql += "WHERE store_address ='"+area[0]+"' OR food_category='"+food[0]+"'";
 //      			for (int i = 1; i < area.length; i++) {
@@ -412,14 +354,10 @@ public class StoreRepository extends DAO {
 //       				sql += " OR food_category='" + food[i] + "')";
 //        			}
 //       		}
-        		sql += ") a, (select store_name, sum(taste_score)/count(*) score from reviews group by store_name) b "
-        				+ "WHERE "
-        				+ "a.store_name = b.store_name(+) "
-        				+ "and ROWNUM <= " + cri.getPostNum() * cri.getPageNum()
-        				+ ") WHERE "
-        				+ "rn >" + cri.getPostNum() * (cri.getPageNum()-1)
-        				+ " ORDER BY s desc";
-        System.out.println("페이징:"+sql);
+		sql += ") a, (select store_name, sum(taste_score)/count(*) score from reviews group by store_name) b "
+				+ "WHERE " + "a.store_name = b.store_name(+) " + "and ROWNUM <= " + cri.getPostNum() * cri.getPageNum()
+				+ ") WHERE " + "rn >" + cri.getPostNum() * (cri.getPageNum() - 1) + " ORDER BY s desc";
+		System.out.println("페이징:" + sql);
 		List<Store> list = new ArrayList<>();
 		connect();
 		try {
@@ -449,7 +387,7 @@ public class StoreRepository extends DAO {
 		} finally {
 			disconnect();
 		}
-		//System.out.println(sql);
+		// System.out.println(sql);
 		return list;
 	}
 
@@ -678,11 +616,10 @@ public class StoreRepository extends DAO {
 		return listPage;
 	}
 
-
 	public void mypageupdatestore(Store st) {
 		connect();
 		String sql = "UPDATE stores SET store_name = ?, store_address = ?, telephone = ?, food_category = ? where member_id = ?";
-		
+
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, st.getStoreName());
@@ -690,23 +627,23 @@ public class StoreRepository extends DAO {
 			ps.setString(3, st.getTelephone());
 			ps.setString(4, st.getFoodCategory());
 			ps.setString(5, st.getMemberId());
-			
+
 			int result = ps.executeUpdate();
-			
+
 			if (result > 0) {
 				System.out.println(result + "건 수정 완료");
 			} else {
 				System.out.println("수정 실패");
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			disconnect();
 		}
-		
+
 	}
-	
+
 	public Store storemanagement(String member_id) {
 		Store store = null;
 		String sql = "select * from stores where member_id = ?";
@@ -734,6 +671,36 @@ public class StoreRepository extends DAO {
 		}
 		return store;
 	}
+
+	// 삽입
+	public void insert(Store store) {
+		String sql = "insert into stores values(store_id_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0)";
+		connect();
+
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, store.getStoreName());
+			ps.setString(2, store.getMemberId());
+			ps.setString(3, store.getStoreAddress());
+			ps.setString(4, store.getTelephone());
+			ps.setInt(5, store.getSitCapacity());
+			ps.setString(6, store.getAvailableTime());
+			ps.setInt(7, store.getHoliday());
+			ps.setString(8, store.getRepresentMenu().get(0));
+			ps.setString(9, store.getStoreImgUrl().get(0));
+			ps.setString(10, store.getFoodCategory());
+
+			int result = ps.executeUpdate();
+
+			if (result > 0) {
+				System.out.println(result + " 건 입력.");
+			} else {
+				System.out.println("입력 실패.");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+	}
 }
-
-

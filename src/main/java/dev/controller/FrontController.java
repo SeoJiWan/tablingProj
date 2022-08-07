@@ -39,9 +39,11 @@ import dev.controller.review.AddReviewController;
 import dev.controller.review.DeleteReviewController;
 import dev.controller.review.ReviewListByMemberIdController;
 import dev.controller.review.ReviewListController;
+import dev.controller.store.StoreRegisterFormController;
 import dev.controller.review.UpdateReviewController;
 import dev.controller.store.StoreAcceptListPagingControl;
 import dev.controller.store.StoreListPagingController;
+import dev.controller.store.StoreRegisterController;
 import dev.controller.store.StoreSearchPagingController;
 import dev.controller.store.degreeStoreAjaxController;
 import dev.controller.store.storeFilterSearchPagingController;
@@ -105,6 +107,8 @@ public class FrontController extends HttpServlet {
 		mappings.put("/updatemanagement.do", new updatemanagement());
 		mappings.put("/ownerupdate.do", new updatemanagement());
 		mappings.put("/updatestore.do", new updatestore());
+		mappings.put("/storeRegisterForm.do", new StoreRegisterFormController());
+		mappings.put("/storeRegister.do", new StoreRegisterController());
 		
 		//InterestedStore
 
@@ -114,6 +118,9 @@ public class FrontController extends HttpServlet {
 		
 		//DetailReview
 		mappings.put("/addReview.do", new AddReviewController());
+		//은하와 연결 - 
+		mappings.put("/detailPage.do", new ReviewListController());
+		mappings.put("/reviewList.do", new ReviewListController());
 		mappings.put("/detailPage.do", new ReviewListController());
 		//mappings.put("/reviewList.do", new ReviewListController());
 		mappings.put("/deleteReviewAjax.do", new DeleteReviewController());

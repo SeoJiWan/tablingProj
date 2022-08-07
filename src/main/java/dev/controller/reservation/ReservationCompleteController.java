@@ -14,15 +14,15 @@ import dev.domain.Reservations;
 
 public class ReservationCompleteController implements Controller {
 
-	@Override
-	public void execute(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-		
-		Reservations reservation = (Reservations) req.getAttribute("reservation");
-		
-		//Reservations reservationInfo = reservationService.findOneReservation(reservations.getReservationId());
-		
-		req.setAttribute("reservation", reservation);
-		Utils.forward(req, resp, "reservation/completeReservation.tiles");
-	}
+   @Override
+   public void execute(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+      
+      Reservations reservation = (Reservations) req.getAttribute("reservation");
+      
+      //Reservations reservationInfo = reservationService.findOneReservation(reservations.getReservationId());
+      
+      req.setAttribute("reservation", reservation);
+      Utils.forward(req, resp, "reservation/completeReservation.tiles");
+   }
 
 }

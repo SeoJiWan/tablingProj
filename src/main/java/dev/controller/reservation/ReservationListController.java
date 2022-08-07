@@ -12,20 +12,20 @@ import dev.domain.Reservations;
 
 public class ReservationListController implements Controller {
 
-	@Override
-	public void execute(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-		
-		 Member loginMember = (Member) req.getSession().getAttribute("loginMember");
-	      
-	      List<Reservations> list = reservationService.findReservationsByMemberId(loginMember.getMemberId());
-	         
-//	      list.forEach(System.out::println);
-	      
-	      req.setAttribute("reservationList", list);
-	      
-	      Utils.forward(req, resp, "reviewListByMemberId.do");
-	
-	
-	
-	}
+   @Override
+   public void execute(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+      
+       Member loginMember = (Member) req.getSession().getAttribute("loginMember");
+         
+         List<Reservations> list = reservationService.findReservationsByMemberId(loginMember.getMemberId());
+            
+//         list.forEach(System.out::println);
+         
+         req.setAttribute("reservationList", list);
+         
+         Utils.forward(req, resp, "reviewListByMemberId.do");
+   
+   
+   
+   }
 }
