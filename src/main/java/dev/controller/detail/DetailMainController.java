@@ -13,6 +13,7 @@ public class DetailMainController implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws SecurityException, IOException {
+		
 		String storeName = req.getParameter("storeName");
 		
 		Store store = storeService.findOneStore(storeName);

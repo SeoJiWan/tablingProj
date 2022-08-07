@@ -101,7 +101,6 @@ public class ReservationRepository extends DAO {
 
 			while (rs.next()) {
 				Reservations reservation = new Reservations();
-				reservation = new Reservations();
 				reservation.setReservationId(rs.getInt(1));
 				reservation.setMemberId(rs.getString(2));
 				reservation.setStoreName(rs.getString(3));
