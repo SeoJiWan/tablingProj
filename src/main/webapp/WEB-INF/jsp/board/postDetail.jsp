@@ -12,7 +12,7 @@
 	<body>
 		<form action="postUpdateForm.do" method="post">
 			<input type="hidden" id = "boardId" name="boardId" value="${boardDetail.boardId}">
-			<input type="hidden" name="memberId" value="${boardDetail.memberId}">
+			<input type="hidden" name="writer" value="${boardDetail.memberId}">
 			<input type="hidden" name="title" value="${boardDetail.title}">
 			<input type="hidden" name="content" value="${boardDetail.content}">
 			<input type="hidden" name="createDate" value="${boardDetail.createDate}">
@@ -33,11 +33,21 @@
 					<tr>
 				</tbody>
 			</table>
-			<input type="submit" value="수정">
+			<c:choose>
+				<c:when test="${!empty loginMemberId && loginMemberId eq boardDetail.memberId }">
+					<input type="submit" value="수정" />
+					<input type="button" id="postDelete" value="삭제" />
+				</c:when>
+				<c:otherwise>
+					<input type="hidden" value="수정" />
+					<input type="hidden" id="postDelete" value="삭제" />
+				</c:otherwise>
+			</c:choose>
 		</form>
 			<a href= "postListPaging.do?pageNum=1&postNum=10"><button>목록으로</button></a>
-			<input type="button" id="postDelete" value="삭제" />
-			<c:if test="${requestScope.commentList != null} ">
+			
+			
+		<%-- 	<c:if test="${requestScope.commentList != null} ">
 				<c:forEach var="comment" items="${commentList}">
 					<tr>
 						<td width="150">
@@ -60,7 +70,7 @@
 						</td>
 					</tr>
 				</c:forEach>
-			</c:if>
+			</c:if> --%>
 		<!-- 삭제확인 -->
 		<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
 		<script type="text/javascript">

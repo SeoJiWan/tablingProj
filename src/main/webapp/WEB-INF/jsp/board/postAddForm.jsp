@@ -16,6 +16,7 @@
 	<div class="container">
 		<div class="row">
 		<form action = "postAdd.do" method="post" id="frm">
+			<input type="hidden" id ="memberId" name="writer" value="${loginMember.memberId}">
 				<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 					<thead>
 						<tr>
@@ -33,9 +34,9 @@
 							<td><input type="file" id="uploadFile" name="uploadFile"></td>
 						</tr>
 					</tbody>
-				</table>
 		<!-- 글쓰기 영역 끝 -->
 		<!-- 글쓰기 버튼 -->
+				</table>
 			<button id="btn_register" class="btn_registert" type="button" onclick="checkAdd()">등록</button>
 		</form>
 		<!-- 취소 버튼 -->
@@ -51,7 +52,7 @@
 			if (frm.title.value == "") { 
 				 alert("제목을 입력하세요!");
 				 return;
-	    	  } else if (frm.content.value == "") {
+	    	} else if (frm.content.value == "") {
 	               alert("내용을 입력하세요!");
 	               frm.content.focus();
 	            return;
@@ -61,7 +62,7 @@
 	  	    	  } else { 
 	  	    		  return;
 	  	    	  	}
-				}
+	    	  }
 		}
        </script>
    </body>

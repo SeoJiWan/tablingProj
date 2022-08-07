@@ -1,10 +1,20 @@
-@import
-	url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400&display=swap')
-	;
+/* @import */
+	/* url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400&display=swap'); */
+	
+@font-face {
+font-family: 'BMHANNAPro';
+src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.0/BMHANNAPro.woff') format('woff');
+font-weight: normal;
+font-style: normal;
+}
 
+*{
+ font-family: 'BMHANNAPro';
+}
 body {
 	color: grey;
-	font-family: 'Noto Serif KR', serif;
+	/* font-family: 'Noto Serif KR', serif; */
+	font-family: 'BMHANNAPro';
 	font-size: small;
 	margin: 100px auto;
 }

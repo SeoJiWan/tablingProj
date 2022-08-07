@@ -8,12 +8,8 @@ pageEncoding="UTF-8"%>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Curve Outside in Active Tab</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath }/css/sidebar.css" />
-    <link
-      rel="stylesheet"
-      href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css"
-    />
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css" />
   </head>
-
   <body>
     <div class="navigation">
       <ul>
@@ -59,7 +55,6 @@ pageEncoding="UTF-8"%>
     list.forEach((item) => item.classList.remove("active"));
     this.classList.add("active");
   }
-
   list.forEach((item) => item.addEventListener("click", activeLink));
   </script>
 </html>
