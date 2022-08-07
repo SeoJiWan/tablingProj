@@ -15,8 +15,7 @@
 <div style="text-align:center;"><h2>커뮤니티</h2></div>
 
 	  <form action="postAddForm.do" method="post" id="frm">
-	  	  <%-- <input type="hidden" id ="memberId" name="memberId" value="${memberId}"> --%>
-		  <button type="submit">글쓰기</button> <!-- location.href='postAddForm.do' -->
+		  <button type="button" onclick="checkLogin()">글쓰기</button>
 	  </form>
 	  <table>
 			<thead>
@@ -52,5 +51,16 @@
 			</c:if>
 		</div>
 	</div>
+	<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript">
+		function checkLogin() {
+			if ( == true) { 
+				confirm("정말 수정하시겠습니까?")
+				frm.submit();
+	    	  } else { //취소
+	    		  return;
+	    	  }
+		}
+    </script>
 </body>
 </html>

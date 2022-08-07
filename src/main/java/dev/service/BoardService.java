@@ -29,8 +29,8 @@ public class BoardService {
 	 }
 	 
 	 //게시글 보기
-	 public Board intoPost(int boardId) {
-		return boardRepo.getPost(boardId);
+	 public Board getPost(Board bd) {
+		return boardRepo.getPost(bd);
 	 }
 	 
 	 //게시글 수정

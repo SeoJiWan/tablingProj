@@ -16,30 +16,21 @@ public class PostAddFormController implements Controller {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		/*
+		* 	문제점>>! 로그인을 해도 null값을 받아와 로그인페이지로 이동됨ㅠ
+		*  			   -> 수정ㅇ. 테스트 필요
+		*/
+		
+		
 		// 요청에서 세션 받아옴
-		HttpSession ss = req.getSession();
-		
-		String id = req.getParameter("id");
-		String pwd = req.getParameter("pwd");
-		
-		Member user = memberService.login(id,  pwd);
-		System.out.println("userInfo = " + user);
-		
-		
-		// 파라메터 변수명 memberId에 세션의 memberId담은 속성값 loginId를 세팅
-		String loginId = null;
-		loginId = (String) ss.getAttribute("memberId");
-		req.setAttribute("memberId", loginId);
+		 Member loginMember = (Member) req.getSession().getAttribute("loginMember");
+		 
+		//세션에서 로그인 아이디 받기
 		
 		//>>TEST
-		System.out.println("1."+loginId);
+		System.out.println("1."+loginMember);
 		
-		
-		// --------ss의 user가 null일 경우 로그인폼으로 이동
-		//문제점>>! 로그인을 해도 null값을 받아와 로그인페이지로 이동됨ㅠ
-		if (user == null) {
-			//>>TEST
-			System.out.println("2."+user);
+		// --------loginMemberId가 null -> 로그인폼
+		if (loginMember == null) {
 			
 			resp.setContentType("text/html;charset=utf-8");
 			resp.setCharacterEncoding("UTF-8");
@@ -50,13 +41,14 @@ public class PostAddFormController implements Controller {
 			
 			Utils.forward(req, resp, "memberLoginForm.do");
 		}
-		// --------ss의 user일 경우 글등록폼으로 이동
+		
+		// -------loginMemberId가 존재 -> 글등록폼
 			else {
-			//>>TEST
-			System.out.println("3."+user);
-			ss.setAttribute("user", user);
-		 */
+			
+			// 파라메터에 세션의 memberId담은 속성값 loginMemberId 세팅
+			req.setAttribute("loginMember", loginMember);
+			
 			Utils.forward(req, resp, "/board/postAddForm.tiles");
 		}
 	}
-//}
+}

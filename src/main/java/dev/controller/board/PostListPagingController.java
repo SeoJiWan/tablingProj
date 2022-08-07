@@ -9,6 +9,7 @@ import dev.controller.Controller;
 import dev.controller.Utils;
 import dev.domain.Board;
 import dev.domain.Criteria;
+import dev.domain.Member;
 import dev.domain.Page;
 import dev.service.BoardService;
 
@@ -17,6 +18,10 @@ public class PostListPagingController implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
+		// 요청에서 세션 받아옴
+		Member loginMember = (Member) req.getSession().getAttribute("loginMember");
+		req.setAttribute("loginMember", loginMember);
+		
 		//---------pageNum,postNum 속성 받아오기
 		String pageNum = req.getParameter("pageNum");
 		String postNum = req.getParameter("postNum");
@@ -31,6 +36,7 @@ public class PostListPagingController implements Controller {
 		BoardService bdService = BoardService.getBoardService();
 		List<Board> pageList = bdService.getPaging(criteria);
 
+//		req.setAttribute("loginMember", loginMember);
 		req.setAttribute("boardList", pageList);
 		
 		//---------글 목록 전체

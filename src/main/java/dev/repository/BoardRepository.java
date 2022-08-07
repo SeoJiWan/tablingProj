@@ -19,7 +19,7 @@ public class BoardRepository extends DAO{
 	//글등록
 	public void insertPost(Board bd) {
 		connect();
-		String sql = "INSERT INTO boards VALUES((select nvl(max(board_id),2022100)+1 from boards), ?, ?, ?, SYSDATE,0)";
+		String sql = "INSERT INTO boards VALUES((select nvl(max(board_id),2022100)+1 from boards), ?, ?, ?, TO_CHAR(SYSDATE, 'YYYYMMDD'),0)";
 		
 		try {
 			ps = conn.prepareStatement(sql);
@@ -72,25 +72,24 @@ public class BoardRepository extends DAO{
 		return list;
 	}
 	//게시글 디테일(단건조회)
-	public Board getPost(int boardId) {
+	public Board getPost(Board board) {
 		connect();
 		String sql = "select * from boards where board_id=?";
 		
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, boardId);
+			ps.setInt(1, board.getBoardId());;
 			rs = ps.executeQuery();
 			
 			if (rs.next()) {
 				Board bd = new Board();
-				bd.setBoardId(boardId);
+				bd.setBoardId(rs.getInt("board_id"));
 				bd.setMemberId(rs.getString("member_id"));
 				bd.setTitle(rs.getString("title"));
 				bd.setContent(rs.getString("content"));
 				bd.setCreateDate(rs.getString("create_date"));
-				bd.setHits(rs.getInt("hits"));
 				
-				updateHits(boardId); //게시글 클릭->조회수++메소드 실행
+				updateHits(board.getBoardId()); //게시글 클릭->조회수++메소드 실행
 				
 				return bd;
 			}
@@ -99,7 +98,6 @@ public class BoardRepository extends DAO{
 		} finally {
 			disconnect();
 		}
-		System.out.println("조회된 값이 없습니다");
 		return null;
 	}
 	//조회수++
@@ -188,27 +186,7 @@ public class BoardRepository extends DAO{
 	public List<Board> getListPaging(Criteria criteria) {
 		connect();
 		List<Board> pageList = new ArrayList<>();
-		String sql = "SELECT board_id, member_id, title, create_date, hits "
-				  	  + "FROM (SELECT rownum rn, board_id, member_id, title, create_date, hits "
-					  + "          FROM (SELECT rownum rn, board_id, member_id, title,create_date, hits "
-					  + "                    FROM boards ORDER BY board_id DESC) "
-					  + "          WHERE rownum <= ?) " //페이지 안의 글
-					  + "WHERE rn>?";  //페이지
-		
-		
-//		String sql = "SELECT b.board_id, b.member_id, m.nickname, b.title, b.create_date, b.hits "
-	//			  	  + "FROM (SELECT rownum rn, b.board_id, b.member_id, m.nickname, b.title, b.create_date, b.hits "
-	//				  + "          FROM (SELECT rownum rn, b.board_id, b.member_id, m.nickname, title, create_date, hits "
-	//				  + "                    FROM boards "
-	//		          + " ORDER BY board_id DESC) "
-	//				  + "          WHERE rownum <= ?) " //페이지 수
-	//				  + "WHERE rn>?"; 		
-		
-		
-//		String boardList = "SELECT b.board_id, b.member_id ,m.nickname, b.title, b.content, b.create_date, b.hits "
-//				  + "FROM boards b "
-//				  + "JOIN members m ON (b.member_id = m.member_id) "
-//				  + "ORDER BY b.board_id DESC";
+		String sql = "SELECT board_id, member_id, nickname, title, create_date, hits FROM (SELECT rownum rn, board_id, member_id, nickname, title, create_date, hits FROM (SELECT rownum rn, b.board_id, b.member_id, m.nickname, b.title, b.create_date, b.hits FROM boards b join members m on (m.member_id = b.member_id) ORDER BY board_id DESC) WHERE rownum <= ?) WHERE rn>?";  //페이지
 		
 		try {
 			ps = conn.prepareStatement(sql);
@@ -220,6 +198,7 @@ public class BoardRepository extends DAO{
 				Board board = new Board();
 				board.setBoardId(rs.getInt("board_id"));
 				board.setMemberId(rs.getString("member_id"));
+				board.setNickName(rs.getString("nickname"));
 				board.setTitle(rs.getString("title"));
 				board.setCreateDate(rs.getString("create_date"));
 				board.setHits(rs.getInt("hits"));
