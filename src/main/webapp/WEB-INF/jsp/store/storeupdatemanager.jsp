@@ -8,6 +8,7 @@
 <title>점포 매니지먼트</title>
   <link href="${pageContext.request.contextPath}/css/store/updatestorecss.css" rel="stylesheet" type="text/css">
 </head>
+<jsp:include page="/sidebar/reservationsidebar2.jsp"/>
 <body>
   <div class="container">
     <form id="updateform" name="form1" class="box" id="updateform" action="updatestore.do" method="post"  onsubmit="return false">
@@ -19,10 +20,6 @@
         <input type="text" name="storeaddress" value="${vo.storeAddress }">
         <span>가게번호</span>
         <input type="text" name="telephone" value="${vo.telephone }">
-        <span>이용시간(수정불가!)</span>
-        <input type="text" name="availabletime" value="${vo.availableTime }" readonly>
-        <span>업태</span>
-        <input type="text" name="foodcategory"value="${vo.foodCategory }">      
         <input type="submit" value="회원정보 수정" class="btn1">
       </form>
       </div>

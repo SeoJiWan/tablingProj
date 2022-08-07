@@ -19,10 +19,10 @@ public class updatemanagement implements Controller {
 //		String memberId = (String)req.getSession().getAttribute("loginId");
 //		System.out.println("로그인 멤버 = " + memberId);
 		
-//		Member loginMember = (Member) req.getSession().getAttribute("loginMember");
-//	    String loginMemberId = loginMember.getMemberId();
+		Member loginMember = (Member) req.getSession().getAttribute("loginMember");
+	    String loginMemberId = loginMember.getMemberId();
 		
-		String loginMemberId = "store2";	
+		//String loginMemberId = "store2";	
 		Store st = storeService.storemanagement(loginMemberId);
 		
 		System.out.println("member = " + loginMemberId);

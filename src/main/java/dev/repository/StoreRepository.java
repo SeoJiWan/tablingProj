@@ -3,8 +3,9 @@ package dev.repository;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 import dev.domain.Criteria;
-import dev.domain.Member;
+import dev.domain.Reservations;
 import dev.domain.Store;
 
 public class StoreRepository extends DAO {
@@ -300,7 +301,7 @@ public class StoreRepository extends DAO {
 		} finally {
 			disconnect();
 		}
-		System.out.println(sql);
+		//System.out.println(sql);
 		return list;
 	}
 
@@ -357,7 +358,7 @@ public class StoreRepository extends DAO {
 		sql += ") a, (select store_name, sum(taste_score)/count(*) score from reviews group by store_name) b "
 				+ "WHERE " + "a.store_name = b.store_name(+) " + "and ROWNUM <= " + cri.getPostNum() * cri.getPageNum()
 				+ ") WHERE " + "rn >" + cri.getPostNum() * (cri.getPageNum() - 1) + " ORDER BY s desc";
-		System.out.println("페이징:" + sql);
+		//System.out.println("페이징:" + sql);
 		List<Store> list = new ArrayList<>();
 		connect();
 		try {
@@ -618,15 +619,13 @@ public class StoreRepository extends DAO {
 
 	public void mypageupdatestore(Store st) {
 		connect();
-		String sql = "UPDATE stores SET store_name = ?, store_address = ?, telephone = ?, food_category = ? where member_id = ?";
+		String sql = "UPDATE stores SET store_name = ?, store_address = ? where member_id = ?";
 
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, st.getStoreName());
 			ps.setString(2, st.getStoreAddress());
-			ps.setString(3, st.getTelephone());
-			ps.setString(4, st.getFoodCategory());
-			ps.setString(5, st.getMemberId());
+			ps.setString(3, st.getMemberId());
 
 			int result = ps.executeUpdate();
 
@@ -703,4 +702,67 @@ public class StoreRepository extends DAO {
 			disconnect();
 		}
 	}
+
+	public List<Reservations> getstorereservation(Criteria cri, String stroeName) {
+		List<Reservations> listPage = new ArrayList<>();
+		String sql = "select member_id, store_name, people_num, reservation_time "
+				+ "from(select rownum rn, member_id, store_name, people_num, reservation_time "
+				+ "from(select member_id, store_name, people_num, reservation_time from reservations where store_name= ? order by rownum) "
+				+ "where rownum <= ?) " + "where rn > ?";
+
+		connect();
+
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, stroeName);
+			ps.setInt(2, cri.getPostNum() * cri.getPageNum()); // 10 * 1;
+			ps.setInt(3, cri.getPostNum() * (cri.getPageNum() - 1)); // 0
+
+			rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				Reservations rv = new Reservations();
+				rv.setStoreName(rs.getString("store_name"));
+				rv.setMemberId(rs.getString("member_id"));
+				rv.setPeopleNum(rs.getInt("people_num"));
+				rv.setReservationTime(rs.getString("reservation_time"));
+
+				listPage.add(rv);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return listPage;
+	}
+
+	public List<Reservations> reservationList(String stroeName) {
+		List<Reservations> list = new ArrayList<>();
+		String sql = "select member_id, store_name, people_num, reservation_time from  reservations where store_name= ?";
+
+		try {
+			connect();
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, stroeName);
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				Reservations rv = new Reservations();
+				rv.setStoreName(rs.getString("store_name"));
+				rv.setMemberId(rs.getString("member_id"));
+				rv.setPeopleNum(rs.getInt("people_num"));
+				rv.setReservationTime(rs.getString("reservation_time"));
+
+				list.add(rv);
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return list;
+	}
+
 }

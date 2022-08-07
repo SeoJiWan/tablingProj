@@ -1,6 +1,6 @@
 .container{
   margin: 0;
-  margin-top : 60px;
+  margin-top : 30px;
   top: 50px;
   left: 50%;
   position: absolute;
@@ -8,19 +8,19 @@
   transform: translateX(-50%);
   background-color: white;
   border-radius: 9px;
-  border-top: 10px solid #F5AE3A;
-  border-bottom: 10px solid #F5AE3A;
-  border-left :1px solid #F5AE3A;
-  border-right :1px solid #F5AE3A;
+  border-top: 10px solid #ff993b;
+  border-bottom: 10px solid #ff993b;
+  border-left :1px solid #ff993b;
+  border-right :1px solid #ff993b;
   width: 400px;
-  height: 825px;
+  height: 550px;
   /* box-shadow: 1px 1px 108.8px 19.2px rgb(25,31,53); */
 }
 
 
 .box h4 {
   font-family: 'Source Sans Pro', sans-serif;
-  color: #F5AE3A; 
+  color: #ff993b; 
   font-size: 18px;
   margin-top:40px;
   margin-bottom:40px;
@@ -36,7 +36,7 @@
   display: block;
   margin: 20px auto;
   background: #FFFAFA;
-  border: 0.05em solid #F5AE3A;
+  border: 0.05em solid #ff993b;
   border-radius: 5px;
   padding: 14px 10px;
   width: 320px;
@@ -80,7 +80,7 @@ a:hover {
 }
 
 .btn1:hover {
-  background: #F59A42;
+  background: #ff993b;
 }
 
 span {
