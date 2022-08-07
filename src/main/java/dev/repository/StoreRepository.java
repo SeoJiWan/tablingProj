@@ -301,7 +301,7 @@ public class StoreRepository extends DAO {
 		} finally {
 			disconnect();
 		}
-		System.out.println(sql);
+		//System.out.println(sql);
 		return list;
 	}
 
@@ -358,7 +358,7 @@ public class StoreRepository extends DAO {
 		sql += ") a, (select store_name, sum(taste_score)/count(*) score from reviews group by store_name) b "
 				+ "WHERE " + "a.store_name = b.store_name(+) " + "and ROWNUM <= " + cri.getPostNum() * cri.getPageNum()
 				+ ") WHERE " + "rn >" + cri.getPostNum() * (cri.getPageNum() - 1) + " ORDER BY s desc";
-		System.out.println("페이징:" + sql);
+		//System.out.println("페이징:" + sql);
 		List<Store> list = new ArrayList<>();
 		connect();
 		try {

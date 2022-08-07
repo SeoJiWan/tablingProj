@@ -144,7 +144,7 @@ public class StoreService {
 			Store store2 = storeRepository.getStore();
 			list.add(store2);
 			if(list.get(i).equals(list.get(i-1))) {
-			list.remove(i);
+			list.remove(store2);
 			}
 			//같으면 제거
 		if(list.size()==6){ //list size가 6이 되면 루프 탈출

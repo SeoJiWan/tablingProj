@@ -1,3 +1,15 @@
+@font-face {
+font-family: 'BMHANNAPro';
+src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.0/BMHANNAPro.woff') format('woff');
+font-weight: normal;
+font-style: normal;
+}
+@font-face {
+    font-family: '87MMILSANG-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201@1.0/87MMILSANG-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
 #container{
 	width:50%;
 	margin: 0 auto;
@@ -39,6 +51,7 @@ ul{
 span{
 	color:ffd729;
 	font-size:1.17em;
+	font-family: '87MMILSANG-Regular';
 }
 
 /*식당 이름*/
@@ -48,7 +61,13 @@ h3{
 	padding-bottom:5px;
 	display:inline-block;
 	font-weight:normal;
+	font-family: '87MMILSANG-Regular';
 }
+/*디테일*/
+#detial{
+	font-family: '87MMILSANG-Regular';
+}
+
 /* 레이어 팝업 박스 */
 .layer-popup {
   display: none;
