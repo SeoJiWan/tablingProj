@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import dev.domain.Board;
 import dev.domain.Criteria;
-import dev.domain.Member;
 
 public class BoardRepository extends DAO{
 	/*
