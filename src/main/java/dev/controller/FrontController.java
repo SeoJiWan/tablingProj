@@ -41,6 +41,8 @@ import dev.controller.review.ReviewListByMemberIdController;
 import dev.controller.review.ReviewListController;
 import dev.controller.store.StoreRegisterFormController;
 import dev.controller.review.UpdateReviewController;
+import dev.controller.review.Updatereviewform;
+import dev.controller.review.updatereview;
 import dev.controller.store.StoreAcceptListPagingControl;
 import dev.controller.store.StoreListPagingController;
 import dev.controller.store.StoreRegisterController;
@@ -117,6 +119,8 @@ public class FrontController extends HttpServlet {
 		//Review
 		mappings.put("/interestedStoreList.do", new InterestedStoreListController());
 		mappings.put("/likeStoreAjax.do", new LikeStoreController());
+		mappings.put("/updatereviewform.do", new Updatereviewform());
+		mappings.put("/updatereview.do", new updatereview());
 		
 		//DetailReview
 		

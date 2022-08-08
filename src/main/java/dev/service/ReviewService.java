@@ -40,4 +40,7 @@ public class ReviewService {
 	public List<Review> findAllReviewsByMemberId(String memberId){
 		return reviewrepo.selectAllByMemberId(memberId);
 	}
+	public void reviewupdate(Review rv) {
+		reviewrepo.reviewupdate(rv);
+	}
 }

@@ -10,6 +10,19 @@
 </head>
 <body>
 	<!-- 디테일 부분 -->
+	<c:forEach var="img" items="${storeDetail.storeImgUrl }">
+	<img src="img/store_img/${img }" width="320" height="320"></img>
+	</c:forEach>
+	<h3>가게 상세 정보</h3>
+	<p id="${storeDetail.storeName }">가게명 : ${storeDetail.storeName }</p>
+	<p>주소 : ${storeDetail.storeAddress }</p>
+	<p>전화번호 : ${storeDetail.telephone }</p>
+	<p>이용 시간 : ${storeDetail.availableTime }</p>
+	<p>카테고리 : ${storeDetail.foodCategory }</p>
+	<p>======= 대표메뉴 =======</p>
+	<c:forEach var="menu" items="${storeDetail.representMenu }">
+		<p>${menu }</p>
+	</c:forEach>
 	<div id="detailImg">
 		<c:forEach var="img" items="${storeDetail.storeImgUrl }">
 			<img src="img/store_img/${img }" width="331" height="331"></img>
@@ -116,6 +129,24 @@
 							onclick='updateCallback(${review.reviewId}, event)' class=update>수정</button>
 					</c:if></td>
 			</tr>
+			
+			<c:forEach var="review" items="${list }">
+				<tr>
+					<td>${review.reviewId }</td>
+					<td>${review.memberId }</td>
+					<td>${review.content }</td>
+					<td>${review.storeName }</td>
+					<td>${review.tasteScore }</td>
+					<td>${review.createDate }</td>
+					<td>
+					<%-- <c:if test="${review.memberId eq loginMember.memberId }"> --%>
+					<button value="삭제" onclick='deleteCallback(event)' class=delete >삭제</button>
+					<button value="수정" onclick='updateCallback(event)' class=update >수정</button>
+					<%-- </c:if> --%>
+					</td>
+				</tr>
+			</c:forEach>
+		</table>
 		</c:forEach>
 	</table>
 
@@ -129,7 +160,7 @@
 		</c:if>
 		<c:if test="${not empty likeOrUnlike }">
 			<button id="like" value="1" class="liked" onclick="hideHeart()">🖤</button>
-g			<button id="unlike" value="0" class="unliked" style="display: none"
+      <button id="unlike" value="0" class="unliked" style="display: none"
 				onclick="showHeart()">🤍</button>
 		</c:if>
 	</div>
@@ -188,10 +219,6 @@ g			<button id="unlike" value="0" class="unliked" style="display: none"
    					},
    				});
 			}
-
-
-		
-	    
 		</script>
 
 	<!-- 삭제 Ajax -->
@@ -227,6 +254,34 @@ g			<button id="unlike" value="0" class="unliked" style="display: none"
 			}
 		}
 		</script>
+		<script>
+		/* let w = window.open("about:blank","_blank"); */
+		
+		function updateCallback(e){
+ 			console.log(e.target);
+			let upno = e.target.parentElement.parentElement.childNodes[1].innerText
+			let upstore = e.target.parentElement.parentElement.childNodes[7].innerText
+			console.log(upno)
+			console.log(upstore)
+			
+			//창 크기 지정
+			var width = 500;
+			var height = 500;
+			
+			//pc화면기준 가운데 정렬
+			var left = (window.screen.width / 2) - (width/2);
+			var top = (window.screen.height / 4);
+			
+		    	//윈도우 속성 지정
+			var windowStatus = 'width='+width+', height='+height+', left='+left+', top='+top+', scrollbars=yes, status=yes, resizable=yes, titlebar=yes';
+			
+		    	//연결하고싶은url
+		   	const url = "updatereviewform.do?upno="+upno+"&upstore="+upstore;
 
+			//등록된 url 및 window 속성 기준으로 팝업창을 연다.
+			window.open(url, "popup", windowStatus);		
+		}
+
+		</script>
 </body>
 </html>
