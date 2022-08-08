@@ -117,4 +117,28 @@ public class InterestedStoreRepository extends DAO {
 		return false;
 	}
 
+	public InterestedStore getInterestInfo(String memberId, String storeName) {
+		InterestedStore interestedStore = null;
+		String sql = "SELECT * FROM interested_stores WHERE member_id=? AND store_name=?";
+		connect();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, memberId);
+			ps.setString(2, storeName);
+			
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				interestedStore = new InterestedStore();
+				interestedStore.setMembeId(rs.getString(1));
+				interestedStore.setStoreName(rs.getString(2));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return interestedStore;
+	}
+
 }
