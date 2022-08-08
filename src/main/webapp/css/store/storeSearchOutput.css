@@ -21,6 +21,22 @@
     margin: 0 auto;
   }
 /*필터*/
+h1, h2, h3, h4, h5, h6 {
+  font-family: '87MMILSANG-Regular';
+  font-weight: 300;
+}
+/*타이틀*/
+h3{
+	color:#ff993b;	
+}
+/*강조*/
+span{
+	color:#ff993b;
+}
+/*주소, 업태*/
+h5{
+	color:#989898;
+}
 a {
   padding: 0;
   margin: 0;
@@ -38,22 +54,6 @@ a:hover, a:focus {
   color: #696E74;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: '87MMILSANG-Regular';
-  font-weight: 300;
-}
-/*타이틀*/
-h3{
-	color:#ff993b;	
-}
-/*강조*/
-span{
-	color:#ff993b;
-}
-/*주소, 업태*/
-h5{
-	color:#989898;
-}
 li{
   display:inline-block;
   padding-right:15px;
@@ -95,12 +95,84 @@ display:inline-block;
 }
 
 .modal-dialog {
-  width: 620px;
+  width: 560px;
   margin: 40px auto;
   background-color: #fff;
 }
 
-.modal-content {
+#textbox {
   padding:20px;
   line-height: 30px;
+}
+/* 체크박스 */
+
+input[type="checkbox"]{
+  display: none;
+}
+
+input[type="checkbox"]+label{
+  display:inline-block;
+  line-height: 40px;
+  border:2px solid #989898;
+  color:#989898;
+  text-align: center;
+  vertical-align: middle;
+  font-weight:normal;
+}
+
+input[type="checkbox"]:checked+label{
+  display:inline-block;
+  line-height: 40px;
+  border:2px solid #ff993b;
+  color:#ff993b;
+  text-align: center;
+  vertical-align: middle;
+  font-weight:normal;
+}
+
+input[name="area"]+label{
+  width:100px;
+  height:40px;
+  border-radius:40px;
+}
+
+input[name="area"]:checked+label{
+  width:100px;
+  height:40px;
+  border-radius:40px;
+}
+
+input[name="food"]+label{
+  line-height: 68px;
+  width:68px;
+  height:68px;;
+  border-radius:50%;
+  margin-right:3px;
+  font-size:16px;
+}
+
+input[name="food"]:checked+label{
+  line-height: 68px;
+  width:68px;
+  height:68px;
+  border-radius:50%;
+  margin-right:3px;
+  font-size:16px;
+  
+}
+
+.filter-button{
+  width:280px;
+  height:50px;
+  border:0;
+  padding:0;
+  color:white;
+}
+
+#cancle{
+  background-color: #989898;
+}
+
+#sm{
+  background-color: #ff993b;
 }
