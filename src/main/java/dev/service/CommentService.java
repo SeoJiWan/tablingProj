@@ -2,7 +2,9 @@ package dev.service;
 
 import java.util.List;
 
+import dev.domain.Board;
 import dev.domain.Comment;
+import dev.domain.Criteria;
 import dev.repository.CommentRepository;
 
 public class CommentService {
@@ -33,8 +35,13 @@ public class CommentService {
 	//댓글 보기
 	
 	//댓글 삭제
+	public void deleteComment(Comment cm) {
+		commentRepo.deleteComment(cm);
+	}
 	
 	//페이징?
-	
+	 public List<Comment> getcommentPaging(Criteria criteria) {
+		 return commentRepo.getCommentListPaging(criteria);
+	 }
 	
 }
