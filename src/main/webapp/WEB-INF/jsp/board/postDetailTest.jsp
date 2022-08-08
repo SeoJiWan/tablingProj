@@ -23,10 +23,10 @@
 			<tbody style="text-align: left;">
 				<tr id="trHead">
 					<th>${boardDetail.boardId}</th>
-					<th>작성자 | ${boardDetail.nickName}</th>
+					<th>${boardDetail.nickName}</th>
 					<th>${boardDetail.title}</th>
-					<th>작성날짜 | ${boardDetail.createDate}</th>
-					<th>조회수 | ${boardDetail.hits}</th><!-- 디테일 페이지에서 클릭, 새로고침시 조회수 업데이트 X  -->
+					<th>${boardDetail.createDate}</th>
+					<th>${boardDetail.hits}</th><!-- 디테일 페이지에서 클릭, 새로고침시 조회수 업데이트 X  -->
 				</tr>
 				<tr>
 					<td colspan="5" width="600px" height="350px">${boardDetail.content}</td>

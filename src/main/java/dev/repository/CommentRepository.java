@@ -120,7 +120,7 @@ public class CommentRepository extends DAO{
 		//게시글 삭제
 		public void deleteComment(Comment cm) {
 			connect();
-			String sql = "DELETE FROM comments WHERE comment_id=? AND ";
+			String sql = "DELETE FROM comments WHERE comment_id=?";
 			
 			try {
 				ps = conn.prepareStatement(sql);

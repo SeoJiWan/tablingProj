@@ -11,7 +11,6 @@ import dev.domain.Board;
 import dev.domain.Criteria;
 import dev.domain.Member;
 import dev.domain.Page;
-import dev.service.BoardService;
 
 
 public class PostListPagingController implements Controller {
