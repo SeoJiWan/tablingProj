@@ -24,6 +24,7 @@ public class ReviewListController implements Controller {
 		req.setAttribute("list", reviewService.listReview(storeName));
 		req.setAttribute("storeName", storeName);
 		Utils.forward(req, resp, "detailMain.do");
+
 	}
 
 }

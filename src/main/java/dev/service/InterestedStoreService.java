@@ -31,7 +31,7 @@ public class InterestedStoreService {
 	}
 	
 	// 찜해제
-	public void deleteStoreInMyPage(InterestedStore interestedStore) {
+	public void deleteStore(InterestedStore interestedStore) {
 		interestedStoreRepository.delete(interestedStore);
 	}
 	
@@ -47,6 +47,11 @@ public class InterestedStoreService {
 
 	public boolean addLike(InterestedStore interestedStore) {
 		return interestedStoreRepository.likeAdd(interestedStore);
+	}
+
+	public InterestedStore getLikeInfo(String memberId, String storeName) {
+		return interestedStoreRepository.getInterestInfo(memberId, storeName);
+		
 	}
 	
 }
