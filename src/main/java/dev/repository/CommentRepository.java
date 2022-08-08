@@ -13,7 +13,7 @@ public class CommentRepository extends DAO{
 	//댓글등록
 		public void insertComment(Comment cm) {
 			connect();
-			String sql = "INSERT INTO comments VALUES(comment_id_seq.nextval, ?, ?, ?, SYSDATE)";
+			String sql = "INSERT INTO comments VALUES(comment_id_seq.nextval, ?, ?, ?, TO_CHAR(SYSDATE, 'YY.MM.DD HH24:MI'))";
 			
 			try {
 				ps = conn.prepareStatement(sql);
@@ -39,11 +39,11 @@ public class CommentRepository extends DAO{
 		public List<Comment> getCommentList(int boardId) {
 			connect();
 			ArrayList<Comment> commentList = new ArrayList<>();
-			String sql = "SELECT c.board_id, c.member_id ,m.nickname, c.content, c.create_date "
+			String sql = "SELECT c.comment_id, c.board_id, c.member_id ,m.nickname, c.content, c.create_date "
 						  + "FROM comments c "
 						  + "JOIN members m ON (c.member_id = m.member_id) "
 						  + "WHERE c.board_id=? "
-						  + "ORDER BY c.comment_id desc";
+						  + "ORDER BY c.comment_id DESC";
 			
 			try {
 				ps = conn.prepareStatement(sql);
@@ -52,12 +52,12 @@ public class CommentRepository extends DAO{
 				
 				while (rs.next()) {
 					Comment comment = new Comment(rs.getInt("comment_id"),
-										 rs.getString("member_id"),
-										 rs.getInt("board_id"),
-										 rs.getString("nickname"),
-										 rs.getString("content"),
-										 rs.getString("create_date"));
-					
+																		 rs.getString("member_id"),
+																		 rs.getInt("board_id"),
+																		 rs.getString("content"),
+																		 rs.getString("create_date"),
+																		 rs.getString("nickname"));
+													
 					commentList.add(comment);
 				}
 			} catch (SQLException e) {
@@ -71,7 +71,7 @@ public class CommentRepository extends DAO{
 		//댓글 디테일(단건조회) - 쓸 일 있?
 		public Comment getComment(int commentId) {
 			connect();
-			String sql = "SELECT * FROM comments WHERE board_id=?";
+			String sql = "SELECT * FROM comments WHERE comment_id=?";
 			
 			try {
 				ps = conn.prepareStatement(sql);
@@ -118,17 +118,17 @@ public class CommentRepository extends DAO{
 			} disconnect();
 		}
 		//게시글 삭제
-		public void deletePost(Board bd) {
+		public void deleteComment(Comment cm) {
 			connect();
-			String sql = "DELETE FROM comments WHERE comment_id=?";
+			String sql = "DELETE FROM comments WHERE comment_id=? AND ";
 			
 			try {
 				ps = conn.prepareStatement(sql);
-				ps.setInt(1, bd.getBoardId());
+				ps.setInt(1, cm.getCommentId());
 				
 				int result = ps.executeUpdate();
 				if (result > 0) {
-					System.out.println(result + "건 삭제 완료");
+					System.out.println("댓글" + result + "건 삭제 완료");
 				} else {
 					System.out.println("삭제 실패");
 				}
@@ -138,41 +138,18 @@ public class CommentRepository extends DAO{
 				disconnect();
 			}
 		}
-		//로그인체크
-		public Member loginCheck(String id, String pwd) {
-			connect();
-			String sql = "select * from members where member_id=? and password=?";
-			
-			try {
-				ps = conn.prepareStatement(sql);
-				ps.setString(1, id);
-				ps.setString(2, pwd);
-				
-				rs = ps.executeQuery();
-				if(rs.next()) {
-					Member member = new Member();
-					member.setMemberId(rs.getString("member_id"));
-					member.setMemberId(rs.getString("password"));
-					member.setNickName(rs.getString("nick_name"));
-					return member;
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				disconnect();
-			}
-			return null;
-		}
+		
 		//페이징
-		public List<Comment> getListPaging(Criteria criteria) {
+		public List<Comment> getCommentListPaging(Criteria criteria) {
 			connect();
 			List<Comment> cmtPageList = new ArrayList<>();
-			String sql = "select board_id, member_id, comment_id, create_date "
-					+ "from (select rownum rn, board_id, member_id, comment_id, create_date "
-					+ "      from (select rownum rn, board_id, member_id, comment_id, create_date "
-					+ "            from comments order by comment_id desc) "
-					+ "      where rownum <= ?) "
-					+ "where rn>?"; 
+			String sql = "SELECT comment_id, board_id, member_id, nickname, content, create_date "
+						 + "FROM (SELECT rownum rn, comment_id, board_id, member_id, nickname, content, create_date "
+				 				    + "FROM (SELECT rownum rn, c.comment_id, c.board_id, c.member_id, m.nickname, c.content, c.create_date "
+							  				  + "FROM comments c JOIN members m ON (c.member_id = m.member_id) "
+						  				  	  + "ORDER BY comment_id DESC) "
+						  				  	  + "WHERE rownum <= ?) "
+						 + "WHERE rn>?"; 
 			try {
 				ps = conn.prepareStatement(sql);
 				ps.setInt(1, criteria.getPostNum()*criteria.getPageNum());//글갯수

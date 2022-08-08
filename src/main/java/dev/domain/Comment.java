@@ -67,5 +67,12 @@ public class Comment {
 	public void setNickName(String nickName) {
 		this.nickName = nickName;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Comment [commentId=" + commentId + ", memberId=" + memberId + ", boardId=" + boardId + ", content="
+				+ content + ", commentDate=" + commentDate + ", nickName=" + nickName + "]";
+	}
 	
 }

@@ -15,6 +15,7 @@
 <div style="text-align:center;"><h2>커뮤니티</h2></div>
 
 	  <form action="postAddForm.do" method="post" id="frm">
+	  <input type="hidden" id ="writer" name="writer" value="${loginMember.memberId}">
 		  <button type="button" onclick="checkLogin()">글쓰기</button>
 	  </form>
 	  <table>
@@ -42,7 +43,7 @@
 			<c:if test="${pageInfo.prev}">
 			<a href="postListPaging.do?pageNum=${pageInfo.startPage-1}&postNum=${pageInfo.cri.postNum}">◀</a>
 			</c:if>
-			<c:forEach var="num" begin="${pageInfo.startPage}" end="${pageInfo.endPage}"><!-- 여기서 num:페이지 정보 -->
+			<c:forEach var="num" begin="${pageInfo.startPage}" end="${pageInfo.endPage}"><!-- num=페이지 정보 -->
 				<a href="postListPaging.do?pageNum=${num}&postNum=${pageInfo.cri.postNum}">${num}</a>
 			</c:forEach>
 			<c:if test="${pageInfo.next}">
@@ -54,11 +55,11 @@
 	<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script type="text/javascript">
 		function checkLogin() {
-			if ( == true) { 
-				confirm("정말 수정하시겠습니까?")
+			if ( frm.writer.value == "") { //로그인폼으로 이동
+				alert("로그인이 필요합니다!")
+				window.location.href = "memberLoginForm.do";
+	    	  } else { //글쓰기폼으로 이동
 				frm.submit();
-	    	  } else { //취소
-	    		  return;
 	    	  }
 		}
     </script>

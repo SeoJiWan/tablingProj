@@ -9,11 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import dev.controller.board.CommentAddController;
+import dev.controller.board.CommentDeleteController;
 import dev.controller.board.PostAddController;
 import dev.controller.board.PostAddFormController;
 import dev.controller.board.PostDeleteController;
 import dev.controller.board.PostDetailController;
-import dev.controller.board.PostListController;
 import dev.controller.board.PostListPagingController;
 import dev.controller.board.PostUpdateController;
 import dev.controller.board.PostUpdateFormController;
@@ -130,7 +130,6 @@ public class FrontController extends HttpServlet {
 			
 		//Board
 		mappings.put("/postListPaging.do", new PostListPagingController()); //게시판 첫페이지->postList.tiles
-		mappings.put("/postList.do", new PostListController()); //게시판 목록->postList.tiles
 		mappings.put("/postDetail.do", new PostDetailController()); //게시글->postDetail.tiles
 		mappings.put("/postAddForm.do", new PostAddFormController()); //addForm->addPostForm.tiles
 		mappings.put("/postAdd.do", new PostAddController()); //List->게시글 등록->postListPaging.do
@@ -140,6 +139,7 @@ public class FrontController extends HttpServlet {
 		
 		//Comment
 		mappings.put("/commentAdd.do", new CommentAddController());
+		mappings.put("/commentDelete.do", new CommentDeleteController());
 		
 		//Detail
 		mappings.put("/detailMain.do", new DetailMainController());

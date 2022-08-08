@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/board/basic.css" />
 </head>
 	<body>
-	 		<form action="postUpdateForm.do" method="post">
+		<form action="postUpdateForm.do" method="post">
 <%-- 			<input type="hidden" id = "boardId" name="boardId" value="${boardDetail.boardId}">
 				<input type="hidden" id ="writer" name="writer" value="${boardDetail.memberId}">
 				<input type="hidden" name="title" value="${boardDetail.title}">
@@ -44,14 +44,13 @@
 				</c:otherwise>
 			</c:choose>
 		</form>
-	 
 			<a href= "postListPaging.do?pageNum=1&postNum=10"><button>목록으로</button></a>
 			
 			
 		<!-------------------------------------------------------------------- 댓글 구현 -------------------------------------------------------------------->
 		<!-- 댓글  목록 -->
 			<a href="#">[댓글]</a><br>
-					<c:if test="${!empty comment}">
+			<c:if test="${!empty comment}">
 			<table class="comment_tbl" style="text-align: center; border: 1px solid #dddddd">
 						<c:forEach var="item" items="${comment}">
 								<tr>
@@ -86,6 +85,12 @@
 					</c:forEach>
 				</table>
 			</c:if>
+				<table class="comment_btn">
+					<tr>
+						<!-- 버튼 -->
+			
+							
+				</table>
 			<!-- 로그인 했을 경우만 댓글 작성 가능 -->
 			<c:if test="${!empty loginMember.memberId}">
 				<form action = "commentAdd.do" method = "post" id = "addCommentFrm">
@@ -115,6 +120,7 @@
 					</table>
 				</form>
 		</c:if>
+	
 		<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
 		<script type="text/javascript">
 			$("#addCmt").click(function() {
@@ -147,8 +153,7 @@
 			    				if(data == "success") {
 			    					alert("등록 되었습니다!")
 			    					$("#cmtContent").val(''); // #cmtContent의 값 초기화
-			    					
-			    					window.href.location.reload();
+			    					/* window.href.location.reload(); */
 			    				} else {
 			    					return;
 			    				  }
