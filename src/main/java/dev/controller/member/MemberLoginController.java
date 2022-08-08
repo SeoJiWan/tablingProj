@@ -31,17 +31,20 @@ public class MemberLoginController implements Controller {
 			// 세션에 로그인한 멤버 저장 
 			ss.setAttribute("loginMember", loginMember);
 			
-			if (loginMember.getRole() == 0) {
-				Utils.forward(req, resp, "owner_main.do");
-			}
-			
-			else if (loginMember.getRole() == 1) {
-				Utils.forward(req, resp, "admin_main.do?pageNum=1&postNum=10");
-			}
-			
-			else if (loginMember.getRole() == 2) {
-				Utils.forward(req, resp, "main.do");
-			}
+//			if (loginMember.getRole() == 0) {
+//				System.out.println("role is 0");
+//				Utils.forward(req, resp, "owner_main.do");
+//			}
+//			
+//			else if (loginMember.getRole() == 1) {
+//				System.out.println("role is 1");
+//				Utils.forward(req, resp, "admin_main.do?pageNum=1&postNum=10");
+//			}
+//			
+//			else if (loginMember.getRole() == 2) {
+//				System.out.println("role is 2");
+//				Utils.forward(req, resp, "main.do");
+//			}
  		}
 	}
 

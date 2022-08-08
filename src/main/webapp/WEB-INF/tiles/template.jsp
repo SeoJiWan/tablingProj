@@ -13,6 +13,9 @@
 <link rel="stylesheet"
 	href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css" />
 </head>
+<!-- Sweet alert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
 <body>
 	<!-- 헤더 -->
 	<tiles:insertAttribute name="head"></tiles:insertAttribute>
@@ -30,38 +33,42 @@
 function enterkey() {
 	if (window.event.keyCode == 13) {
 		let keyword = $('#keyword').val();
-		//console.log(keyword);
+		let pageNum = 1;
+		let postNum = 8;
+		console.log(keyword);
 		
-		if (keyword != "") {
-			$.ajax({
-				type: "POST",
-				// 통신할 컨트롤러 지정 (.do) --> 은하
-				url: "${pageContext.request.contextPath }/storeSearchPaging.do", 
-				
-				data: {
-					// 앞에 변수는 데이터 받는 변수 이름
-					keyword: keyword
-				},
-				
-				dataType: "text",
-				
-				success: function (data) {
-					alert(keyword + " 검색결과 : ")
-				},
-				
-				error: function (request, status, error) {
-	    		      alert("code:" + request.status + "\n" + "error:" + error);
-	    		},
-				
-			
-			});
+		if (keyword == "") {
+			alert("검색어를 입력하세요 :)");
 		}
-		
 		else {
-			alert('검색어를 입력하세요.');
+			alert(keyword + " 검색 결과 :)");
+			window.location.href = "storeSearchPaging.do?keyword=" + keyword + "&pageNum=" + pageNum + "&postNum=" + postNum;
 		}
 	}
 } 
+
+function loginRequired() {
+// 	if (confirm("로그인이 필요한 서비스입니다.\n 이동하시겠습니까?") == true) {
+// 		window.location.href = "memberLoginForm.do";
+// 	}
+// 	else {
+// 		return 0;
+// 	}
+	Swal.fire({
+            title: '로그인이 필요합니다.',
+            text: "로그인페이지로 이동하시겠습니까?",
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '이동',
+            cancelButtonText: '취소'
+        }).then((result) => {
+            if (result.isConfirmed) {
+            	location.href = "memberLoginForm.do";
+            }
+        })
+}
 </script>
 
 </html>
