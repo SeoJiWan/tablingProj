@@ -16,77 +16,82 @@
 	
 	<!-- 마이페이지 - 정보수정 -->
 	<div id="container_mypage_info_update">
-		<div class="title_mypage">
-			<h1>마이페이지</h1>
-			<table class="table_title_mypage">
-				<tr>
-					<td class="profile_img"><img class="profile_img" alt="profile" src="${pageContext.request.contextPath }/img/profile.jpg"></td>
-				</tr>
-				<tr>
-					<td>내 프로필</td>
-				</tr>
-				<tr>
-					<td>보안설정</td>
-				</tr>
-				<tr>
-					<td>이력관리</td>
-				</tr>
-				<tr>
-					<td><input type="button" id="btn_delete" value="회원탈퇴" /></td>
-				</tr>
-			</table>
-		</div>
-		<div>
+		<h1>마이페이지</h1>
+		<div class="title_content">
+			<div class="title_mypage">
+				<table class="table_title_mypage">
+					<tr>
+						<td class="profile_img"><img class="profile_img" alt="profile" src="${pageContext.request.contextPath }/img/profile.jpg"></td>
+					</tr>
+					<tr>
+						
+					</tr>
+					<tr>
+						<td>내프로필</td>
+					</tr>
+					<tr>
+						<td>보안설정</td>
+					</tr>
+					<tr>
+						<td>이력관리</td>
+					</tr>
+					<tr>
+						<td><input type="button" id="btn_delete" value="회원탈퇴" /></td>
+					</tr>
+				</table>
+			</div>
 			<div class="content_mypage">
-				<table class="table_mypage">
-					<tr>
-						<td colspan=2>내 프로필</td>
-					</tr>
-					<tr>
-						<td>ID</td>
-						<td colspan="2" id="login_memberId">${loginMember.memberId }</td>
-					</tr>
-					<tr>
-						<td>닉네임</td>
-						<td>${loginMember.nickName }</td>
-						<td><button type="button" class="btn_modify_mypage" onclick="modify_nickname()">수정</button></td>
-					</tr>
-					<tr>
-						<td>핸드폰</td>
-						<td>${loginMember.phoneNum }</td>
-						<td><button type="button" class="btn_modify_mypage" onclick="modify_phonenum()">수정</button></td>
-					</tr>
-				</table>
-			</div>
-			<div class="security_mypage">
-				<table class="table_mypage">
-					<tr>
-						<td colspan=2>보안설정</td>
-					</tr>
-					<tr>
-						<td>비밀번호</td>
-						<td><button type="button" class="btn_modify_mypage" onclick="modify_pwd()">수정</button></td>
-					</tr>
-					<tr>
-						<td>타지역 로그인 차단</td>
-						<td>on/off</td>
-					</tr>
-					<tr>
-						<td>해외 로그인 차단</td>
-						<td>on/off</td>
-					</tr>
-				</table>
-			</div>
-			<div class="history_mypage">
-				<table class="table_mypage">
-					<tr>
-						<td colspan=2>이력관리</td>
-					</tr>
-					<tr>
-						<td>로그인 기록</td>
-						<td><button type="button" class="btn_modify_mypage" onclick="login_history()">확인</button></td>
-					</tr>
-				</table>
+				<div class="info_mypage">
+					<table class="table_mypage">
+						<tr>
+							<td colspan=2>내 프로필</td>
+						</tr>
+						<tr>
+							<td>ID</td>
+							<td colspan="2" id="login_memberId">${loginMember.memberId }</td>
+						</tr>
+						<tr>
+							<td>닉네임</td>
+							<td>${loginMember.nickName }</td>
+							<td><button type="button" class="btn_modify_mypage" onclick="modify_nickname()">수정</button></td>
+						</tr>
+						<tr>
+							<td>핸드폰</td>
+							<td>${loginMember.phoneNum }</td>
+							<td><button type="button" class="btn_modify_mypage" onclick="modify_phonenum()">수정</button></td>
+						</tr>
+					</table>
+				</div>
+				<div class="security_mypage">
+					<table class="table_mypage">
+						<tr>
+							<td colspan=2>보안설정</td>
+						</tr>
+						<tr>
+							<td>비밀번호</td>
+							<td><button type="button" class="btn_modify_mypage" onclick="modify_pwd()">수정</button></td>
+						</tr>
+						<tr>
+							<td>타지역 로그인 차단</td>
+							<td>on/off</td>
+						</tr>
+						<tr>
+							<td>해외 로그인 차단</td>
+							<td>on/off</td>
+						</tr>
+					</table>
+				</div>
+				<div class="history_mypage">
+					<table class="table_mypage">
+						<tr>
+							<td colspan=2>이력관리</td>
+						</tr>
+						<tr>
+							<td>로그인 기록</td>
+							<td><button type="button" class="btn_modify_mypage" onclick="login_history()">확인</button></td>
+						</tr>
+					</table>
+				</div>
 			</div>
 		</div>
 		

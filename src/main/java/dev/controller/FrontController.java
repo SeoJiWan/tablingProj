@@ -132,7 +132,7 @@ public class FrontController extends HttpServlet {
 		//은하와 연결 - 
 		mappings.put("/detailPage.do", new ReviewListController());
 		//mappings.put("/reviewList.do", new ReviewListController());
-		mappings.put("/detailPage.do", new ReviewListController());
+		//mappings.put("/detailPage.do", new ReviewListController());
 		
 		mappings.put("/deleteReviewAjax.do", new DeleteReviewController());
 		mappings.put("/updateReviewAjax.do", new UpdateReviewController());

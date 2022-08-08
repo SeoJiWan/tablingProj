@@ -8,8 +8,10 @@
 </head>
 <body>
 <script>
+
 opener.document.location.reload();
 self.close();
+//opener.document.location.href = "detailPage.do?storName=" + $('#store');
 </script>
 </body>
 </html>
