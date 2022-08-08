@@ -1,0 +1,45 @@
+@charset "EUC-KR";
+
+*{
+	font-family: '87MMILSANG-Regular';
+}
+
+@font-face {
+    font-family: '87MMILSANG-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201@1.0/87MMILSANG-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#detailImg{
+	padding-bottom: 5%;
+}
+
+
+/* 가게 상세 정보 */
+#storeInfo{
+	width: 70%;
+	margin: 0 auto;
+}
+
+.storeTitle{
+	font-size: x-large;
+}
+
+#reservationForm{
+	border: 1px solid #353535;
+	width: 30%;
+	height: 35%;
+	position: fixed;
+	top: 40%;
+	left: 60%;
+	background-color: #ffffff;
+	opacity: 100;
+}
+
+
+
+
+
+
+

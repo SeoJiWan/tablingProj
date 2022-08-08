@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+<link rel="stylesheet" href="css/detail/detailStyle.css">
 </head>
 <body>
 	<!-- 디테일 부분 -->
@@ -22,80 +23,111 @@
 	<c:forEach var="menu" items="${storeDetail.representMenu }">
 		<p>${menu }</p>
 	</c:forEach>
-	
-	<!-- 예약 부분 -->
-	<h3>Reservation</h3>
-	<div>
-	<form action="${pageContext.request.contextPath }/reserve.do">
-		<div>
-			<input type="hidden" name="storeName" value="${storeDetail.storeName }">
-			<label for="peopleNum">How many persons?</label>
-			<select id="peopleNum" name="peopleNum">
-				<option value="none">-</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-				<option value="4">4</option>
-				<option value="5">5</option>
-				<option value="6">6</option>
-			</select>
-		</div>
-		<div>
-			<p>
-			<input type="date" name="date" placeholder="Year-Month-Day">
-		</div>
-		<div>
-			<label for="timeZone">What time to make a reservation?</label>
-			<br><select id="timeZone" name="timeZone">
-				<optgroup label="DayTime">
-				<option value="11:00 ~ 13:00">11:00 ~ 01:00</option>
-				<option value="13:00 ~ 15:00">01:00 ~ 03:00</option>
-				<option value="15:00 ~ 17:00">03:00 ~ 05:00</option>
-				</optgroup>
-				<optgroup label="DinnerTime">
-				<option value="17:00 ~ 19:00">17:00 ~ 19:00</option>
-				<option value="19:00 ~ 21:00">19:00 ~ 21:00</option>
-				<option value="21:00 ~ 23:00">21:00 ~ 23:00</option>
-				</optgroup>
-			</select>
-		</div>	
-	<input type="submit" value="Reserve">
-	</form>
+	<div id="detailImg">
+		<c:forEach var="img" items="${storeDetail.storeImgUrl }">
+			<img src="img/store_img/${img }" width="331" height="331"></img>
+		</c:forEach>
 	</div>
-	
+
+	<div id="storeInfo">
+		<h3 class="storeTitle">가게 상세 정보</h3>
+		<p>가게명 : ${storeDetail.storeName }</p>
+		<p>주소 : ${storeDetail.storeAddress }</p>
+		<p>전화번호 : ${storeDetail.telephone }</p>
+		<p>이용 시간 : ${storeDetail.availableTime }</p>
+		<p>음식 종류 : ${storeDetail.foodCategory }</p>
+		<p>======= 대표메뉴 =======</p>
+		<c:forEach var="menu" items="${storeDetail.representMenu }">
+			<p>${menu }</p>
+		</c:forEach>
+	</div>
+
+	<!-- 예약 부분 -->
+	<div id="reservationForm">
+		<h3>Reservation</h3>
+		<form action="${pageContext.request.contextPath }/reserve.do">
+			<div>
+				<input id="storeName" type="hidden" name="storeName"
+					value="${storeDetail.storeName }"> 
+					<label for="peopleNum">How many persons?</label> 
+				<select id="peopleNum" name="peopleNum">
+					<option value="none">-</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+				</select>
+			</div>
+			<div>
+				<p>
+					<input type="date" name="date" placeholder="Year-Month-Day">
+			</div>
+			<div>
+				<label for="timeZone">What time to make a reservation?</label> <br>
+				<select id="timeZone" name="timeZone">
+					<optgroup label="DayTime">
+						<option value="none">-</option>
+						<option value="11:00 ~ 13:00">11:00 ~ 01:00</option>
+						<option value="13:00 ~ 15:00">01:00 ~ 03:00</option>
+						<option value="15:00 ~ 17:00">03:00 ~ 05:00</option>
+					</optgroup>
+					<optgroup label="DinnerTime">
+						<option value="none">-</option>
+						<option value="17:00 ~ 19:00">17:00 ~ 19:00</option>
+						<option value="19:00 ~ 21:00">19:00 ~ 21:00</option>
+						<option value="21:00 ~ 23:00">21:00 ~ 23:00</option>
+					</optgroup>
+				</select>
+			</div>
+			<input type="submit" value="Reserve">
+		</form>
+	</div>
+
 	<!-- 리뷰 부분 -->
-	<form action="${pageContext.request.contextPath }/addReview.do">
+	
+	<form action="${pageContext.request.contextPath }/addReview.do" id="myform" method='POST'>
 		<div>
-		<fieldset>
-		<span class="text-bold">Good of store</span>
-		<input type="radio" name="tasteScore" value="1" id="tasteScore1"><label
-			for="rate1">★</label>
-		<input type="radio" name="tasteScore" value="2" id="tasteScore2"><label
-			for="rate2">★</label>
-		<input type="radio" name="tasteScore" value="3" id="tasteScore3"><label
-			for="rate3">★</label>
-		<input type="radio" name="tasteScore" value="4" id="tasteScore4"><label
-			for="rate4">★</label>
-		<input type="radio" name="tasteScore" value="1" id="tasteScore5"><label
-			for="rate5">★</label>
-		</fieldset>
+			<fieldset>
+				<span class="text-bold">Good of store</span> 
+				<input type="radio" name="tasteScore" value="1" id="tasteScore1"><label for="rate1">★</label> 
+				<input type="radio" name="tasteScore" value="2" id="tasteScore2"><label for="rate2">★</label> 
+				<input	type="radio" name="tasteScore" value="3" id="tasteScore3"><label for="rate3">★</label> 
+				<input type="radio" name="tasteScore" value="4" id="tasteScore4"><label for="rate4">★</label> 
+				<input type="radio" name="tasteScore" value="5" id="tasteScore5"><label for="rate5">★</label>
+			</fieldset>
 		</div>
-		<textarea rows="10" cols="20" placeholder="Write Review" name="content"></textarea>
-		<input type="hidden" name="storeName" value="${storeDetail.storeName }">
-		<a>${storeDetail.storeName }</a> 
+		<textarea rows="10" cols="20" placeholder="Write Review"
+			name="content"></textarea>
+		<input type="hidden" name="storeName"
+			value="${storeDetail.storeName }">
 		<input type="submit" value="Upload">
 	</form>
 	
 	<h3>============== review ==============</h3>
-		
-		
-		<table border="1">
+
+
+	<table border="1">
+		<tr>
+			<th>Id</th>
+			<th>Content</th>
+			<th>Store Name</th>
+			<th>Taste Score</th>
+			<th>Create Date</th>
+		</tr>
+
+		<c:forEach var="review" items="${list }">
 			<tr>
-				<th>No.</th>
-				<th>Id: </th>
-				<th>Content: </th>
-				<th>Store Name: </th>
-				<th>Taste Score: </th>
-				<th>Create Date: </th>
+				<td>${review.memberId }</td>
+				<td>${review.content }</td>
+				<td>${review.storeName }</td>
+				<td>${review.tasteScore }</td>
+				<td>${review.createDate }</td>
+				<td><c:if test="${review.memberId eq loginMember.memberId }">
+						<button value="삭제" onclick='deleteCallback(event)' class=delete>삭제</button>
+						<button value="수정"
+							onclick='updateCallback(${review.reviewId}, event)' class=update>수정</button>
+					</c:if></td>
 			</tr>
 			
 			<c:forEach var="review" items="${list }">
@@ -115,84 +147,82 @@
 				</tr>
 			</c:forEach>
 		</table>
+		</c:forEach>
+	</table>
+
+	<!-- 찜하기 -->
+	<h3>찜하기</h3>
+	<div>
+		<c:if test="${empty likeOrUnlike }">
+			<button id="like" value="1" class="liked" style="display: none"
+				onclick="hideHeart()">🖤</button>
+			<button id="unlike" value="0" class="unliked" onclick="showHeart()">🤍</button>
+		</c:if>
+		<c:if test="${not empty likeOrUnlike }">
+			<button id="like" value="1" class="liked" onclick="hideHeart()">🖤</button>
+      <button id="unlike" value="0" class="unliked" style="display: none"
+				onclick="showHeart()">🤍</button>
+		</c:if>
+	</div>
+
+	<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
+
+	<!-- 찜하기 Ajax -->
+	<script type="text/javascript">
 		
-		<!-- 찜하기 -->
-		<h3>찜하기</h3>
-		<div>
-		<button id=like value=1 class=liked style="display:none" onclick="hideHeart()">🖤</button>
-		<button id=unlike value=0 class=unliked onclick="showHeart()">🤍</button>
-		</div>
-		
-		<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
-		
-		<!-- 찜하기 Ajax -->
-		<script type="text/javascript">
 		/* 찜 */
-		
-		let like = $("#like").val();
-		let unlike = $("#unlike").val();
-		let storeName = ${storeDetail.storeName };
-		
-		
-		console.log(like);
-		console.log(unlike);
-		console.log(storeName);
-		
 			function showHeart() {
 				$('#like').show();
 				$('#unlike').hide();
-				
+				console.log("add zzim");
 				$.ajax({
    					type: 'POST',
    					
    					url: 'likeStoreAjax.do',
    					
    					data:{
-   						like: like,
-   						storeName : storeName,
+   						status : "1",
+   						storeName : $("#storeName").val(),
    					},
    					dataType: 'text',
-   					success: function(data){
-   						if(data == 'isLiked'){
-   							$('#unlike').text('찜하기가 등록되었습니다.');
-   							//찜등록 안한 상태에서 찜등록으로 바꾸기
-   							$('#unlike').val(1);
-   						}
-   					}
-		    	})
+   					success: function(){
+   						alert("찜하기 완료");
+   					},
+   					
+   					error: function(error){
+   						alert("error : "+error)
+   					},
+		    	});
 			}
 			
 			/* 찜취소 */
 			function hideHeart() {
 				$('#like').hide();
 				$('#unlike').show();
+				
+				console.log("delete zzim");
 				$.ajax({
    					type: 'POST',
    					
    					url: 'likeStoreAjax.do',
    					
    					data:{
-   						unlike: unlike,
-   						storeName : storeName,
+   						status: "0",
+   						storeName : $('#storeName').val(),
    					},
    					dataType: 'text',
-   					success: function(data){
-   						if(data != 'isLiked'){
-   							$('#unlike').text('찜하기가 등록되었습니다.');
-   							//찜등록 안한 상태에서 찜등록으로 바꾸기
-   							$('#unlike').val(1);
-   						} 
-   					}
-   				})
+   					success: function(){
+   						alert('찜하기 취소 완료')
+   					},
+   					error: function(error){
+   						alert("error: "+error);
+   					},
+   				});
 			}
-
-
-		
-	    
 		</script>
-		
-		<!-- 삭제 Ajax -->
-		<script >
+
+	<!-- 삭제 Ajax -->
+	<script>
 		function deleteCallback (e) {
 			/* event의 call함수 (이벤트 받는 대상) */
 			console.log(e.target);
@@ -224,7 +254,6 @@
 			}
 		}
 		</script>
-		
 		<script>
 		/* let w = window.open("about:blank","_blank"); */
 		
@@ -254,6 +283,5 @@
 		}
 
 		</script>
-		
 </body>
 </html>
