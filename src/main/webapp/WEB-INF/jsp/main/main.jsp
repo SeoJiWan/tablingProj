@@ -13,7 +13,7 @@
   <meta content="" name="description">
 
   <!-- Favicons -->
-  <link href="img/favicon.png" rel="icon">
+  <link href="../img/favicon.png" rel="icon">
   <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -68,7 +68,6 @@
 
   <div class="container ptb">
     <div class="row">
-      <div class="col-md-6">
         <h3>추천 맛집 리스트</h3>
         <br>
         <ul class="ul-store-list">
@@ -76,10 +75,10 @@
             <li>
               <!-- 이미지 -->
               <c:forEach var="img" items="${store.storeImgUrl }">
-               <a href="${pageContext.request.contextPath }/detailPage.do?storeName=${store.storeName}"><img src="${pageContext.request.contextPath }/img/store_img/${img }" width="400" height="300"></a>
+               <a href="${pageContext.request.contextPath }/detailPage.do?storeName=${store.storeName}"><img src="${pageContext.request.contextPath }/img/store_img/${img }" width="360" height="250"></a>
               </c:forEach>
               <!-- 가게 정보 -->
-              <h4>${store.storeName } ${store.score }</h4>
+              <h4>${store.storeName }&nbsp;&nbsp;&nbsp;<span class="orange">${store.score }</span></h4>
               <c:set var="add" value="${store.storeAddress }" />
               <c:set var="lo" value="${fn:indexOf(add, '로') }" />
               <!-- 주소 -->
@@ -89,7 +88,6 @@
             </li>
           </c:forEach>
         </ul>
-      </div>
     </div>
     <!--/row-->
   </div>

@@ -15,25 +15,28 @@
     font-style: normal;
 }
 
-* {
-  margin: 0;
-  padding: 0px;
-  font-family: 'Lato', 87MMILSANG-Regular;
-}
-
 body {
   background: #fff;
   margin: 0;
-  color: #5a5a5a;
+  color: #353535;
+  font-family: '87MMILSANG-Regular';
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Lato', 87MMILSANG-Regular;
+  font-family: '87MMILSANG-Regular';
   font-weight: 300;
 }
 
 h3{
 	color:#ff993b;	
+}
+span{
+	color:#ff993b;
+}
+/*주소, 업태*/
+h5{
+	/*light:color:#b0b0b0;*/ 
+	color:#989898;
 }
 
 p {
@@ -47,9 +50,10 @@ p {
   color: #666;
   margin-top: 10px;
 }
-
+/* 리스트 */
 li{
   display:inline-block;
+  padding-right:15px;
 }
 
 html, body {
@@ -94,8 +98,8 @@ html, body {
 }
 
 .ptb {
-  padding-top: 80px;
-  padding-bottom: 80px;
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 
 .clear {
@@ -152,6 +156,7 @@ a:hover, a:focus {
 /* FORM CONFIGURATION */
 
 input {
+  color:#353535;
   font-size: 16px;
   min-height: 40px;
   border-radius: 25px;

@@ -246,7 +246,7 @@ public class StoreRepository extends DAO {
 				+ "            a.store_address, " + "            a.telephone, " + "            a.sit_capacity, "
 				+ "            a.available_time, " + "            a.holiday, " + "            a.represent_menu, "
 				+ "            a.store_img_url, " + "            a.food_category, " + "            a.approval_status, "
-				+ "            nvl(b.score, 0) s " + "        FROM " + "            ( " + "                SELECT "
+				+ "            round(nvl(b.score, 0),2) s " + "        FROM " + "            ( " + "                SELECT "
 				+ "                    * " + "                FROM " + "                    ( "
 				+ "                        SELECT " + "                            * " + "                        FROM "
 				+ "                            stores " + "                        WHERE "
@@ -327,7 +327,7 @@ public class StoreRepository extends DAO {
 		String sql = "SELECT " + "* " + "FROM " + "(" + "SELECT " + "ROWNUM rn, " + "a.store_id, " + "a.store_name, "
 				+ "a.member_id, " + "a.store_address, " + "a.telephone, " + "a.sit_capacity, " + "a.available_time, "
 				+ "a.holiday, " + "a.represent_menu, " + "a.store_img_url, " + "a.food_category, "
-				+ "a.approval_status, " + "nvl(b.score, 0) s " + "FROM " + "( " + "SELECT " + "* " + "FROM " + "( "
+				+ "a.approval_status, " + "round(nvl(b.score, 0),2) s " + "FROM " + "( " + "SELECT " + "* " + "FROM " + "( "
 				+ "SELECT " + "* " + "FROM " + "stores " + "WHERE " + "store_name LIKE '%" + keyword + "%' "
 				+ "OR store_address LIKE '%" + keyword + "%' " + "OR represent_menu LIKE '%" + keyword + "%' "
 				+ "OR food_category LIKE '%" + keyword + "%' ) ";
