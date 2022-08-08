@@ -36,8 +36,8 @@ public class AddReviewController implements Controller {
 			reviewService.addReview(vo);
 			
 //			resp.sendRedirect("WEB-INF/jsp/detail/detailTestPage.jsp");
-			req.setAttribute("storeName", storeName);
-			Utils.forward(req, resp, "detailPage.do");
+//			req.setAttribute("storeName", storeName);
+//			Utils.forward(req, resp, "detailPage.do");
 	}
 }
 

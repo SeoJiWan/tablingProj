@@ -15,6 +15,16 @@
 			<img src="img/store_img/${img }" width="331" height="331"></img>
 		</c:forEach>
 	</div>
+	<h3>가게 상세 정보</h3>
+	<p id="${storeDetail.storeName }">가게명 : ${storeDetail.storeName }</p>
+	<p>주소 : ${storeDetail.storeAddress }</p>
+	<p>전화번호 : ${storeDetail.telephone }</p>
+	<p>이용 시간 : ${storeDetail.availableTime }</p>
+	<p>카테고리 : ${storeDetail.foodCategory }</p>
+	<p>======= 대표메뉴 =======</p>
+	<c:forEach var="menu" items="${storeDetail.representMenu }">
+		<p>${menu }</p>
+	</c:forEach>
 
 	<div id="storeInfo">
 		<h3 class="storeTitle">가게 상세 정보</h3>
@@ -87,7 +97,22 @@
 	</div>
 
 	<!-- 리뷰 부분 -->
-	
+<%-- 	<form action="${pageContext.request.contextPath }/addReview.do" id="myform" method='POST'> --%>
+		<div>
+			<fieldset>
+				<span class="text-bold">Good of store</span> 
+				<input type="radio" name="tasteScore" value="1" id="tasteScore1"><label for="rate1">★</label> 
+				<input type="radio" name="tasteScore" value="2" id="tasteScore2"><label for="rate2">★</label> 
+				<input type="radio" name="tasteScore" value="3" id="tasteScore3"><label for="rate3">★</label> 
+				<input type="radio" name="tasteScore" value="4" id="tasteScore4"><label for="rate4">★</label> 
+				<input type="radio" name="tasteScore" value="5" id="tasteScore5"><label for="rate5">★</label>
+			</fieldset>
+		</div>
+		<textarea rows="10" cols="20" placeholder="Write Review" name="content" id="content"></textarea>
+		<input type="hidden" name="storeName" id="storeName" value="${storeDetail.storeName }">
+<!-- 		<input type="button" value="Upload"> -->
+		<button type="button" id="btn_review_insert" onclick="review_insert()">Upload</button>
+<!-- 	</form> -->
 	<form action="${pageContext.request.contextPath }/addReview.do" id="myform" method='POST'>
 		<div class="star-rating space-x-4 mx-auto">
 		    <input type="radio" id="5-stars" name="rating" value="1" v-model="ratings"/>
@@ -114,24 +139,27 @@
 	<table border="1">
 		<tr>
 			<th>Id</th>
+			<th>memberId</th>
 			<th>Content</th>
 			<th>Store Name</th>
 			<th>Taste Score</th>
 			<th>Create Date</th>
 		</tr>
-
+			
 		<c:forEach var="review" items="${list }">
 			<tr>
+				<td>${review.reviewId }</td>
 				<td>${review.memberId }</td>
 				<td>${review.content }</td>
 				<td>${review.storeName }</td>
 				<td>${review.tasteScore }</td>
 				<td>${review.createDate }</td>
-				<td><c:if test="${review.memberId eq loginMember.memberId }">
-						<button value="삭제" onclick='deleteCallback(event)' class=delete>삭제</button>
-						<button value="수정"
-							onclick='updateCallback(${review.reviewId}, event)' class=update>수정</button>
-					</c:if></td>
+				<td>
+				<%-- <c:if test="${review.memberId eq loginMember.memberId }"> --%>
+				<button value="삭제" onclick='deleteCallback(event)' class=delete >삭제</button>
+				<button value="수정" onclick='updateCallback(event)' class=update >수정</button>
+				<%-- </c:if> --%>
+				</td>
 			</tr>
 		</c:forEach>
 	</table>
@@ -142,6 +170,40 @@
 
 	<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
 
+	<script type="text/javascript">
+	function review_insert() {
+		let storeName = $('#storeName').val();
+		let content = $('#content').val();
+		let tasteScore = $('input[name=tasteScore]').val();
+		
+		console.log(storeName);
+		console.log(content);
+		console.log(tasteScore);
+		
+		$.ajax({
+				type: 'POST',
+				
+				url: 'addReview.do',
+				
+				data:{
+					storeName : storeName,
+					content : content,
+					tasteScore : tasteScore
+				},
+				dataType: 'text',
+				
+				success: function(){
+					alert("리뷰작성완료");
+					window.location.href = "detailPage.do?storeName=" + storeName;
+				},
+				
+				error: function(error){
+					alert("error : "+error)
+				},
+    	});
+	}
+	
+	</script>
 	<!-- 찜하기 Ajax -->
 	<script type="text/javascript">
 		

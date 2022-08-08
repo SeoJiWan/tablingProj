@@ -33,7 +33,10 @@ public class updatereview implements Controller {
 		
 		System.out.println(rv.getContent());
 		
+		req.setAttribute("upstore", upstore);
 		Utils.forward(req, resp, "/detail/popupset.tiles");
+//		String nextPage = "detailPage.do?storeName=" + upstore; 
+//		Utils.forward(req, resp, nextPage);
 	}
 
 }
