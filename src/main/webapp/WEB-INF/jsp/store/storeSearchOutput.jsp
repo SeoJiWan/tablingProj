@@ -9,7 +9,10 @@
 <head>
 <meta charset="UTF-8">
 <title>${keyword } 맛집 인기 검색 순위</title>
+<!-- 기본 css -->
 <link href="${pageContext.request.contextPath }/css/store/storeSearchOutput.css" rel="stylesheet">
+<!-- 부트스트랩 css -->
+<link href="SumoLanding/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <!-- 페이징 css -->
 <link href="${pageContext.request.contextPath }/css/store/paging.css" rel="stylesheet">
 </head>
@@ -20,16 +23,16 @@
 		<script>alert('검색어를 입력해주세요.')</script>
 	</c:if>
 	<div id="container">
-		<h2>${keyword } 맛집 인기 검색 순위</h2>
+		<h3>${keyword } 맛집 인기 검색 순위</h3>
 		<div id="a">
-			<a href="#layer-popup" class="btn-open">필터</a>
+			<a href="#layer-popup" class="btn-open"><h5>필터</h5></a>
 		</div>
 			<div id="layer-container">
 			<div class="layer-popup" id="layer-popup">
     			<div class="modal-dialog">
       				<div class="modal-content">
 			<!-- 폼 -->
-				<form action="${pageContext.request.contextPath }/storeFilterSearchPaging.do">
+				<form name="myFrm" action="${pageContext.request.contextPath }/storeFilterSearchPaging.do">
 					검색 필터<br>
 					<!-- 조건 설정 -->
 					<input type="hidden" name="job" value="filter">
@@ -104,14 +107,14 @@
 							<a href="${pageContext.request.contextPath }/detailPage.do?storeName=${store.storeName}"><img src="${pageContext.request.contextPath }/img/store_img/${img }" width="340" height="250"></a>
 						</c:forEach>
 						<!-- 가게명 -->
-						<br><h3>${store.storeName }</h3><span> ${store.score }</span>
+						<br><h4>${store.storeName }&nbsp;&nbsp;&nbsp;<span>${store.score }</span></h4>
 						<div id="detial">
 						<c:set var="add" value="${store.storeAddress }" />
 						<c:set var="lo" value="${fn:indexOf(add, '로') }" />
 						<!-- 주소 -->
-						${fn:substring(add,9,lo+1) } 
+						<h5>${fn:substring(add,9,lo+1) } 
 						<!-- 업태 -->
-						- ${store.foodCategory }
+						- ${store.foodCategory }</h5>
 						</div>
 					</li>
 				</c:forEach>
@@ -154,6 +157,26 @@
 		</c:choose>
 	</div> 
 	<script>
+	// 체크 박스 체크 유지
+	  let url = window.location.href;
+	  let arr = url.split('&');;
+	  let arr2 = new Array();
+	  for (param of arr) {
+	    if (param.indexOf('area') != -1 || param.indexOf('food') != -1) {
+	
+	      let temp = param.split('=')
+	      arr2.push(temp[1])
+	    }
+	  }
+	  let inputs = document.querySelectorAll('form[name=myFrm] input[type=checkbox]')
+	  for (let chk of inputs) {
+	    for (let i = 0; i < arr2.length; i++) {
+	      console.log(decodeURI( arr2[i]))
+	      if (chk.value == decodeURI( arr2[i])) {
+	        chk.checked = true;
+	      }
+	    }
+	  }
 	// 팝업 열기
 	$(document).on("click", ".btn-open", function (e){
 		var target = $(this).attr("href");

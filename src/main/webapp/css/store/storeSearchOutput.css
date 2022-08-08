@@ -1,73 +1,83 @@
 @font-face {
-font-family: 'BMHANNAPro';
-src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.0/BMHANNAPro.woff') format('woff');
-font-weight: normal;
-font-style: normal;
-}
-@font-face {
+  font-family: 'BMHANNAPro';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.0/BMHANNAPro.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  }
+  @font-face {
+      font-family: '87MMILSANG-Regular';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201@1.0/87MMILSANG-Regular.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+  }
+  body {
+    background: #fff;
+    margin: 0;
+    color: #353535;
     font-family: '87MMILSANG-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201@1.0/87MMILSANG-Regular.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
-#container{
-	width:50%;
-	margin: 0 auto;
-}
+  }
+  #container{
+    width:50%;
+    margin: 0 auto;
+  }
 /*필터*/
-a{
-	text-decoration:none;
-	color: #aaa;
+a {
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  -webkit-transition: background-color .4s linear, color .4s linear;
+  -moz-transition: background-color .4s linear, color .4s linear;
+  -o-transition: background-color .4s linear, color .4s linear;
+  -ms-transition: background-color .4s linear, color .4s linear;
+  transition: background-color .4s linear, color .4s linear;
+  color: #ff993b;
 }
-#a{
-	text-align:right;
+
+a:hover, a:focus {
+  text-decoration: none;
+  color: #696E74;
 }
-/*리스트*/
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: '87MMILSANG-Regular';
+  font-weight: 300;
+}
+/*타이틀*/
+h3{
+	color:#ff993b;	
+}
+/*강조*/
+span{
+	color:#ff993b;
+}
+/*주소, 업태*/
+h5{
+	color:#989898;
+}
+li{
+  display:inline-block;
+  padding-right:15px;
+}
+  /*리스트*/
 #list{
-	margin:0 auto;
-	padding-bottom:20px;
+margin:0 auto;
+padding-bottom:20px;
 }
 ul{
-	padding:0;
-	margin-bottom:0;
+padding:0;
+margin-bottom:0;
 }
-#container li{
-	list-style:none;
-	padding:20px 20px 0 20px;
-	display:inline-block;
-}
-/*폼*/
+  /*폼*/
 #form{
-	margin:0 auto;
-	border: solid 1px #aaa;
+margin:0 auto;
+border: solid 1px #aaa;
 }
-
+  
 /*페이징*/
 #center{
-	display:inline-block;
+display:inline-block;
 }
-
-/*별점*/
-span{
-	color:ffd729;
-	font-size:1.17em;
-	font-family: '87MMILSANG-Regular';
-}
-
-/*식당 이름*/
-h3{
-	margin:0;
-	padding-top:5px;
-	padding-bottom:5px;
-	display:inline-block;
-	font-weight:normal;
-	font-family: '87MMILSANG-Regular';
-}
-/*디테일*/
-#detial{
-	font-family: '87MMILSANG-Regular';
-}
-
+  
 /* 레이어 팝업 박스 */
 .layer-popup {
   display: none;

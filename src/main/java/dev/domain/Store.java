@@ -18,6 +18,19 @@ public class Store {
 	
 	//별점
 	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof Store) {
+			return ((Store) obj).getStoreId() == this.storeId;
+		}
+		return false;
+	}
+	
+	@Override
+	public int hashCode() {
+		return this.storeId + this.storeName.hashCode();
+	}
+	
 	public double getScore() {
 		return score;
 	}

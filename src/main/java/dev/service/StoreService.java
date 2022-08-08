@@ -2,7 +2,10 @@ package dev.service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import dev.domain.Criteria;
 import dev.domain.Reservations;
 import dev.domain.Store;
@@ -59,8 +62,6 @@ public class StoreService {
 		return store;
 	}
 
-	
-
 	// 리스트페이지에 사용 -> 사진 한장
 	private static List<Store> getRandomImg(List<Store> list) {
 
@@ -106,7 +107,7 @@ public class StoreService {
 		List<Store> list = storeRepository.searchKeyword(keyword);
 		// 사진 url 세팅
 		List<Store> newlist = getRandomImg(list);
-		//System.out.println(newlist.get(0).getStoreImgUrl().get(0));
+		// System.out.println(newlist.get(0).getStoreImgUrl().get(0));
 		return newlist;
 	}
 
@@ -137,80 +138,64 @@ public class StoreService {
 	// 메인:랜덤 조회 수정
 	public List<Store> findRandomStore() {
 		List<Store> list = new ArrayList<>();
-		Store store1 = storeRepository.getStore();
-		list.add(store1);
-		//첫번째 store 담기
-		for(int i=1; ; i++) { //무한 반복
-			Store store2 = storeRepository.getStore();
-			list.add(store2);
-			if(list.get(i).equals(list.get(i-1))) {
-			list.remove(store2);
+		Set<Store> set = new HashSet<Store>();
+		while (set.size() < 6) {
+			Store store = storeRepository.getStore();
+
+			if(store == null || set.contains(store)) {
+				continue;
 			}
-			//같으면 제거
-		if(list.size()==6){ //list size가 6이 되면 루프 탈출
-			break;
-			}
+			set.add(store);
+			list.add(store);
 		}
 		List<Store> newlist = getRandomImg(list);
 		return newlist;
 	}
-	
-	// 메인:랜덤 조회
-//		public List<Store> findRandomStore() {
-//			List<Store> list = new ArrayList<>();
-//			for (int i = 0; i < 6; i++) {
-//				Store store = storeRepository.getStore();
-//				list.add(store);
-//				}
-//			List<Store> newlist = getRandomImg(list);
-//			return newlist;
-//		}
 
-		public List<Store> storeList() {
+	public List<Store> storeList() {
 		return storeRepository.getList();
-	}	
+	}
+
 	public List<Store> getListPaging(Criteria cri) {
 		return storeRepository.getListPaging(cri);
 	}
+
 	public List<Store> acceptstoreList() {
 		return storeRepository.getacceptList();
 	}
-	
+
 	public List<Store> getacceptstoreList(Criteria cri) {
 		return storeRepository.getacceptListPaging(cri);
 	}
-	
+
 	public boolean removeStore(String store_name) {
 		return storeRepository.deleteStore(store_name);
 	}
-	
+
 	public boolean updateStore(String store_name) {
 		return storeRepository.updateStore(store_name);
 	}
-	
+
 	public void mypageupdatestore(Store st) {
-		storeRepository.mypageupdatestore(st);		
+		storeRepository.mypageupdatestore(st);
 	}
 
 	public Store storemanagement(String storeName) {
 		Store store = storeRepository.storemanagement(storeName);
 		return store;
 	}
-	
+
 	// 가게 등록 - 점주 페이지
 	public void registerStore(Store store) {
 		storeRepository.insert(store);
 	}
-	
+
 	public List<Reservations> getstorereservations(Criteria cri, String stroeName) {
 		return storeRepository.getstorereservation(cri, stroeName);
 	}
-	
+
 	public List<Reservations> reservationList(String stroeName) {
 		return storeRepository.reservationList(stroeName);
 	}
-	
-	
-	
-}
 
+}
