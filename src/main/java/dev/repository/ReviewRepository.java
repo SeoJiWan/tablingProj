@@ -157,4 +157,29 @@ public class ReviewRepository extends DAO {
 		}
 		return vo;
 	}
+
+	public void reviewupdate(Review rv) {
+		// TODO Auto-generated method stub
+		connect();
+		String sql = "UPDATE reviews SET CONTENT = ? WHERE review_id= ? and store_name = ?";
+
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, rv.getContent());
+			ps.setInt(2, rv.getReviewId());
+			ps.setString(3, rv.getStoreName());
+
+			int result = ps.executeUpdate();
+
+			if (result > 0) {
+				System.out.println(result + "건 댓글 수정완료");
+			} else {
+				System.out.println("댓글 수정 실패");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+	}
 }
