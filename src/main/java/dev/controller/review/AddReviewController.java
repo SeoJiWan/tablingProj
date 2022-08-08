@@ -24,7 +24,7 @@ public class AddReviewController implements Controller {
 			String content = req.getParameter("content");
 			String storeName = req.getParameter("storeName");
 			System.out.println("storeName: "+storeName);
-			int tasteScore = Integer.parseInt(req.getParameter("tasteScore"));		
+			int tasteScore = Integer.parseInt(req.getParameter("rating"));		
 			
 		
 			Review vo = new Review();

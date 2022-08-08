@@ -9,10 +9,11 @@
 <head>
 <meta charset="UTF-8">
 <title>${keyword } 맛집 인기 검색 순위</title>
-<!-- 기본 css -->
-<link href="${pageContext.request.contextPath }/css/store/storeSearchOutput.css" rel="stylesheet">
 <!-- 부트스트랩 css -->
 <link href="SumoLanding/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="SumoLanding/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+<!-- 기본 css -->
+<link href="${pageContext.request.contextPath }/css/store/storeSearchOutput.css" rel="stylesheet">
 <!-- 페이징 css -->
 <link href="${pageContext.request.contextPath }/css/store/paging.css" rel="stylesheet">
 </head>
@@ -25,22 +26,23 @@
 	<div id="container">
 		<h3>${keyword } 맛집 인기 검색 순위</h3>
 		<div id="a">
-			<a href="#layer-popup" class="btn-open"><h5>필터</h5></a>
+			<h5><a href="#layer-popup" class="btn-open">필터</a></h5>
 		</div>
 			<div id="layer-container">
 			<div class="layer-popup" id="layer-popup">
     			<div class="modal-dialog">
-      				<div class="modal-content">
+      				<div class="modal-content2">
 			<!-- 폼 -->
 				<form name="myFrm" action="${pageContext.request.contextPath }/storeFilterSearchPaging.do">
-					검색 필터<br>
+					<div id="textbox">
+					상세검색 필터<br>
 					<!-- 조건 설정 -->
 					<input type="hidden" name="job" value="filter">
 					<!-- pn, am -->
 					<input type="hidden" name="pageNum" value="1">
 					<input type="hidden" name="postNum" value="8">
 	     				<hr>
-	     				지역<br>
+	     				지역(중복가능)<br>
 	     				대구 중구<br>
 	     				<input type="hidden" name="area" value="0">
 	     				<input type="checkbox" name="area" value="공평로" id="gong">
@@ -58,7 +60,7 @@
 	     				<input type="checkbox" name="area" value="동성로" id="dongseong">
 	     				<label for="dongseong">동성로</label>
 	     				<input type="checkbox" name="area" value="명덕로" id="myeongdeok">
-	     				<label for="myeong">명덕로</label>
+	     				<label for="myeongdeok">명덕로</label>
 	     				<input type="checkbox" name="area" value="명륜로" id="myeongryoon">
 	     				<label for="myeongryoon">명륜로</label>
 	     				<input type="checkbox" name="area" value="북성로" id="book">
@@ -66,13 +68,13 @@
 	     				<input type="checkbox" name="area" value="서성로" id="seo">
 	     				<label for="seo">서성로</label>
 	     				<input type="checkbox" name="area" value="종로" id="jong">
-	     				<label for="myeong">종로</label>
+	     				<label for="jong">종로</label>
 	     				<input type="checkbox" name="area" value="중앙대로" id="joong">
 	     				<label for="joong">중앙대로</label>
 	     				<input type="checkbox" name="area" value="큰장로" id="keon">
 	     				<label for="keon">큰장로</label>
 	     				<hr>
-	     				음식종류<br>
+	     				음식종류(중복가능)<br>
 	     				<input type="hidden" name="food" value="0">
 	     				<input type="checkbox" name="food" value="한식" id="ko">
 	     				<label for="ko">한식</label>
@@ -87,10 +89,10 @@
 	     				<input type="checkbox" name="food" value="디저트" id="de">
 	     				<label for="de">디저트</label>
 	     				<input type="checkbox" name="food" value="주점" id="al">
-	     				<label for="al">주점</label><br>
-	     				<input type="button" id="cancle" value="취소">
-	       			<input type="submit" value="적용">
-	      			</form>
+	     				<label for="al">주점</label>
+	     				</div>
+	     				<input type="button" class="filter-button" id="cancle" value="취소"><input type="submit" id="sm" class="filter-button" value="적용">
+	      				</form>
       			</div>
 			</div>
 			</div>
