@@ -10,19 +10,6 @@
 </head>
 <body>
 	<!-- 디테일 부분 -->
-	<c:forEach var="img" items="${storeDetail.storeImgUrl }">
-	<img src="img/store_img/${img }" width="320" height="320"></img>
-	</c:forEach>
-	<h3>가게 상세 정보</h3>
-	<p id="${storeDetail.storeName }">가게명 : ${storeDetail.storeName }</p>
-	<p>주소 : ${storeDetail.storeAddress }</p>
-	<p>전화번호 : ${storeDetail.telephone }</p>
-	<p>이용 시간 : ${storeDetail.availableTime }</p>
-	<p>카테고리 : ${storeDetail.foodCategory }</p>
-	<p>======= 대표메뉴 =======</p>
-	<c:forEach var="menu" items="${storeDetail.representMenu }">
-		<p>${menu }</p>
-	</c:forEach>
 	<div id="detailImg">
 		<c:forEach var="img" items="${storeDetail.storeImgUrl }">
 			<img src="img/store_img/${img }" width="331" height="331"></img>
@@ -31,6 +18,19 @@
 
 	<div id="storeInfo">
 		<h3 class="storeTitle">가게 상세 정보</h3>
+		<!-- <h3>찜하기</h3> -->
+			<div>
+				<c:if test="${empty likeOrUnlike }">
+					<button id="like" value="1" class="like" style="display: none"
+						onclick="hideHeart()"><img src="img/like.png" width="25" height="25"></button>
+					<button id="unlike" value="0" class="like" onclick="showHeart()"><img src="img/unlike.png" width="25" height="25"></button>
+				</c:if>
+				<c:if test="${not empty likeOrUnlike }">
+					<button id="like" value="1" class="like" onclick="hideHeart()"><img src="img/like.png" width="25" height="25"></button>
+		      <button id="unlike" value="0" class="like" style="display: none"
+						onclick="showHeart()"><img src="img/unlike.png" width="25" height="25"></button>
+				</c:if>
+			</div>
 		<p>가게명 : ${storeDetail.storeName }</p>
 		<p>주소 : ${storeDetail.storeAddress }</p>
 		<p>전화번호 : ${storeDetail.telephone }</p>
@@ -41,27 +41,29 @@
 			<p>${menu }</p>
 		</c:forEach>
 	</div>
-
+	
 	<!-- 예약 부분 -->
 	<div id="reservationForm">
 		<h3>Reservation</h3>
-		<form action="${pageContext.request.contextPath }/reserve.do">
+		<form action="${pageContext.request.contextPath }/reserve.do" id="form">
 			<div>
 				<input id="storeName" type="hidden" name="storeName"
 					value="${storeDetail.storeName }"> 
+				  <div class="form">
 					<label for="peopleNum">How many persons?</label> 
-				<select id="peopleNum" name="peopleNum">
-					<option value="none">-</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-					<option value="6">6</option>
-				</select>
+					<select id="peopleNum" name="peopleNum">
+						<option value="none">-</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+					</select>
+				  </div>
 			</div>
-			<div>
-				<p>
-					<input type="date" name="date" placeholder="Year-Month-Day">
+			<div id="reservationDate">
+				<p>Select a reservation date</p>
+				<input type="date" name="date" placeholder="Year-Month-Day">
 			</div>
 			<div>
 				<label for="timeZone">What time to make a reservation?</label> <br>
@@ -87,21 +89,23 @@
 	<!-- 리뷰 부분 -->
 	
 	<form action="${pageContext.request.contextPath }/addReview.do" id="myform" method='POST'>
-		<div>
-			<fieldset>
-				<span class="text-bold">Good of store</span> 
-				<input type="radio" name="tasteScore" value="1" id="tasteScore1"><label for="rate1">★</label> 
-				<input type="radio" name="tasteScore" value="2" id="tasteScore2"><label for="rate2">★</label> 
-				<input	type="radio" name="tasteScore" value="3" id="tasteScore3"><label for="rate3">★</label> 
-				<input type="radio" name="tasteScore" value="4" id="tasteScore4"><label for="rate4">★</label> 
-				<input type="radio" name="tasteScore" value="5" id="tasteScore5"><label for="rate5">★</label>
-			</fieldset>
-		</div>
-		<textarea rows="10" cols="20" placeholder="Write Review"
+		<div class="star-rating space-x-4 mx-auto">
+		    <input type="radio" id="5-stars" name="rating" value="1" v-model="ratings"/>
+		    <label for="5-stars" class="star pr-4">★</label>
+		    <input type="radio" id="4-stars" name="rating" value="2" v-model="ratings"/>
+		    <label for="4-stars" class="star">★</label>
+		    <input type="radio" id="3-stars" name="rating" value="3" v-model="ratings"/>
+		    <label for="3-stars" class="star">★</label>
+		    <input type="radio" id="2-stars" name="rating" value="4" v-model="ratings"/>
+		    <label for="2-stars" class="star">★</label>
+		    <input type="radio" id="1-star" name="rating" value="5" v-model="ratings" />
+		    <label for="1-star" class="star">★</label>
+  		</div>
+		<textarea rows="10" cols="20" placeholder="Write Review Here"
 			name="content"></textarea>
 		<input type="hidden" name="storeName"
 			value="${storeDetail.storeName }">
-		<input type="submit" value="Upload">
+		<input type="submit" value="Upload" id="upload">
 	</form>
 	
 	<h3>============== review ==============</h3>
@@ -129,41 +133,12 @@
 							onclick='updateCallback(${review.reviewId}, event)' class=update>수정</button>
 					</c:if></td>
 			</tr>
-			
-			<c:forEach var="review" items="${list }">
-				<tr>
-					<td>${review.reviewId }</td>
-					<td>${review.memberId }</td>
-					<td>${review.content }</td>
-					<td>${review.storeName }</td>
-					<td>${review.tasteScore }</td>
-					<td>${review.createDate }</td>
-					<td>
-					<%-- <c:if test="${review.memberId eq loginMember.memberId }"> --%>
-					<button value="삭제" onclick='deleteCallback(event)' class=delete >삭제</button>
-					<button value="수정" onclick='updateCallback(event)' class=update >수정</button>
-					<%-- </c:if> --%>
-					</td>
-				</tr>
-			</c:forEach>
-		</table>
 		</c:forEach>
 	</table>
 
-	<!-- 찜하기 -->
-	<h3>찜하기</h3>
-	<div>
-		<c:if test="${empty likeOrUnlike }">
-			<button id="like" value="1" class="liked" style="display: none"
-				onclick="hideHeart()">🖤</button>
-			<button id="unlike" value="0" class="unliked" onclick="showHeart()">🤍</button>
-		</c:if>
-		<c:if test="${not empty likeOrUnlike }">
-			<button id="like" value="1" class="liked" onclick="hideHeart()">🖤</button>
-      <button id="unlike" value="0" class="unliked" style="display: none"
-				onclick="showHeart()">🤍</button>
-		</c:if>
-	</div>
+	<script>
+		
+	</script>
 
 	<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
 
@@ -281,7 +256,6 @@
 			//등록된 url 및 window 속성 기준으로 팝업창을 연다.
 			window.open(url, "popup", windowStatus);		
 		}
-
 		</script>
 </body>
 </html>
