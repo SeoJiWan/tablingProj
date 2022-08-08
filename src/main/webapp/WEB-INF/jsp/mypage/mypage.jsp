@@ -6,18 +6,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/css/member/memberMyPage.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/css/interested_store/interested_storeList.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/css/reservation/reservationListResult.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/css/review/reviewsById.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/member/memberMyPage.css?after">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/interested_store/interested_storeList.css?after">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/reservation/reservationListResult.css?after">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/review/reviewsById.css?after">
 </head>
 <body>
 	<jsp:include page="../../../sidebar.jsp"></jsp:include>
 	
 	<!-- 마이페이지 - 정보수정 -->
 	<div id="container_mypage_info_update">
-		<h1>마이페이지</h1>
 		<div class="title_mypage">
+			<h1>마이페이지</h1>
 			<table class="table_title_mypage">
 				<tr>
 					<td class="profile_img"><img class="profile_img" alt="profile" src="${pageContext.request.contextPath }/img/profile.jpg"></td>
@@ -36,56 +36,58 @@
 				</tr>
 			</table>
 		</div>
-		<div class="content_mypage">
-			<table class="table_mypage">
-				<tr>
-					<td colspan=2>내 프로필</td>
-				</tr>
-				<tr>
-					<td>ID</td>
-					<td colspan="2" id="login_memberId">${loginMember.memberId }</td>
-				</tr>
-				<tr>
-					<td>닉네임</td>
-					<td>${loginMember.nickName }</td>
-					<td><button type="button" class="btn_modify_mypage" onclick="modify_nickname()">수정</button></td>
-				</tr>
-				<tr>
-					<td>핸드폰</td>
-					<td>${loginMember.phoneNum }</td>
-					<td><button type="button" class="btn_modify_mypage" onclick="modify_phonenum()">수정</button></td>
-				</tr>
-			</table>
-		</div>
-		<div class="security_mypage">
-			<table class="table_mypage">
-				<tr>
-					<td colspan=2>보안설정</td>
-				</tr>
-				<tr>
-					<td>비밀번호</td>
-					<td><button type="button" class="btn_modify_mypage" onclick="modify_pwd()">수정</button></td>
-				</tr>
-				<tr>
-					<td>타지역 로그인 차단</td>
-					<td>on/off</td>
-				</tr>
-				<tr>
-					<td>해외 로그인 차단</td>
-					<td>on/off</td>
-				</tr>
-			</table>
-		</div>
-		<div class="history_mypage">
-			<table class="table_mypage">
-				<tr>
-					<td colspan=2>이력관리</td>
-				</tr>
-				<tr>
-					<td>로그인 기록</td>
-					<td><button type="button" class="btn_modify_mypage" onclick="login_history()">확인</button></td>
-				</tr>
-			</table>
+		<div>
+			<div class="content_mypage">
+				<table class="table_mypage">
+					<tr>
+						<td colspan=2>내 프로필</td>
+					</tr>
+					<tr>
+						<td>ID</td>
+						<td colspan="2" id="login_memberId">${loginMember.memberId }</td>
+					</tr>
+					<tr>
+						<td>닉네임</td>
+						<td>${loginMember.nickName }</td>
+						<td><button type="button" class="btn_modify_mypage" onclick="modify_nickname()">수정</button></td>
+					</tr>
+					<tr>
+						<td>핸드폰</td>
+						<td>${loginMember.phoneNum }</td>
+						<td><button type="button" class="btn_modify_mypage" onclick="modify_phonenum()">수정</button></td>
+					</tr>
+				</table>
+			</div>
+			<div class="security_mypage">
+				<table class="table_mypage">
+					<tr>
+						<td colspan=2>보안설정</td>
+					</tr>
+					<tr>
+						<td>비밀번호</td>
+						<td><button type="button" class="btn_modify_mypage" onclick="modify_pwd()">수정</button></td>
+					</tr>
+					<tr>
+						<td>타지역 로그인 차단</td>
+						<td>on/off</td>
+					</tr>
+					<tr>
+						<td>해외 로그인 차단</td>
+						<td>on/off</td>
+					</tr>
+				</table>
+			</div>
+			<div class="history_mypage">
+				<table class="table_mypage">
+					<tr>
+						<td colspan=2>이력관리</td>
+					</tr>
+					<tr>
+						<td>로그인 기록</td>
+						<td><button type="button" class="btn_modify_mypage" onclick="login_history()">확인</button></td>
+					</tr>
+				</table>
+			</div>
 		</div>
 		
 		<!-- ======= 팝업창 영역 ======= -->
@@ -166,7 +168,9 @@
 			<c:forEach var="store" items="${list }">
 				<li>
 					<div>
-						<img src="${pageContext.request.contextPath }/img/store_img/${store.storeImgUrl }" alt="store" />
+						<a href="${pageContext.request.contextPath }/detailPage.do?storeName=${store.storeName}">
+							<img src="${pageContext.request.contextPath }/img/store_img/${store.storeImgUrl }" alt="store" />
+						</a>
 						<h3>${store.storeName }</h3>
 					</div>
 				</li>
@@ -182,16 +186,14 @@
 		    <h1>나의 예약 목록</h1>
 		    <table class="table_res_list">
 		      <tr>
-		        <th>No.</th>
 		        <th>점포</th>
 		        <th>예약날짜</th>
 		        <th>인원수</th>
 		        <th>-</th>
 		      </tr>
-		      <c:forEach var="reservation" items="${reservationList }" varStatus="status">
+		      <c:forEach var="reservation" items="${reservationList }">
 		        <tr>
-		          <td>${status.count}</td>
-		          <td><a href="#">${reservation.storeName }</a></td>
+		          <td><a href="${pageContext.request.contextPath }/detailPage.do?storeName=${reservation.storeName}">${reservation.storeName }</a></td>
 		          <td>${reservation.reservationTime }</td>
 		          <td>${reservation.peopleNum }</td>
 		          <!-- question -->
@@ -218,7 +220,7 @@
 		      </tr>
 		      <c:forEach var="review" items="${reviews }">
 		        <tr>
-		          <td><a href="#">${review.storeName }</a></td>
+		          <td><a href="${pageContext.request.contextPath }/detailPage.do?storeName=${review.storeName}">${review.storeName }</a></td>
 		          <td>${review.content }</td>
 		          <td>${review.createDate }</td>
 		          <td style="text-align: left">
