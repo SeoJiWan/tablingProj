@@ -619,13 +619,14 @@ public class StoreRepository extends DAO {
 
 	public void mypageupdatestore(Store st) {
 		connect();
-		String sql = "UPDATE stores SET store_name = ?, store_address = ? where member_id = ?";
+		String sql = "UPDATE stores SET store_name = ?, store_address = ?, FOOD_CATEGORY = ? where member_id = ?";
 
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, st.getStoreName());
 			ps.setString(2, st.getStoreAddress());
-			ps.setString(3, st.getMemberId());
+			ps.setString(3, st.getFoodCategory());
+			ps.setString(4, st.getMemberId());
 
 			int result = ps.executeUpdate();
 
