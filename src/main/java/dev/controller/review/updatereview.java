@@ -20,11 +20,13 @@ public class updatereview implements Controller {
 		int upno = Integer.parseInt(req.getParameter("upno"));
 		String upstore = req.getParameter("upstore");
 		String content = req.getParameter("content");
+		int rating = Integer.parseInt(req.getParameter("rating"));
 		
 		Review rv = new Review();
 		rv.setReviewId(upno);
 		rv.setContent(content);
 		rv.setStoreName(upstore);
+		rv.setTasteScore(rating);
 		
 		System.out.println(upno + "::" + content + "::" + upstore);
 		

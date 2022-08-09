@@ -206,6 +206,7 @@
 		<tr>
 			<th style="display: none">id</th>
 			<th style="display: none">storename</th>
+			<th style="display: none">Taste Score</th>
 			<th>memberId</th>
 			<th>Content</th>
 			<th>Taste Score</th>
@@ -216,6 +217,7 @@
 			<tr>
 				<td style="display: none">${review.reviewId }</td>
 				<th style="display: none">${review.storeName }</th>
+				<th style="display: none">${review.tasteScore }</th>
 				<td>${review.memberId }</td>
 				<td>${review.content }</td>
 				<td><c:forEach var="a" begin="1" end="${review.tasteScore }">
@@ -375,11 +377,13 @@
       /* let w = window.open("about:blank","_blank"); */
       
       function updateCallback(e){
-          console.log(e.target);
+         console.log(e.target);
          let upno = e.target.parentElement.parentElement.childNodes[1].innerText
          let upstore = e.target.parentElement.parentElement.childNodes[3].innerText
+         let rating = e.target.parentElement.parentElement.childNodes[5].innerText
          console.log(upno)
          console.log(upstore)
+         console.log(rating)
          
          //창 크기 지정
          var width = 500;
@@ -393,7 +397,7 @@
          var windowStatus = 'width='+width+', height='+height+', left='+left+', top='+top+', scrollbars=yes, status=yes, resizable=yes, titlebar=yes';
          
              //연결하고싶은url
-            const url = "updatereviewform.do?upno="+upno+"&upstore="+upstore;
+            const url = "updatereviewform.do?upno="+upno+"&upstore="+upstore+"&rating="+rating;
 
          //등록된 url 및 window 속성 기준으로 팝업창을 연다.
          window.open(url, "popup", windowStatus);      

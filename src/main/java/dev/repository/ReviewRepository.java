@@ -162,13 +162,14 @@ public class ReviewRepository extends DAO {
 	public void reviewupdate(Review rv) {
 		// TODO Auto-generated method stub
 		connect();
-		String sql = "UPDATE reviews SET CONTENT = ? WHERE review_id= ? and store_name = ?";
+		String sql = "UPDATE reviews SET CONTENT = ?, taste_score = ? WHERE review_id= ? and store_name = ?";
 
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, rv.getContent());
-			ps.setInt(2, rv.getReviewId());
-			ps.setString(3, rv.getStoreName());
+			ps.setInt(2, rv.getTasteScore());
+			ps.setInt(3, rv.getReviewId());
+			ps.setString(4, rv.getStoreName());
 
 			int result = ps.executeUpdate();
 
