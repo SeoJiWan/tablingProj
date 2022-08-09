@@ -76,7 +76,7 @@ h6 span {
   height: 36px;
   border-radius: 50%;
   color: #ffeba7;
-  background-color: #102770;
+  background-color: white;
   font-family: "unicons";
   content: "\eb4f";
   z-index: 20;
@@ -115,8 +115,7 @@ h6 span {
 .card-back {
   width: 100%;
   height: 100%;
-  background-color: #2a2b38;
-  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat.svg");
+  background-color: white;
   background-position: bottom center;
   background-repeat: no-repeat;
   background-size: 300%;

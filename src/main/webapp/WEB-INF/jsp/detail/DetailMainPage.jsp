@@ -250,8 +250,8 @@
       let storeName = $('#storeName').val();
       let content = $('#content').val();
       let rating = $('input[name=rating]:checked').val();
+      
       //let rating = document.getElementsByClassName("class")[0].value
-
       console.log(storeName);
       console.log(content);
       console.log(rating);
