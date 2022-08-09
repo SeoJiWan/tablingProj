@@ -84,6 +84,7 @@ public class BoardRepository extends DAO{
 	}
 	//게시글 디테일(단건조회)
 	public Board getPost(int boardId) {
+		updateHits(boardId); //게시글 클릭->조회수++메소드 실행
 		connect();
 		String sql = "SELECT b.board_id, b.member_id ,m.nickname, b.title, b.content, b.create_date, b.hits "
 					  + "FROM boards b "
@@ -95,6 +96,8 @@ public class BoardRepository extends DAO{
 			rs = ps.executeQuery();
 			
 			if (rs.next()) {
+				
+				
 				Board bd = new Board();
 				bd.setBoardId(boardId);
 				bd.setMemberId(rs.getString("member_id"));
@@ -102,9 +105,8 @@ public class BoardRepository extends DAO{
 				bd.setTitle(rs.getString("title"));
 				bd.setContent(rs.getString("content"));
 				bd.setCreateDate(rs.getString("create_date"));
-				
-				updateHits(boardId); //게시글 클릭->조회수++메소드 실행
-				
+				bd.setHits(rs.getInt("hits"));
+					
 				return bd;
 			}
 		} catch (SQLException e) {

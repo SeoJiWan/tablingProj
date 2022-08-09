@@ -31,8 +31,7 @@ public class PostUpdateController implements Controller {
 		boardDetail.setContent(content);
 
 		// DB데이터 업데이트
-		BoardService bdService = BoardService.getBoardService();
-		bdService.updatePost(boardDetail);
+		boardService.updatePost(boardDetail);
 
 		// 요청에 board 속성 값 담을 변수 지정
 		req.setAttribute("boardDetail", boardDetail);
