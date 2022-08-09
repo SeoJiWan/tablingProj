@@ -67,7 +67,36 @@ public class CommentRepository extends DAO{
 			}
 			return commentList;
 		}
-
+		
+		//댓글 갯수
+		public Comment countComment(int boardId) {
+			connect();
+			String sql = "SELECT count(comment_id) FROM comments WHERE board_id=?";
+			
+			try {
+				ps = conn.prepareStatement(sql);
+				ps.setInt(1, boardId);
+				rs = ps.executeQuery();
+				
+				if (rs.next()) {
+					Comment comment = new Comment();
+					comment.setCommentId(rs.getInt("commentId"));
+					comment.setMemberId(rs.getString("member_id"));
+					comment.setBoardId(rs.getInt("board_id"));
+					comment.setContent(rs.getString("content"));
+					comment.setCommentDate(rs.getString("create_date"));
+					
+					return comment;
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				disconnect();
+			}
+			System.out.println("조회된 값이 없습니다");
+			return null;
+		}
+		
 		//댓글 디테일(단건조회) - 쓸 일 있?
 		public Comment getComment(int commentId) {
 			connect();

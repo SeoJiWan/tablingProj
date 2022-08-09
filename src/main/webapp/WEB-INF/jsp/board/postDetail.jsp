@@ -176,7 +176,7 @@ textarea:focus {
 			    			url:"commentAdd.do",
 			    			data:{
 			    				cmtWriter:$('#cmtWriter').val(),
-			    				BoardId:$('#BoardId').val(),
+			    				cmtBoardId:$('#cmtBoardId').val(),
 			    				cmtContent:$('#cmtContent').val(),
 			    			},
 			    			dataType:"text",
@@ -185,7 +185,6 @@ textarea:focus {
 		    					let boardId = $('#cmtBoardId').val(); //jQuery에서 파라메터값 들고오는 법
 			    				if(data == "success") {
 			    					alert("등록 되었습니다!")
-			    					console.log(boardId)
 			    					$("#cmtContent").val(''); // #cmtContent의 값 초기화
 			    					window.location.href = "postDetail.do?boardId="+ boardId; //위에서 변수 선언한 페라메터값 이동조건에 붙여주기
 			    				} else {
