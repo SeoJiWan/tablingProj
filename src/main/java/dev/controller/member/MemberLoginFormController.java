@@ -13,7 +13,7 @@ public class MemberLoginFormController implements Controller {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		
 		if (req.getSession().getAttribute("logidId") == null) {
-			Utils.forward(req, resp, "member/memberLoginForm.tiles");
+			Utils.forward(req, resp, "member/memberLoginForm2.tiles");
 		}
 	}
 
