@@ -35,7 +35,7 @@ public class MemberInsertController implements Controller {
 		if (status.equals("isNotDupl")) {
 			memberService.joinMember(member);
 			System.out.println("member = " + member);
-			Utils.forward(req, resp, "/member/memberLoginForm.tiles");
+			Utils.forward(req, resp, "/member/memberLoginForm2.tiles");
 		}
 
 		

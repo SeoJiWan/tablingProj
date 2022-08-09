@@ -6,6 +6,16 @@
   font-style: normal;
 }
 
+* {
+  font-family: "87MMILSANG-Regular";
+}
+
+h1 {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
 .profile_img {
   width: 220px;
   height: 220px;
@@ -21,7 +31,7 @@
   /* 세로 방향으로 가득차게 */
   flex-direction: column;
   font-family: "87MMILSANG-Regular";
-  background-color: aliceblue;
+  /* background-color: aliceblue; */
 }
 
 .title_content {
@@ -31,40 +41,198 @@
 
 .title_mypage,
 .content_mypage {
-  background-color: antiquewhite;
+  margin-left: 100px;
+  /* background-color: antiquewhite; */
   /* 1/3 을 차지 */
   flex-grow: 1;
 }
 
 .content_mypage {
-  background-color: aquamarine;
+  /* background-color: aquamarine; */
   /* 2/3 을 차지 */
   flex-grow: 2;
-}
-
-/* .table_title_mypage {
-  margin-top: 100px;
-  height: 100%;
-  font-size: 22px;
-  text-align: center;
-  border: 1px solid rgba(51, 23, 23, 0.5);
-  box-shadow: 4px 4px 4px -4px rgba(224, 224, 224, 0.5);
-  padding: 20px;
-}
-.table_title_mypage td {
-  padding: 10px;
+  flex-basis: 650px;
 }
 
 .table_title_mypage {
-  margin-top: 50px;
+  margin: 0 auto;
+  text-align: center;
 }
 
+.table_title_mypage td {
+  padding: 20px;
+  font-size: 25px;
+}
+
+.td_profile_img {
+  height: 300px;
+  border-bottom: 1px solid rgba(224, 224, 224);
+}
+
+/* 내 프로필, 보안설정, 이력관리 */
 .content_mypage {
-  margin-top: 100px;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.info_mypage,
+.security_mypage,
+.history_mypage {
+  flex-grow: 1;
+  border-radius: 15px;
+  box-shadow: 5px 5px 5px 5px rgba(224, 224, 224);
+  margin-bottom: 30px;
+}
+
+/* 테이블의 첫 번재 tr 의 첫 번째 td 접근 */
+.table_mypage tr:nth-child(1):nth-child(1) {
+  font-size: 22px;
+  background: linear-gradient(to right, #ff993b, #ff776c);
 }
 
 .table_mypage {
-  background-color: pink;
-  width: 600px;
-} */
+  width: 100%;
+  font-size: 18px;
+  border-collapse: collapse;
+  border-style: hidden;
+}
+
+.table_mypage td {
+  padding: 13px;
+  border-radius: 15px 15px 0 0;
+  border-bottom: 1px solid rgba(224, 224, 224);
+  /* border: 1px solid black; */
+}
+
+/* 테이블의 2번째 tr 부터의 마지막 td 접근 */
+.table_mypage tr:nth-child(n + 2) td:last-of-type {
+  /* background-color: aqua; */
+  text-align: right;
+}
+
+button {
+  border-radius: 5px;
+  border: 1px solid rgba(224, 224, 224);
+  width: 60px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.btn_delete {
+  width: 100px;
+  height: 50px;
+  border-radius: 5px;
+  border: 1px solid rgba(224, 224, 224);
+  font-size: 15px;
+  font-weight: bolder;
+  cursor: pointer;
+  color: red;
+}
+
+/* on/off 스위치 */
+.switch-button {
+  position: relative;
+  display: inline-block;
+  width: 55px;
+  height: 30px;
+}
+
+.switch-button input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.onoff-switch {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 20px;
+  background-color: #ccc;
+  box-shadow: inset 1px 5px 1px #999;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.onoff-switch:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 4px;
+  bottom: 4px;
+  background-color: #fff;
+  -webkit-transition: 0.5s;
+  transition: 0.4s;
+  border-radius: 20px;
+}
+
+.switch-button input:checked + .onoff-switch {
+  background-color: #f2d522;
+  box-shadow: inset 1px 5px 1px #e3ae56;
+}
+
+.switch-button input:checked + .onoff-switch:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+/* on/off 스위치 끝 */
+
+
+
+/* === modal 적용 === */
+/* modal 감싸는 창 */
+.modal_wrap {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(3px);
+}
+
+/* 모달 팝업창 */
+.modal_content {
+  background-color: white;
+  width: 500px;
+  margin: 15% auto;
+  text-align: center;
+  border-radius: 15px;
+}
+
+.modal_content table {
+  margin: 0 auto;
+  width: 100%;
+  font-size: 20px;
+  border-collapse: collapse;
+}
+
+.modal_content table tr:nth-child(1):nth-child(1) {
+  font-size: 25px;
+  background: linear-gradient(to right, #ff993b, #ff776c);
+  height: 60px;
+}
+
+.modal_content table td {
+  border-radius: 15px 15px 0 0;
+  padding: 10px;
+}
+
+input {
+  background-color: #eee;
+  border-radius: 5px;
+  border: #fff;
+  padding: 12px 15px;
+  margin: 8px 0;
+  width: 70%;
+}
+
+.btn_popup_cancle {
+  margin-right: 40px;
+}

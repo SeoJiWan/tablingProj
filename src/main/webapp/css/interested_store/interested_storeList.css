@@ -1,3 +1,7 @@
+#container_mypage_zzims {
+	margin-top: 80px;
+}
+
 .ul_zzim_list {
 	text-align: center;
 }
@@ -5,6 +9,7 @@
 .ul_zzim_list img {
 	width: 300px;
 	height: 300px;
+	box-shadow: 5px 5px 5px 5px rgb(224, 224, 224);
 }
 
 .ul_zzim_list ul {
