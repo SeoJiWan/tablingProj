@@ -31,8 +31,11 @@ public class CommentService {
 		return commentRepo.getCommentList(boardId);
 	}
 	//댓글 수정
+	public void updateComment(Comment cm) {
+		commentRepo.updateComment(cm);
+	}
 	
-	//댓글 보기
+	//댓글 저장
 	
 	//댓글 삭제
 	public void deleteComment(Comment cm) {
