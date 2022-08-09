@@ -111,12 +111,12 @@ public class FrontController extends HttpServlet {
 		mappings.put("/StoreAcceptListPaging.do", new StoreAcceptListPagingControl());
 		mappings.put("/degreeStoreAjax.do", new degreeStoreAjaxController());
 		mappings.put("/updateStoreAjax.do", new updateStoreAjaxController());
-		mappings.put("/updatemanagement.do", new updatemanagement());
-		mappings.put("/ownerupdate.do", new updatemanagement());
-		mappings.put("/updatestore.do", new updatestore());
+//		mappings.put("/updatemanagement.do", new updatemanagement());
+		mappings.put("/ownerupdate.do", new updatemanagement()); //1
+		mappings.put("/updatestore.do", new updatestore()); //2
 		mappings.put("/storeRegisterForm.do", new StoreRegisterFormController());
 		mappings.put("/storeRegister.do", new StoreRegisterController());
-		mappings.put("/StoreReserVation.do", new Storereservation());
+		mappings.put("/owner_main.do", new Storereservation());
 		
 		//InterestedStore
 

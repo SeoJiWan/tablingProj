@@ -23,11 +23,13 @@ public class updatestore implements Controller {
 		//String loginMemberId = "store2";
 		String storeName = req.getParameter("store_name");
 		String storeaddress = req.getParameter("storeaddress");
+		String foodcategory = req.getParameter("foodcategory");
 		
 		Store st = new Store();
 		st.setStoreName(storeName);
 		st.setStoreAddress(storeaddress);
 		st.setMemberId(loginMemberId);
+		st.setFoodCategory(foodcategory);
 
 		StoreService service = StoreService.getInstance();
 		service.mypageupdatestore(st);
