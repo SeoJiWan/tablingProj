@@ -8,12 +8,12 @@
   transform: translateX(-50%);
   background-color: white;
   border-radius: 9px;
-  border-top: 10px solid #ff993b;
+  border-top: 30px solid #ff993b;
   border-bottom: 10px solid #ff993b;
   border-left :1px solid #ff993b;
   border-right :1px solid #ff993b;
   width: 400px;
-  height: 550px;
+  height: 1200px;
   /* box-shadow: 1px 1px 108.8px 19.2px rgb(25,31,53); */
 }
 
