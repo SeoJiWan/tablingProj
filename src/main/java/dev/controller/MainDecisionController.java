@@ -20,7 +20,7 @@ public class MainDecisionController implements Controller {
 		}
 		
 		else if (loginMember.getRole() == 1) {
-			Utils.forward(req, resp, "owner_main.do");
+			Utils.forward(req, resp, "owner_main.do?pageNum=1&postNum=10");
 		}
 		
 		else if (loginMember.getRole() == 2) {

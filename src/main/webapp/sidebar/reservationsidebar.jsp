@@ -18,7 +18,7 @@ pageEncoding="UTF-8"%>
     <div class="navigation">
       <ul>
         <li class="list active">
-          <a href="${pageContext.request.contextPath }/StoreReserVation.do?pageNum=1&postNum=10">
+          <a href="${pageContext.request.contextPath }/owner_main.do?pageNum=1&postNum=10">
             <span class="icon">
               <i class="input-icon uil uil-user-exclamation"></i>
             </span>

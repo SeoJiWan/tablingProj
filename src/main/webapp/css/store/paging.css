@@ -28,3 +28,7 @@
   color: #ff993b;
   border: 2px solid #ff993b;
 }
+
+#pagingbutton{
+ border:0;
+}
