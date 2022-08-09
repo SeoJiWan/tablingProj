@@ -104,15 +104,15 @@
    <!-- 리뷰 부분 -->   
    <form action="${pageContext.request.contextPath }/addReview.do" id="myform" method='POST'>
       <div class="star-rating space-x-4 mx-auto">
-         <input type="radio" id="5-stars" name="rating" value="5" v-model="ratings" /> 
+         <input type="radio" id="5-stars" name="rating" value="5" class = "11" v-model="ratings" /> 
          <label for="5-stars" class="star pr-4">★</label>
-         <input type="radio" id="4-stars" name="rating" value="4" v-model="ratings" /> 
+         <input type="radio" id="4-stars" name="rating" value="4" class = "class"  v-model="ratings" /> 
          <label for="4-stars" class="star">★</label> 
-         <input type="radio" id="3-stars" name="rating" value="3" v-model="ratings" />
+         <input type="radio" id="3-stars" name="rating" value="3" class = "class"  v-model="ratings" />
          <label for="3-stars" class="star">★</label> 
-         <input type="radio" id="2-stars" name="rating" value="2" v-model="ratings" /> 
+         <input type="radio" id="2-stars" name="rating" value="2" class = "class"  v-model="ratings" /> 
          <label for="2-stars" class="star">★</label> 
-         <input type="radio" id="1-star" name="rating" value="1" v-model="ratings" /> 
+         <input type="radio" id="1-star" name="rating" value="1" class = "class"  v-model="ratings" /> 
          <label for="1-star" class="star">★</label>
       </div>
    </form>
@@ -133,6 +133,8 @@
 
    <table>
       <tr>
+      	 <th style="display: none">id</th>
+      	 <th style="display: none">storename</th>
          <th>memberId</th>
          <th>Content</th>
          <th>Taste Score</th>
@@ -141,6 +143,8 @@
 
       <c:forEach var="review" items="${list }">
          <tr>
+        	<td style="display: none">${review.reviewId }</td>
+        	<th style="display: none">${review.storeName }</th>
             <td>${review.memberId }</td>
             <td>${review.content }</td>
             <td>
@@ -172,7 +176,7 @@
    function review_insert() {
       let storeName = $('#storeName').val();
       let content = $('#content').val();
-      let rating = $('input[name=rating]').val();
+      let rating = document.getElementsByClassName("class")[0].value
       
       console.log(storeName);
       console.log(content);
@@ -299,7 +303,7 @@
       function updateCallback(e){
           console.log(e.target);
          let upno = e.target.parentElement.parentElement.childNodes[1].innerText
-         let upstore = e.target.parentElement.parentElement.childNodes[7].innerText
+         let upstore = e.target.parentElement.parentElement.childNodes[3].innerText
          console.log(upno)
          console.log(upstore)
          
