@@ -22,6 +22,7 @@
         <input type="text" name="telephone" value="${vo.telephone }">
         <span>업태</span>
         <select id="class" name="class">
+        <option value="">-----</option>
        	<option value="한식">한식</option>
 		<option value="일식">일식</option>
 		<option value="중식">중식</option>
@@ -30,11 +31,9 @@
 		<option value="디저트">디저트</option>  
 		<option value="주점">주점</option>  
        	</select>
-       	<input type="text" name="foodcategory" id="ddd" readonly value="${vo.foodCategory }">
-       	<div id="box">
-       	<span>대표메뉴</span>
-            <input type="text"> <input type="button" value="추가" onclick="add_textbox()">
-        </div>
+       	<input type="text" name="foodcategory" readonly value="${vo.foodCategory }">
+       	<span>이용시간</span>
+       	<input type="text" name="availableTime" readonly value="${vo.availableTime }"> 
         <input type="submit" value="가게정보 수정" class="btn1">
       </form>
       </div>
@@ -62,5 +61,17 @@
         }
     });
 	</script>
+	
+	 <script>
+        const add_textbox = () => {
+            const box = document.getElementById("box");
+            const newP = document.createElement('p');
+            newP.innerHTML = "<input type='text'> <input type='button' value='삭제' onclick='remove(this)'>";
+            box.appendChild(newP);
+        }
+        const remove = (obj) => {
+            document.getElementById('box').removeChild(obj.parentNode);
+        }
+    </script>
 </body>
 </html>

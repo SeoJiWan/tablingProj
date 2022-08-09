@@ -18,8 +18,6 @@
 	<div id="storeInfo">
 		<span><h3 class="storeTitle">가게 상세 정보</h3> <span>${store.score }</span></span>
 
-
-
 		<!-- <h3>찜하기</h3> -->
 		<div>
 
@@ -54,6 +52,66 @@
 			<p>${menu }</p>
 		</c:forEach>
 	</div>
+  
+   <!-- 리뷰 부분 -->   
+   <form action="${pageContext.request.contextPath }/addReview.do" id="myform" method='POST'>
+      <div class="star-rating space-x-4 mx-auto">
+         <input type="radio" id="5-stars" name="rating" value="5" class = "11" v-model="ratings" /> 
+         <label for="5-stars" class="star pr-4">★</label>
+         <input type="radio" id="4-stars" name="rating" value="4" class = "class"  v-model="ratings" /> 
+         <label for="4-stars" class="star">★</label> 
+         <input type="radio" id="3-stars" name="rating" value="3" class = "class"  v-model="ratings" />
+         <label for="3-stars" class="star">★</label> 
+         <input type="radio" id="2-stars" name="rating" value="2" class = "class"  v-model="ratings" /> 
+         <label for="2-stars" class="star">★</label> 
+         <input type="radio" id="1-star" name="rating" value="1" class = "class"  v-model="ratings" /> 
+         <label for="1-star" class="star">★</label>
+      </div>
+   </form>
+   <textarea rows="10" cols="20" placeholder="Write Review" name="content"
+      id="content"></textarea>
+   <input type="hidden" name="storeName" id="storeName"
+      value="${storeDetail.storeName }">
+      
+   <c:if test="${not empty loginMember.memberId }">
+   <button type="button" id="btn_review_insert" onclick="review_insert()">Upload</button>
+   </c:if>
+   
+   <c:if test="${empty loginMember.memberId }">
+   <button type="button" onclick="loginForm()">Upload</button>
+   </c:if>
+   
+   <h3>============== review ==============</h3>
+
+   <table>
+      <tr>
+      	 <th style="display: none">id</th>
+      	 <th style="display: none">storename</th>
+         <th>memberId</th>
+         <th>Content</th>
+         <th>Taste Score</th>
+         <th>Create Date</th>
+      </tr>
+
+      <c:forEach var="review" items="${list }">
+         <tr>
+        	<td style="display: none">${review.reviewId }</td>
+        	<th style="display: none">${review.storeName }</th>
+            <td>${review.memberId }</td>
+            <td>${review.content }</td>
+            <td>
+            <c:forEach var="a" begin="1" end="${review.tasteScore }">
+               ⭐
+            </c:forEach>
+            </td>
+            <td>${review.createDate }</td>
+               <c:if test="${review.memberId eq loginMember.memberId }">
+                  <td> <button value="삭제" onclick='deleteCallback(event)' class=delete>삭제</button> </td>
+                  <td> <button value="수정" onclick='updateCallback(event)' class=update>수정</button> </td>
+               </c:if>
+         </tr>
+      </c:forEach>
+   </table>
 
 	<!-- 예약 부분 -->
 	<div id="reservationForm">
@@ -107,6 +165,9 @@
 		</form>
 	</div>
 
+
+  
+	<!-- 에러 사항 : 위에 부분이랑 겹침 -->
 	<!-- 리뷰 부분 -->
 	<div class=reviewForm>
 		<form action="${pageContext.request.contextPath }/addReview.do"
@@ -189,8 +250,8 @@
       let storeName = $('#storeName').val();
       let content = $('#content').val();
       let rating = $('input[name=rating]:checked').val();
-      
-      
+      //let rating = document.getElementsByClassName("class")[0].value
+
       console.log(storeName);
       console.log(content);
       console.log(rating);
