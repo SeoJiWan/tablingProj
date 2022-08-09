@@ -158,6 +158,7 @@ public class ReviewRepository extends DAO {
 		return vo;
 	}
 
+	//수정
 	public void reviewupdate(Review rv) {
 		// TODO Auto-generated method stub
 		connect();

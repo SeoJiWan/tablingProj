@@ -19,13 +19,17 @@ public class DetailMainController implements Controller {
 		String storeName = req.getParameter("storeName");		
 		Member loginMember = (Member) req.getSession().getAttribute("loginMember");
 	    
-	    InterestedStore likeOrUnlike = interestedStoreService.getLikeInfo(loginMember.getMemberId(), storeName);
-	
-	    req.setAttribute("likeOrUnlike", likeOrUnlike);
+		if (loginMember != null) {
+			InterestedStore likeOrUnlike = interestedStoreService.getLikeInfo(loginMember.getMemberId(), storeName);
+			req.setAttribute("likeOrUnlike", likeOrUnlike);
+		}
+	    
 	    Store store = storeService.findOneStore(storeName);
 		//System.out.println("store = " + store);
 		store.getRepresentMenu().forEach(System.out::println);
 		req.setAttribute("storeDetail", store);
+		
+		
 		Utils.forward(req, resp, "detail/DetailMainPage.tiles");
 		
 	}

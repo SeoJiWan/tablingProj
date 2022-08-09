@@ -51,14 +51,6 @@
 
 
 
-
-/* ÂòÇÏ±â */
-/* button {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-} */
-
 /* º°Á¡ */
  .star-rating {
   display: flex;
@@ -93,18 +85,16 @@
 
 
 /* ¸®ºä */
-form {
+#myform {
 	margin-left: 10%;
 	margin-top: 5%;
 }
 
-form textarea{
-    width: 50%;
-    height: 6.25em;
-    resize: none;
+#content{
+	
 }
 
-#upload{
+#btn_review_insert{
 	border:0;
 	outline:0;
 }
