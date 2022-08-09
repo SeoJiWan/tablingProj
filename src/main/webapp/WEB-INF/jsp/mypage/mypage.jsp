@@ -230,7 +230,7 @@
 		          <td>${review.createDate }</td>
 		          <td style="text-align: left">
 		          	<c:forEach var="a" begin="1" end="${review.tasteScore }">
-		          		★
+		          		⭐
 		          	</c:forEach>
 		          </td>
 		        </tr>
