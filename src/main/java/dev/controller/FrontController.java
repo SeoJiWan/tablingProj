@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import dev.controller.board.CommentAddController;
 import dev.controller.board.CommentDeleteController;
+import dev.controller.board.CommentUpdateController;
 import dev.controller.board.PostAddController;
 import dev.controller.board.PostAddFormController;
 import dev.controller.board.PostDeleteController;
@@ -149,6 +150,7 @@ public class FrontController extends HttpServlet {
 		//Comment
 		mappings.put("/commentAdd.do", new CommentAddController());
 		mappings.put("/commentDelete.do", new CommentDeleteController());
+		mappings.put("/commentUpdate.do", new CommentUpdateController());
 		
 		//Detail
 		mappings.put("/detailMain.do", new DetailMainController());

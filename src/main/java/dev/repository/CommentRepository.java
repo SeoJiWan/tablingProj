@@ -99,7 +99,7 @@ public class CommentRepository extends DAO{
 		//댓글 내용 수정
 		public void updateComment(Comment comment) {
 			connect();
-			String sql = "UPDATE comments SET content=? WHERE comment_id=?";
+			String sql = "UPDATE comments SET content=?, create_date=TO_CHAR(SYSDATE, 'YY.MM.DD HH24:MI') WHERE comment_id=?";
 			
 			try {
 				ps = conn.prepareStatement(sql);
