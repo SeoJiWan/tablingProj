@@ -142,15 +142,15 @@
 		
 			<c:otherwise>
 				<div class="center">
-				  	<div class="pagination">
+				  	<div class="pagination" id="pagingbutton">
 					  	<c:if test="${pageInfo.prev }">
-					  		<a href="storeSearchPaging.do?pageNum=${pageInfo.startPage - 1 }&postNum=${pageInfo.cri.postNum}">prev</a>
+					  		<a href="storeSearchPaging.do?keyword=${keyword }&pageNum=${pageInfo.startPage - 1 }&postNum=${pageInfo.cri.postNum}">&lt;</a>
 					  	</c:if>
 					  	<c:forEach var="num" begin="${pageInfo.startPage }" end="${pageInfo.endPage }">
 					  		<a href="storeSearchPaging.do?keyword=${keyword }&pageNum=${num }&postNum=${pageInfo.cri.postNum}">${num }</a>
 					 	</c:forEach>
 					 	<c:if test="${pageInfo.next }">
-					  		<a href="storeSearchPaging.do?keyword=${keyword }&pageNum=${pageInfo.endPage + 1 }&postNum=${pageInfo.cri.postNum}">next</a>
+					  		<a href="storeSearchPaging.do?keyword=${keyword }&pageNum=${pageInfo.endPage + 1 }&postNum=${pageInfo.cri.postNum}">&gt;</a>
 					  	</c:if>
 				  	</div>
 				</div>
