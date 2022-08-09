@@ -7,7 +7,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>커뮤니티 글목록</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 <%-- <link rel="stylesheet" href="${pageContext.request.contextPath }/css/board/basic.css" /> --%>
 <!-- Favicons -->
 <link href="${pageContext.request.contextPath }/img/favicon.png" rel="icon">
@@ -16,6 +18,7 @@
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 </head>
 <body>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
         <!-- Page Header-->
         <header class="masthead" style="background-image: url('./img/header.jpg')">
             <div class="container position-relative px-4 px-lg-5">
@@ -29,7 +32,7 @@
                 </div>
             </div>
         </header>
-	  <!-- Main Content-->
+	  <!-- MAIN POST CONTENT-->
   	  <form action="postAddForm.do" method="post" id="frm">
 	  <input type="hidden" id ="writer" name="writer" value="${loginMember.memberId}">
 	  </form>
@@ -37,17 +40,21 @@
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
                 <!-- Add button-->
-                <button type="button" onclick="checkLogin()">✏ 글쓰기</button>
+                <button type="button" class="btn btn-primary"
+				  style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" onclick="checkLogin()">
+				  ✏ 글쓰기
+				</button>
+                <!-- <button type="button" ></button> -->
                 	<!-- Post preview-->
                 	<c:forEach var="boardList" items="${boardList}">
-                    <div class="post-preview">
+                    <div class="post-preview"><!-- <h5 class="post-title"></h5> -->
                         <a href="postDetail.do?boardId=${boardList.boardId}">
-                           <h5 class="post-title">${boardList.title}</h5>
+                           ${boardList.title}
                         </a>
                        	<p class="post-meta">
-                          	 ${boardList.boardId} 작성자 : 
-                            <a href="#">${boardList.nickName}</a>
-                           	작성일 : ${boardList.createDate} 조회수 : ${boardList.hits}
+                       		<small>
+	                          	 ${boardList.boardId} 작성자 : <a href="#">${boardList.nickName}</a> 작성일 : ${boardList.createDate} 조회수 : ${boardList.hits}
+                        	</small>
                         </p>
                     </div>
                     <hr class="my-4" />

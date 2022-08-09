@@ -3,6 +3,7 @@
 	
 *{
 	font-family: '87MMILSANG-Regular';
+	box-sizing: border-box;
 }
 
 @font-face {
@@ -71,4 +72,8 @@ input[type="button"] {
 .pagination a:hover:not(.active) {
   background-color: #ddd;
   border-radius: 5px;
+}
+
+textarea:focus {
+	outline: none;
 }

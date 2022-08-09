@@ -8,17 +8,16 @@
 <meta charset="UTF-8">
 <title>게시글 보기</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/board/basic.css" />
+<style>
+textarea:focus {
+	outline: none;
+}
+</style>
 </head>
 	<body>
 		<!-------------------------------------------------------------------- 게시글 구현 -------------------------------------------------------------------->
  		<form action="postUpdateForm.do" method="post">
-			<input type="hidden" id = "boardId" name="boardId" value="${boardDetail.boardId}">
-<%-- 			<input type="hidden" id ="writer" name="writer" value="${boardDetail.memberId}">
-			<input type="hidden" name="title" value="${boardDetail.title}">
-			<input type="hidden" name="content" value="${boardDetail.content}">
-			<input type="hidden" name="createDate" value="${boardDetail.createDate}"> --%>
-			<input type="hidden" name="hits" value="${boardDetail.hits}"> 
-				
+		<input type="hidden" id = "boardId" name="boardId" value="${boardDetail.boardId}">		
 		<table id = "postList" style="text-align: center; border: 1px solid #dddddd">
 			<tbody style="text-align: left;">
 				<tr id="trHead">
@@ -60,7 +59,7 @@
 				<!-- 댓글작성 -->
 				<td width ="700">
 					<div>
-						<textarea id = "cmtContent" name="cmtContent" placeholder="내용을 입력하세요" maxlength="500" style="width: 650px; height: 100px;" ></textarea>
+						<textarea id = "cmtContent" name="cmtContent" placeholder="내용을 입력하세요" maxlength="500" style="width: 650px; height: 100px; border-radius: 5px; resize: none;" ></textarea>
 					</div>
 				</td>
 				<!-- 댓글 등록 버튼 -->
@@ -84,7 +83,9 @@
 								</div>
 							</td>
 							<td width="550">
-								<div class="text_wrapper">${commentVO.content}</div>
+								<textarea id = "text_wrapper" class="text_wrapper" maxlength="500" style="padding : 20px 10px; width: 650px; height: 50px; border-radius: 5px; resize: none; border: none; overflow:hidden" readonly>
+									${commentVO.content}
+								</textarea>
 							</td>
 							<td width="150">
 								<font size="2" color="lightgray">${commentVO.commentDate }</font>
@@ -94,8 +95,9 @@
 								<!-- 댓글 작성자만 수정, 삭제 가능 -->
 								<c:choose>
 									<c:when test="${!empty loginMember && commentVO.memberId eq loginMember.memberId}">
-										<input type="button" id ="commentUpdate" value="댓글수정" />
-										<input type="button" id="commentDelete" value="댓글삭제" />
+										<input type="button" id ="cmtUpdate_btn" value="수정" onclick = "cmtUpdate()" />
+										<input type="button" id ="cmtUpdate_save_btn" value="저장" style="display:none;"/>
+										<input type="button" id="commentDelete" value="삭제" />
 									</c:when>
 									<c:otherwise>
 										<input type="hidden" value="댓글수정" />
@@ -174,8 +176,8 @@
 			    			url:"commentAdd.do",
 			    			data:{
 			    				cmtWriter:$('#cmtWriter').val(),
-			    				cmtBoardId:$('#cmtBoardId').val(),
-			    				cmtContent:$('#cmtContent').val()
+			    				BoardId:$('#BoardId').val(),
+			    				cmtContent:$('#cmtContent').val(),
 			    			},
 			    			dataType:"text",
 			    			
@@ -196,6 +198,58 @@
 			    	  	});
 			    	}
 			}
+	    });
+		<!-- ajax 댓글 수정 -->
+		/* 수정버튼을 누르면 updateForm을 통해 textarea폼 로드 */
+		$("#cmtUpdate_btn").click(function () {
+			$("#text_wrapper").removeAttr("readonly"); //textarea readonly 해제
+			$("#cmtUpdate_btn").css("display", "none"); //수정 버튼 비활성화
+			$("#cmtUpdate_save_btn").css("display", "block"); //저장버튼 활성화
+			$("#text_wrapper").focus();// textarea focus/outline활성화 //과제
+		});
+		
+		/* 저장 버튼 클릭시 수정내용 반영 -> 댓글 리스트 로드 */
+		$("#cmtUpdate_save_btn").click(function () {
+			$("#text_wrapper").attr("readonly", "readonly"); //textarea readonly 활성화
+			$("#cmtUpdate_btn").css("display", "block"); //수정 버튼 비활성화
+			$("#cmtUpdate_save_btn").css("display", "none"); //저장버튼 활성화
+	    	
+			let updateAnswer = function () {
+	    	  if (confirm("댓글을 수정하시겠습니까?") == true) {
+	    	    return 1;
+	    	  } else {
+	    	    return 0; //취소 -> 댓글 리스트
+	    	  }
+	    	};
+	    	if (updateAnswer() == 1) {
+	    		$.ajax({
+	    		    type: "POST",
+	    		
+	    		    url: "commentUpdate.do",
+	    		
+	    		    data:{
+	    		    	commentId: $('#commentId').val(),
+	    				boardId:$('#boardId').val(),
+	    				cmtContent:$('#cmtContent').val(),
+	    				cmtWriter:$('#cmtWriter').val()
+	    			}, 
+	    		
+	    		    dataType: "text",
+	    		
+	    		    success: function (data, textStatus, xhr) {
+	    		      let boardId = $('#cmtBoardId').val();
+	    		      if (data == "success") {
+	    		        alert("수정되었습니다!")
+	    		        window.location.href = "postDetail.do?boardId="+ boardId;
+	    		      } else {
+	    		      return;
+	    		      }
+	    		    },
+	    		    error: function (request, status, error) {
+	    		      alert("code:" + request.status + "\n" + "error:" + error);
+	    		    },
+	    	  	});
+	    	}
 	    });
 		<!-- ajax 댓글 삭제확인 및 삭제 -->
 		$("#commentDelete").click(function () {
@@ -228,48 +282,7 @@
 		    		},
 		    	});
 		   }
-	   });
-		<!-- ajax 댓글 수정 -->
-			$("#commentUpdate").click(function () {
-				/* 수정버튼을 누르면 updateForm을 통해 textarea폼 로드 */
-				/* 저장 버튼 클릭시 수정내용 반영 -> 댓글 리스트 로드 */
-				/* 취소 -> 댓글 리스트 */
-	    	let updateAnswer = function () {
-	    	  if (confirm("댓글을 수정하시겠습니까?") == true) {
-	    	    return 1;
-	    	  } else {
-	    	    return 0;
-	    	  }
-	    	};
-	    	
-	    	if (updateAnswer() == 1) {
-	    		$.ajax({
-	    		    type: "POST",
-	    		
-	    		    url: "commentUpdateForm.do",
-	    		
-	    		    data:{
-	    		    	commentId: $('#commentId').val()
-	    			}, 
-	    		
-	    		    dataType: "text",
-	    		
-	    		    success: function (data, textStatus, xhr) {
-	    		      let boardId = $('#cmtBoardId').val();
-	    		      if (data == "success") {
-	    		        alert("수정되었습니다!")
-	    		        window.location.href = "postDetail.do?boardId="+ boardId;
-	    		      } else {
-	    		      return;
-	    		      }
-	    		    },
-	    		    error: function (request, status, error) {
-	    		      alert("code:" + request.status + "\n" + "error:" + error);
-	    		    },
-	    	  	});
-	    	}
-	    });
-			
+	   });	
 	    </script>
     </body>
 </html>
