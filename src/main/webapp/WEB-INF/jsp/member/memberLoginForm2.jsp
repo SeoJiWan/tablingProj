@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/css/member/memberLoginForm2.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/member/memberLoginForm2.css?after" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"/>
 </head>
     
@@ -165,6 +165,7 @@
             id="log_pwd"
             autocomplete="off"
             placeholder="비밀번호"
+            onkeyup="enterkey2()"
           />
           <a href="#" class="link" onclick="solveForgotPwd()"
             >비밀번호를 잊으셨나요?</a
@@ -349,6 +350,58 @@
       }
     </script>
 
+	<!-- 엔터 입력시 로그인 -->
+	<script type="text/javascript">
+	function enterkey2() {
+		if (window.event.keyCode == 13) {
+			console.log("r1");
+
+	        $.ajax({
+	          type: "POST",
+
+	          url: "memberLogin.do",
+
+	          data: {
+	            id: $("#log_id").val(),
+	            pwd: $("#log_pwd").val(),
+	          },
+
+	          dataType: "text",
+
+	          success: function (data, textStatus, xhr) {
+	            console.log("r2");
+	            if (data == "loginFail") {
+	              alert("아이디, 비밀번호를 확인하세요.");
+	              $("#log_id").val("");
+	              $("#log_pwd").val("");
+	              $("#log_id").focus();
+	            } else {
+	              //alert("로그인 성공!");
+	              //window.location.href = "mainDecision.do";
+
+	              Swal.fire(
+	                "로그인 성공!",
+	                "메인페이지로 이동합니다",
+	                "success"
+	              ).then(function () {
+	                window.location.href = "mainDecision.do";
+	              });
+
+	              //window.location.href = "admin_main.do?pageNum=1&postNum=10";
+	              //window.location.href = "main.do";
+	              //window.location.href = "owner_main.do";
+	            }
+	            console.log(data);
+	          },
+
+	          error: function (request, status, error) {
+	            alert("code:" + request.status + "\n" + "error:" + error);
+	          },
+	        });
+		}
+	}
+	</script>
+	
     <!-- 로그인 AJAX -->
     <script type="text/javascript">
       $("#btn_login").click(function () {

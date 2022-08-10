@@ -8,7 +8,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Document</title>
-<link href="${pageContext.request.contextPath}/css/head.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/css/head.css?after" rel="stylesheet" type="text/css">
 <!-- 아이콘 사용 링크 -->
 <link rel="stylesheet"
 	href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css" />

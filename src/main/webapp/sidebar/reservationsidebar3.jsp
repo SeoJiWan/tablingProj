@@ -25,7 +25,7 @@ pageEncoding="UTF-8"%>
             <span class="title">예약자 현황</span>
           </a>
         </li>
-        <li class="list active">
+        <li class="list">
           <a href="${pageContext.request.contextPath }/ownerupdate.do">
             <span class="icon">
               <i class="input-icon uil uil-store"></i>
@@ -33,7 +33,7 @@ pageEncoding="UTF-8"%>
             <span class="title">점포수정</span>
           </a>
         </li>
-        <li class="list">
+        <li class="list active">
           <a href="${pageContext.request.contextPath }/storeRegisterForm.do">
             <span class="icon">
               <i class="input-icon uil uil-store"></i>

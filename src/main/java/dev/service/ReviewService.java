@@ -32,7 +32,7 @@ public class ReviewService {
 	}
 	
 	//가게 당 별점 조회
-	public int getAvgTasteScore(String storeName) {
+	public double getAvgTasteScore(String storeName) {
 		return reviewrepo.reviewAvgTateScore(storeName).getAvgScore();
 	}
 	

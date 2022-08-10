@@ -140,7 +140,7 @@ public class ReviewRepository extends DAO {
 	// 리뷰 별점 출력
 	// 별점 평균 조회
 	public Review reviewAvgTateScore(String storeName) {
-		String sql = "select (sum(taste_score) / count(*)) from reviews where sotre_name = ?";
+		String sql = "select round((sum(taste_score) / count(*)), 2) from reviews where store_name = ?";
 		connect();
 		Review vo = new Review();
 		try {
@@ -148,7 +148,7 @@ public class ReviewRepository extends DAO {
 			ps.setString(1, storeName);
 			rs = ps.executeQuery();
 			if (rs.next()) {
-				vo.setAvgScore(rs.getInt("select (sum(taste_score) / count(*))"));
+				vo.setAvgScore(rs.getDouble(1));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

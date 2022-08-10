@@ -1,0 +1,87 @@
+
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.head_container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background-color: white;
+}
+
+.head_logo a {
+	font-size: 24px;
+	font-weight: bolder;
+}
+
+.head_table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 4px 11px rgb(0 0 0 / 30%);
+  border-radius: 10px;
+}
+
+.head_table img {
+  height: 40px;
+  width: 100px;
+  vertical-align: bottom;
+}
+
+.head_table td input {
+  border: none;
+  outline: none;
+  background: white;
+}
+
+.td_search {
+  text-align: right;
+}
+
+.td_width {
+  width: 250px;
+  text-align: center;
+  border-left: 1px solid rgb(0 0 0 / 30%);
+}
+
+/* 드롭다운 */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropbtn {
+  border: none;
+  width: 200px;
+  cursor: pointer;
+  background: white;
+}
+
+/* 드롭다운 목록 */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  z-index: 1; /*다른 요소들보다 앞에 배치*/
+  font-weight: 400;
+  background-color: #f9f9f9;
+  min-width: 200px;
+}
+
+.dropdown-content a {
+  display: block;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 12px 20px;
+  margin-top: 10px;
+}
+
+.dropdown-content a:hover {
+  background-color: #ececec;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}

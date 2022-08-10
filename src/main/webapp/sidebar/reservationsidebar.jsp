@@ -33,6 +33,14 @@ pageEncoding="UTF-8"%>
             <span class="title">점포수정</span>
           </a>
         </li>
+        <li class="list">
+          <a href="${pageContext.request.contextPath }/storeRegisterForm.do">
+            <span class="icon">
+              <i class="input-icon uil uil-store"></i>
+            </span>
+            <span class="title">점포등록</span>
+          </a>
+        </li>
       </ul>
     </div>
   </body>

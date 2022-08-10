@@ -25,11 +25,10 @@ public class DetailMainController implements Controller {
 		}
 	    
 	    Store store = storeService.findOneStore(storeName);
-		//System.out.println("store = " + store);
-		store.getRepresentMenu().forEach(System.out::println);
+	    store.setScore(reviewService.getAvgTasteScore(storeName));
+//		store.getRepresentMenu().forEach(System.out::println);
 		req.setAttribute("storeDetail", store);
-		
-		
+
 		Utils.forward(req, resp, "detail/DetailMainPage.tiles");
 		
 	}

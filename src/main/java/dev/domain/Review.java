@@ -7,13 +7,12 @@ public class Review {
 	private String content;
 	private String createDate;
 	private int tasteScore;
-	//
-	private int avgScore;
+	private double avgScore;
 	
-	public int getAvgScore() {
+	public double getAvgScore() {
 		return avgScore;
 	}
-	public void setAvgScore(int avgScore) {
+	public void setAvgScore(double avgScore) {
 		this.avgScore = avgScore;
 	}
 	public int getReviewId() {
