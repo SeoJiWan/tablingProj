@@ -1,5 +1,5 @@
-/* @import */
-	/* url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400&display=swap'); */
+/* @import
+	url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400&display=swap');
 	
 *{
 	font-family: '87MMILSANG-Regular';
@@ -15,7 +15,7 @@
 
 body {
 	color: grey;
-	/* font-family: 'Noto Serif KR', serif; */
+	font-family: 'Noto Serif KR', serif;
 	font-size: small;
 	margin-top:200px;
 }
@@ -47,13 +47,15 @@ input[type="button"] {
 	margin-right: 5%;
 	text-align: center;
 }
-
+ */
 .center {
-  text-align: center;
+  	text-align: center;
 }
 
 .pagination {
   display: inline-block;
+  margin-left:50px;
+  padding-left: 180px;
 }
 
 .pagination a {
@@ -70,8 +72,9 @@ input[type="button"] {
 }
 
 .pagination a:hover:not(.active) {
-  background-color: #ddd;
-  border-radius: 5px;
+	background-color:#ff995b;
+	color: white;
+	border-radius: 5px;
 }
 
 textarea:focus {

@@ -17,7 +17,7 @@ public class CommentAddController implements Controller {
 		
 		String cmtWriter = req.getParameter("cmtWriter");
 		String cmtContent = req.getParameter("cmtContent");
-		int cmtBoardId = Integer.parseInt(req.getParameter("cmtBoardId")); //=>Cannot parse null string
+		int cmtBoardId = Integer.parseInt(req.getParameter("cmtBoardId"));
 		
 		//>>TEST
 		System.out.println("댓글등록 보드ID: " + cmtBoardId);

@@ -19,7 +19,7 @@ public class BoardRepository extends DAO{
 	public void insertPost(Board bd) {
 		connect();
 		String sqlSelect = "SELECT NVL(MAX(board_id),2022100)+1 FROM boards";
-		String sqlInsert = "INSERT INTO boards VALUES(?, ?, ?, ?, TO_CHAR(SYSDATE, 'YYYYMMDD'),0)";
+		String sqlInsert = "INSERT INTO boards VALUES(?, ?, ?, ?, TO_CHAR(SYSDATE, 'YYYY.MM.DD.'),0)";
 		try {
 			//SELECT 쿼리문 1(boardId조회)
 			ps = conn.prepareStatement(sqlSelect);
