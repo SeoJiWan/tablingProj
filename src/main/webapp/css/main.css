@@ -42,7 +42,7 @@ h5{
 p {
   padding: 0;
   margin-bottom: 12px;
-  font-family: 'Lato', sans-serif;
+  font-family: '87MMILSANG-Regular';
   font-weight: 300;
   font-size: 16px;
   line-height: 26px;
@@ -51,8 +51,15 @@ p {
   margin-top: 10px;
 }
 /* 리스트 */
+ul{
+  text-align:center;
+}
+
 li{
   display:inline-block;
+  text-align:left;
+}
+li:nth-child(odd){
   padding-right:15px;
 }
 
@@ -430,112 +437,6 @@ ul {
 
 #f a:hover {
   color: #03C9A9;
-}
-
-/* Contact Form */
-
-.contact-form {
-  padding-top: 20px;
-}
-
-.contact-form input, .contact-form textarea {
-  padding: 10px 12px;
-  border-radius: 0;
-  box-shadow: none;
-  font-size: 14px;
-  height: auto;
-}
-
-.contact-form .form-send {
-  text-align: center;
-}
-
-.contact-form .form-send button {
-  background: #03C9A9;
-  border: 0;
-  padding: 12px 40px;
-  color: #fff;
-  transition: 0.4s;
-  cursor: pointer;
-  font-size: 16px;
-  margin-top: 10px;
-}
-
-.contact-form .form-send button:hover {
-  background: #13dfbe;
-}
-
-.contact-form .validate {
-  display: none;
-  color: red;
-  margin: 0 0 15px 0;
-  font-weight: 400;
-  font-size: 13px;
-}
-
-.contact-form .loading {
-  display: none;
-  color: #555;
-  background: #fff;
-  text-align: center;
-  padding: 15px;
-  margin: 15px 0;
-}
-
-.contact-form .loading:before {
-  content: "";
-  display: inline-block;
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  border: 3px solid #18d26e;
-  border-top-color: #eee;
-  -webkit-animation: animate-loading 1s linear infinite;
-  animation: animate-loading 1s linear infinite;
-}
-
-@-webkit-keyframes animate-loading {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes animate-loading {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-
-.contact-form .error-message {
-  display: none;
-  color: #fff;
-  background: #ed3c0d;
-  text-align: center;
-  padding: 15px;
-  font-weight: 600;
-  margin: 15px 0;
-}
-
-.contact-form .sent-message {
-  display: none;
-  color: #fff;
-  background: #18d26e;
-  text-align: center;
-  padding: 15px;
-  font-weight: 600;
-  margin: 15px 0;
 }
 
 /* Copyrights */
