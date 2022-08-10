@@ -3,6 +3,7 @@ pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link href="${pageContext.request.contextPath}/css/head.css" rel="stylesheet" type="text/css">
 <script src="https://kit.fontawesome.com/883c2a5320.js" crossorigin="anonymous"></script>
+<c:if test="${loginMember.role == 2  || empty loginMember }">
 <header class="head_container">
 
 <div class="main_headbar">
@@ -62,4 +63,5 @@ pageEncoding="UTF-8"%>
 	</div>
 </div>
 </header>
+</c:if>
 
