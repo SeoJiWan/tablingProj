@@ -7,9 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dev.controller.Controller;
-import dev.domain.Board;
 import dev.domain.Comment;
-import dev.service.BoardService;
 
 public class CommentUpdateController implements Controller {
 

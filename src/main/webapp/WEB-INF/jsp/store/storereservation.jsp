@@ -11,28 +11,30 @@
 </head>
 <jsp:include page="/sidebar/reservationsidebar.jsp"/>
 <body>
-	<h2>예약자 현황</h2>
-	<table id=tab>
-		<thead>
-			<tr>
-				<th>예약자명</th>
-				<th>점포명</th>
-				<th>예약인원</th>
-				<th>예약시간</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:set var="reservations" value="${list }"></c:set>
-			<c:forEach var="vo" items="${reservations }">
+	<div id = "reservation_body">
+		<h2>예약자 현황</h2>
+		<table id=tab>
+			<thead>
 				<tr>
-					<td>${vo.memberId}</td>
-					<td>${vo.storeName }</td>
-					<td>${vo.peopleNum}명</td>
-					<td>${vo.reservationTime }</td>
+					<th>예약자명</th>
+					<th>점포명</th>
+					<th>예약인원</th>
+					<th>예약시간</th>
 				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
+			</thead>
+			<tbody>
+				<c:set var="reservations" value="${list }"></c:set>
+				<c:forEach var="vo" items="${reservations }">
+					<tr>
+						<td>${vo.memberId}</td>
+						<td>${vo.storeName }</td>
+						<td>${vo.peopleNum}명</td>
+						<td>${vo.reservationTime }</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
 	<div class="outer">
 		<div class="pagination">
 			<c:if test="${pageInfo.prev }">

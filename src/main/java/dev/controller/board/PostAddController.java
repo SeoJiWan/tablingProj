@@ -15,9 +15,10 @@ public class PostAddController implements Controller {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
-		String writer = req.getParameter("writer");
-		String title = req.getParameter("title");
-		String cont = req.getParameter("content");
+		String writer = req.getParameter("addWriter");
+		String title = req.getParameter("addTitle");
+		String cont = req.getParameter("addContent");
+		System.out.println(writer);
 
 		//>>TEST
 		System.out.println("등록할 글제목: " + title);
@@ -34,6 +35,6 @@ public class PostAddController implements Controller {
 		req.setAttribute("boardDetail", board); //속성은 jsp로
 
 		// 글 등록 후 디테일로 들어가도록
-		Utils.forward(req, resp, "postDetail.do");
+		Utils.forward(req, resp, "postListPaging.do?pageNum=1&postNum=10");
 	}
 }

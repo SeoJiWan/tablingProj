@@ -1,4 +1,32 @@
-
+@font-face {
+    font-family: '87MMILSANG-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201@1.0/87MMILSANG-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+*{
+	font-family: '87MMILSANG-Regular';
+	box-sizing: border-box;
+}
+html, body {
+    height: 100%;
+}
+body {
+	margin: 0;
+	margin-top: 0px;
+	background-color: #faca72;
+	color: black;
+}
+#reservation_body {
+	margin: 0 auto;
+	margin-top: 150px;
+	margin-left: 280px;
+	background-color:white;
+	border-radius: 20px;
+	padding: 20px 20px;
+	width: 1000px;
+	min-height:500px;
+}
 #tab {
   margin : 0 auto;
   margin-top : 50px;
