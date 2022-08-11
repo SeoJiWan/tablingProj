@@ -173,37 +173,46 @@
       <h1>마이페이지</h1>
       <div class="title_content">
         <div class="title_mypage">
-          <table class="table_title_mypage">
-            <tr>
-              <td class="profile_img">
-                <img
-                  class="profile_img"
-                  alt="profile"
-                  src="${pageContext.request.contextPath }/img/profile.jpg"
-                />
-              </td>
-            </tr>
-            <tr></tr>
-            <tr>
-              <td>내프로필</td>
-            </tr>
-            <tr>
-              <td>보안설정</td>
-            </tr>
-            <tr>
-              <td>이력관리</td>
-            </tr>
-            <tr>
-              <td>
-                <input
-                  type="button"
-                  id="btn_delete"
-                  class="btn_delete"
-                  value="회원탈퇴"
-                />
-              </td>
-            </tr>
-          </table>
+	        <form action="profileUpload.do" method="post" enctype="multipart/form-data">
+	          <table class="table_title_mypage">
+	            <tr>
+	              <td class="profile_img">
+	                <img
+	                  class="profile_img"
+	                  id="profile_img"
+	                  alt="profile"
+	                  src="img/profile_img/${src}"
+	                />
+	              </td>
+	            </tr>
+	            <tr>
+	            	<td>
+	            		<input type="file" id="profile" name="profile" accept="image/png, image/jpeg" onchange="readURL(this);">
+	            		<button type="submit" class="btn_profile">프로필저장</button>
+	            	</td>
+	            </tr>
+	            <tr></tr>
+	            <tr>
+	              <td>내프로필</td>
+	            </tr>
+	            <tr>
+	              <td>보안설정</td>
+	            </tr>
+	            <tr>
+	              <td>이력관리</td>
+	            </tr>
+	            <tr>
+	              <td>
+	                <input
+	                  type="button"
+	                  id="btn_delete"
+	                  class="btn_delete"
+	                  value="회원탈퇴"
+	                />
+	              </td>
+	            </tr>
+	          </table>
+          </form>
         </div>
         <div class="content_mypage">
           <div class="info_mypage">
@@ -404,6 +413,21 @@
     </div>
 
     <script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript">
+    // 프로필 사진 첨부파일로 열어서 미리보기
+	function readURL(input) {
+	  if (input.files && input.files[0]) {
+	    var reader = new FileReader();
+	    reader.onload = function(e) {
+	      document.getElementById('profile_img').src = e.target.result;
+	    };
+	    reader.readAsDataURL(input.files[0]);
+	  } else {
+	    document.getElementById('profile_img').src = "";
+	  }
+	}
+    </script>
+ 
     <script type="text/javascript">
       // 마이페이지 - 사이드바 - 정보수정 클릭 이벤트
       function show_memberInfo() {
