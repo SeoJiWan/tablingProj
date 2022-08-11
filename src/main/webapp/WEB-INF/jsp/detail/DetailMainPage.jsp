@@ -6,7 +6,7 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
-<link rel="stylesheet" href="css/detail/detailStyle.css">
+<link rel="stylesheet" href="css/detail/detailStyle.css?after">
 </head>
 <body>
 <div id="detail_container">
@@ -76,16 +76,16 @@
       
       <!-- 예약 부분 -->
       <div id="reservationForm">
-        <h3>Reservation</h3>
+        <h3>${storeDetail.storeName } 예약 하기</h3>
           <form action="${pageContext.request.contextPath }/reserve.do"
-         id="form">
-          <div>
+         id="form" name="reserv" onsubmit="return check()">
+          
             <input id="storeName" type="hidden" name="storeName"
               value="${storeDetail.storeName }">
-            <div class="myform">
-              <label for="peopleNum">How many persons?</label> <select
-                id="peopleNum" name="peopleNum">
-                <option value="none">-</option>
+            <div class="numberPeople">
+              <label for="peopleNum">예약 인원</label> 
+              <select id="peopleNum" name="peopleNum">
+                <option value="">-</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
@@ -93,22 +93,22 @@
                 <option value="6">6</option>
               </select>
             </div>
-          </div>
-          <div id="reservationDate">
-            <p>Select a reservation date</p>
+   
+          <div class="reservationDate">
+            <span>예약 날짜</span>
             <input type="date" name="date" placeholder="Year-Month-Day">
           </div>
-          <div>
-            <label for="timeZone">What time to make a reservation?</label> <br>
+          <div class="time">
+            <label for="timeZone">예약 시간</label>
             <select id="timeZone" name="timeZone">
               <optgroup label="DayTime">
-                <option value="none">-</option>
+                <option value="">-</option>
                 <option value="11:00 ~ 13:00">11:00 ~ 01:00</option>
                 <option value="13:00 ~ 15:00">01:00 ~ 03:00</option>
                 <option value="15:00 ~ 17:00">03:00 ~ 05:00</option>
               </optgroup>
               <optgroup label="DinnerTime">
-                <option value="none">-</option>
+                <option value="">-</option>
                 <option value="17:00 ~ 19:00">17:00 ~ 19:00</option>
                 <option value="19:00 ~ 21:00">19:00 ~ 21:00</option>
                 <option value="21:00 ~ 23:00">21:00 ~ 23:00</option>
@@ -117,7 +117,7 @@
           </div>
     
           <c:if test="${not empty loginMember.memberId }">
-            <input type="submit" value="Reserve">
+            <input type="submit" value="Reserve" id="reserve-btn">
           </c:if>
     
           <c:if test="${empty loginMember.memberId }">
@@ -150,17 +150,19 @@
             value="${storeDetail.storeName }">
     
           <c:if test="${not empty loginMember.memberId }">
-            <button type="button" id="btn_review_insert"
+            <button type="button" class="btn_review_insert"
               onclick="review_insert()">Upload</button>
           </c:if>
     
           <c:if test="${empty loginMember.memberId }">
-            <button type="button" onclick="loginForm()">Upload</button>
+            <button type="button" class="btn_review_insert" onclick="loginForm()">Upload</button>
           </c:if>
         </div>
       </div>
       
+    
       <table id="reviewList">
+      
       <tr class="reveiwTr">
          <th style="display: none">id</th>
          <th style="display: none">storename</th>
@@ -168,12 +170,13 @@
          <th>리뷰 내용</th>
          <th>⭐</th>
          <th> 작성일 </th>
+         <th></th>
       </tr>
 
       <c:forEach var="review" items="${list }">
          <tr class="reveiwTr">
             <td style="display: none">${review.reviewId }</td>
-            <th style="display: none">${review.storeName }</th>
+            <td style="display: none">${review.storeName }</td>
             <td>${review.memberId }</td>
             <td>${review.content }</td>
             <td><c:forEach var="a" begin="1" end="${review.tasteScore }">
@@ -183,15 +186,12 @@
             <c:if test="${review.memberId eq loginMember.memberId }">
                <td>
                   <button value="삭제" onclick='deleteCallback(event)' class=delete>삭제</button>
-               </td>
-               <td>
                   <button value="수정" onclick='updateCallback(event)' class=update>수정</button>
                </td>
             </c:if>
          </tr>
       </c:forEach>
-   </table>
-      
+  	 </table>
       
       
       
@@ -378,7 +378,7 @@
              
              //창 크기 지정
              var width = 500;
-             var height = 500;
+             var height = 300;
              
              //pc화면기준 가운데 정렬
              var left = (window.screen.width / 2) - (width/2);
@@ -393,6 +393,48 @@
              //등록된 url 및 window 속성 기준으로 팝업창을 연다.
              window.open(url, "popup", windowStatus);      
           }
+          </script>
+          
+          <!-- 예약 막기 -->
+          <script>
+          function check() {
+             var f = document.reserv;
+             
+            if (f.peopleNum.value == "") {
+                alert("인원수를 선택해주십시오");              
+                return false;
+            }
+            if (f.timeZone.value == "") {
+                alert("날짜를 선택해주십시오");              
+                return false;
+            }  
+            if (f.date.value == "") {
+                alert("시간을 선택해주십시오");              
+                return false;
+            }  
+          }
+
+          </script>
+          <script>
+          function check() {
+        	  
+        	  var f = document.reserv;
+        	  
+        	  if(f.peopleNum.value == "") {
+        		  alert("인원수를 선택해주십시오");
+        		  return false
+        	  }
+        	  if(f.timeZone.value == "") {
+        		  alert("날짜를 선택해주십시오");
+        		  return false
+        	  }
+        	  if(f.date.value == "") {
+        		  alert("시간을 선택해주십시오");
+        		  return false
+        	  }
+        	  
+          }
+          
           </script>
     </body>
     </html>
