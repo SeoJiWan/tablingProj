@@ -11,7 +11,7 @@
 }
 
 #detail_container {
-  margin-top:100px;
+  margin-top: 20px;
 }
 
 /* 가게 이미지 */
@@ -90,24 +90,41 @@
 /* 예약 폼 */
 #reservationForm {
   position: fixed;
-  top: 40%;
-  left: 60%;
+  top: 51%;
+  left: 65%;
   border: 1px solid #353535;
-  width: 30%;
+  width: 20%;
   height: 35%;
   background-color: #ffffff;
   opacity: 100;
-  text-align: center;
+  text-align: left;
   padding: 3%;
 }
 
-.myform {
-  margin: 0%;
-  padding-top: 3%;
+#reservationForm h3{
+	font-size: x-large;
 }
 
-.myform select {
-  margin: 1%;
+.numberPeople{
+	margin-top: 20%;
+}
+
+.reservationDate{
+	margin-top: 5%;
+}
+
+.time{
+	margin-top: 5%;
+}
+
+#reserve-btn {
+	margin-left: 80%;
+	margin-top: 20%;
+	font-size: medium;
+}
+
+#reserve-btn:hover {
+	cursor: pointer;
 }
 /* === modal 적용 === */
 /* modal 감싸는 창 */
@@ -197,6 +214,12 @@ input {
 }
 
 /* 리뷰 */
+
+button:hover{
+	cursor: pointer;
+}
+
+
 #detail_container .reviewForm {
   width: 50%;
   /* background-color: palegoldenrod; */
@@ -212,12 +235,13 @@ input {
 
 #detail_container .write_zone {
   /* background-color: aliceblue; */
-  border: 1px solid rgb(224, 224, 224);
-  border-radius: 20px;
-  width: 700px;
+  /* border: 1px solid rgb(224, 224, 224);
+  border-radius: 20px; */
+  width: 100%;
   margin-top: 50px;
   height: 250px;
   text-align: center;
+  border-bottom: 1px solid rgb(224, 224, 224);
 }
 
 #detail_container #content {
@@ -230,8 +254,8 @@ input {
   padding: 15px;
 }
 
-#detail_container button {
-  float: right;
+#detail_container .btn_review_insert {
+
   margin: 10px;
 }
 
@@ -248,7 +272,7 @@ input {
   background-color: pink;
   margin-top: 50px;
   margin-left: 5%;
-  width: 60%;
+  width: 75%;
 }
 
 #detail_container .reviewList th, td{
@@ -267,6 +291,12 @@ input {
    background-color: green;
 }
 
+
+
+#detail_container #reviewList td ,th{
+	width: 145px;
+}
+
 /* 리뷰리스트 */
 #reviewList {
   margin-left: 5%;
@@ -275,6 +305,7 @@ input {
 }
 
 #reviewList tr th {
-  border-bottom: 3px solid #aaf0d1;
+  text-align: left;
+  border-bottom: 3px solid orange;
   padding: 1%;
 }

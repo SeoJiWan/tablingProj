@@ -5,10 +5,9 @@
 <html>
 
 <head>
-  <meta charset="EUC-KR">
-  <title>Insert title here</title>
-  <link rel="stylesheet" href="css/detail/detailStyle.css">
-
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<link rel="stylesheet" href="css/detail/detailStyle.css?after">
 </head>
 
 <body>
@@ -47,7 +46,7 @@
         </span>
       </div>
 
-      <table class="">
+      <table>
         <tr>
           <td>주소</td>
           <td>${storeDetail.storeAddress }</td>
@@ -166,35 +165,123 @@
           </tr>
         </table>
       </div>
-    </div>
+<!-- <<<<<<< hsj_0811 -->
+<!--     </div> -->
 
-    <!-- 리뷰 폼 -->
-    <div class="reviewForm">
-      <div class="write_zone">
-        <div class="star-rating space-x-4 mx-auto">
-          <input type="radio" id="5-stars" name="rating" value="5" />
-          <label for="5-stars" class="star pr-4">★</label>
-          <input type="radio" id="4-stars" name="rating" value="4" />
-          <label for="4-stars" class="star">★</label>
-          <input type="radio" id="3-stars" name="rating" value="3" />
-          <label for="3-stars" class="star">★</label>
-          <input type="radio" id="2-stars" name="rating" value="2" />
-          <label for="2-stars" class="star">★</label>
-          <input type="radio" id="1-star" name="rating" value="1" />
-          <label for="1-star" class="star">★</label>
-        </div>
-        <textarea placeholder="리뷰를 작성하세요" name="content" id="content"></textarea>
+<!--     리뷰 폼 -->
+<!--     <div class="reviewForm"> -->
+<!--       <div class="write_zone"> -->
+<!--         <div class="star-rating space-x-4 mx-auto"> -->
+<!--           <input type="radio" id="5-stars" name="rating" value="5" /> -->
+<!--           <label for="5-stars" class="star pr-4">★</label> -->
+<!--           <input type="radio" id="4-stars" name="rating" value="4" /> -->
+<!--           <label for="4-stars" class="star">★</label> -->
+<!--           <input type="radio" id="3-stars" name="rating" value="3" /> -->
+<!--           <label for="3-stars" class="star">★</label> -->
+<!--           <input type="radio" id="2-stars" name="rating" value="2" /> -->
+<!--           <label for="2-stars" class="star">★</label> -->
+<!--           <input type="radio" id="1-star" name="rating" value="1" /> -->
+<!--           <label for="1-star" class="star">★</label> -->
+<!-- ======= -->
+      
+<!--       예약 부분 -->
+<!--       <div id="reservationForm"> -->
+<%--         <h3>${storeDetail.storeName } 예약 하기</h3> --%>
+<%--           <form action="${pageContext.request.contextPath }/reserve.do" --%>
+<!--          id="form" name="reserv" onsubmit="return check()"> -->
+          
+<!--             <input id="storeName" type="hidden" name="storeName" -->
+<%--               value="${storeDetail.storeName }"> --%>
+<!--             <div class="numberPeople"> -->
+<!--               <label for="peopleNum"> -->
+<!--               인원</label>  -->
+<!--               <select id="peopleNum" name="peopleNum"> -->
+<!--                 <option value="">-</option> -->
+<!--                 <option value="2">2</option> -->
+<!--                 <option value="3">3</option> -->
+<!--                 <option value="4">4</option> -->
+<!--                 <option value="5">5</option> -->
+<!--                 <option value="6">6</option> -->
+<!--               </select> -->
+<!--             </div> -->
+   
+<!--           <div class="reservationDate"> -->
+<!--             <span>예약 날짜</span> -->
+<!--             <input type="date" name="date" placeholder="Year-Month-Day"> -->
+<!--           </div> -->
+<!--           <div class="time"> -->
+<!--             <label for="timeZone">예약 시간</label> -->
+<!--             <select id="timeZone" name="timeZone"> -->
+<!--               <optgroup label="DayTime"> -->
+<!--                 <option value="">-</option> -->
+<!--                 <option value="11:00 ~ 13:00">11:00 ~ 01:00</option> -->
+<!--                 <option value="13:00 ~ 15:00">01:00 ~ 03:00</option> -->
+<!--                 <option value="15:00 ~ 17:00">03:00 ~ 05:00</option> -->
+<!--               </optgroup> -->
+<!--               <optgroup label="DinnerTime"> -->
+<!--                 <option value="">-</option> -->
+<!--                 <option value="17:00 ~ 19:00">17:00 ~ 19:00</option> -->
+<!--                 <option value="19:00 ~ 21:00">19:00 ~ 21:00</option> -->
+<!--                 <option value="21:00 ~ 23:00">21:00 ~ 23:00</option> -->
+<!--               </optgroup> -->
+<!--             </select> -->
+<!--           </div> -->
+    
+<%--           <c:if test="${not empty loginMember.memberId }"> --%>
+<!--             <input type="submit" value="Reserve" id="reserve-btn"> -->
+<%--           </c:if> --%>
+    
+<%--           <c:if test="${empty loginMember.memberId }"> --%>
+<!--             <input type="button" value="Reserve" onclick="loginForm()"> -->
+<%--             </c:if> --%>
+    
+          
+<!--    </form> -->
+<!--       </div> -->
+      
+<!--       리뷰 폼 -->
+<!--        <div class="reviewForm"> -->
+<!--         <div class="write_zone"> -->
+<!--            <div class="star-rating space-x-4 mx-auto"> -->
+<!--               <input type="radio" id="5-stars" name="rating" value="5"/> -->
+<!--               <label for="5-stars" class="star pr-4">★</label> -->
+<!--               <input type="radio" id="4-stars" name="rating" value="4"/> -->
+<!--               <label for="4-stars" class="star">★</label> -->
+<!--               <input type="radio" id="3-stars" name="rating" value="3"/> -->
+<!--               <label for="3-stars" class="star">★</label> -->
+<!--               <input type="radio" id="2-stars" name="rating" value="2"/> -->
+<!--               <label for="2-stars" class="star">★</label> -->
+<!--               <input type="radio" id="1-star" name="rating" value="1"/> -->
+<!--               <label for="1-star" class="star">★</label> -->
+<!--               </div> -->
+<!--           <textarea placeholder="리뷰를 작성하세요" name="content" id="content"></textarea> -->
+          
+<!--           <input type="hidden" name="storeName" id="storeName" -->
+<%--             value="${storeDetail.storeName }"> --%>
+    
+<%--           <c:if test="${not empty loginMember.memberId }"> --%>
+<!--             <button type="button" class="btn_review_insert" -->
+<!--               onclick="review_insert()">Upload</button> -->
+<%--           </c:if> --%>
+    
+<%--           <c:if test="${empty loginMember.memberId }"> --%>
+<!--             <button type="button" class="btn_review_insert" onclick="loginForm()">Upload</button> -->
+<%--           </c:if> --%>
+<!-- >>>>>>> main -->
+<!--         </div> -->
+<!--         <textarea placeholder="리뷰를 작성하세요" name="content" id="content"></textarea> -->
 
-        <input type="hidden" name="storeName" id="storeName" value="${storeDetail.storeName }">
+<%--         <input type="hidden" name="storeName" id="storeName" value="${storeDetail.storeName }"> --%>
 
-        <c:if test="${not empty loginMember.memberId }">
-          <button type="button" id="btn_review_insert" onclick="review_insert()">Upload</button>
-        </c:if>
+<%--         <c:if test="${not empty loginMember.memberId }"> --%>
+<!--           <button type="button" id="btn_review_insert" onclick="review_insert()">Upload</button> -->
+<%--         </c:if> --%>
 
-        <c:if test="${empty loginMember.memberId }">
-          <button type="button" onclick="loginForm()">Upload</button>
-        </c:if>
-      </div>
+<%--         <c:if test="${empty loginMember.memberId }"> --%>
+<!--           <button type="button" onclick="loginForm()">Upload</button> -->
+<%--         </c:if> --%>
+<!--       </div> -->
+<!-- <<<<<<< hsj_0811 -->
     </div>
 
     <table id="reviewList">
@@ -236,6 +323,46 @@
 
 
     <%-- <div class="reviewList">
+
+      
+    
+      <table id="reviewList">
+      
+      <tr class="reveiwTr">
+         <th style="display: none">id</th>
+         <th style="display: none">storename</th>
+         <th>작성자</th>
+         <th>리뷰 내용</th>
+         <th>⭐</th>
+         <th> 작성일 </th>
+         <th></th>
+      </tr>
+
+      <c:forEach var="review" items="${list }">
+         <tr class="reveiwTr">
+            <td style="display: none">${review.reviewId }</td>
+            <td style="display: none">${review.storeName }</td>
+            <td>${review.memberId }</td>
+            <td>${review.content }</td>
+            <td><c:forEach var="a" begin="1" end="${review.tasteScore }">
+                     ⭐
+               </c:forEach></td>
+            <td>${review.createDate }</td>
+            <c:if test="${review.memberId eq loginMember.memberId }">
+               <td>
+                  <button value="삭제" onclick='deleteCallback(event)' class=delete>삭제</button>
+                  <button value="수정" onclick='updateCallback(event)' class=update>수정</button>
+               </td>
+            </c:if>
+         </tr>
+      </c:forEach>
+  	 </table>
+      
+      
+      
+      
+     <%-- <div class="reviewList">
+
      <h3>가게 리뷰</h3>
      <c:forEach var="review" items="${list }">
      <div class="review_container">
@@ -556,6 +683,80 @@
       }
     }
   </script>
-</body>
 
-</html>
+
+      <script>
+          /* let w = window.open("about:blank","_blank"); */
+          
+          function updateCallback(e){
+             console.log(e.target);
+             let upno = e.target.parentElement.parentElement.childNodes[1].innerText
+             let upstore = e.target.parentElement.parentElement.childNodes[3].innerText
+             let rating = e.target.parentElement.parentElement.childNodes[5].innerText
+             console.log(upno)
+             console.log(upstore)
+             console.log(rating)
+             
+             //창 크기 지정
+             var width = 500;
+             var height = 300;
+             
+             //pc화면기준 가운데 정렬
+             var left = (window.screen.width / 2) - (width/2);
+             var top = (window.screen.height / 4);
+             
+                 //윈도우 속성 지정
+             var windowStatus = 'width='+width+', height='+height+', left='+left+', top='+top+', scrollbars=yes, status=yes, resizable=yes, titlebar=yes';
+             
+                 //연결하고싶은url
+                const url = "updatereviewform.do?upno="+upno+"&upstore="+upstore+"&rating="+rating;
+    
+             //등록된 url 및 window 속성 기준으로 팝업창을 연다.
+             window.open(url, "popup", windowStatus);      
+          }
+          </script>
+          
+          <!-- 예약 막기 -->
+          <script>
+          function check() {
+             var f = document.reserv;
+             
+            if (f.peopleNum.value == "") {
+                alert("인원수를 선택해주십시오");              
+                return false;
+            }
+            if (f.timeZone.value == "") {
+                alert("날짜를 선택해주십시오");              
+                return false;
+            }  
+            if (f.date.value == "") {
+                alert("시간을 선택해주십시오");              
+                return false;
+            }  
+          }
+
+          </script>
+          <script>
+          function check() {
+        	  
+        	  var f = document.reserv;
+        	  
+        	  if(f.peopleNum.value == "") {
+        		  alert("인원수를 선택해주십시오");
+        		  return false
+        	  }
+        	  if(f.timeZone.value == "") {
+        		  alert("날짜를 선택해주십시오");
+        		  return false
+        	  }
+        	  if(f.date.value == "") {
+        		  alert("시간을 선택해주십시오");
+        		  return false
+        	  }
+        	  
+          }
+          
+          </script>
+    </body>
+    </html>
+
