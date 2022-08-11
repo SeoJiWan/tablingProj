@@ -12,8 +12,36 @@ html, body {
     height: 100%;
 }
 img{
+	display:inline-block;
 	border:0;
+	margin-top:22px;
+	text-align:center;
 	}
+.cmtContent {
+	margin-left:16px;
+}
+.editContent {
+	margin-left:16px;
+}
+
+.bottom_btn {
+	cursor: pointer;
+	border-style:none;
+	border-radius:5px;
+	padding: 6px;
+	float:right;
+	margin: 35px 0;
+	margin-left: 12px;
+}
+.comment_edit_delete_btn{
+	border-style:none;
+	border-radius:5px;
+	padding: 6px;
+	cursor: pointer;
+	float:right;
+	margin: auto 0;
+	margin-left: 12px;
+}
 html {
     display: block;
 }
@@ -118,7 +146,9 @@ a {
 a:hover {
 	text-decoration-line:none;
 	font-weight:bold;
-	color:#ff995b;
+}
+a:visited {
+	color:#ddd;
 }
 a:hover,a:active,a:focus {
 	text-decoration-line:none;
@@ -175,7 +205,6 @@ script {
 }
 .time_line .daily_obj h4 {
     height: 33px;
-    background: url(https://cdn.iconscout.com/icon/free/png-64/communication-between-women-1975497-1664392.png) no-repeat 15px 0;
     padding-left: 40px;
     font-size: 14px;
     color: #333;
@@ -194,6 +223,7 @@ h4 {
 ul {
     display: block;
     list-style-type: disc;
+    list-style:none;
     margin-block-start: 1em;
     margin-block-end: 1em;
     margin-inline-start: 0px;
@@ -201,6 +231,8 @@ ul {
     padding-inline-start: 40px;
 }
 li {
+	display: inline-block;
+    list-style:none;
     display: list-item;
     text-align: -webkit-match-parent;
 }
@@ -216,25 +248,17 @@ ul {
     margin-top: 9px;
 }
 .tx_tooltip {
-	margin-top: 9px;
+	margin-top: 0px;
     position: relative;
-    min-height: 72px;
+    min-height: 80px;
     border: 1px solid #e0e0e0;
     background: #fff;
     border-top-color: #ececec;
     border-radius: 8px;
 }
-.tx_tooltip_add {
-    position: relative;
-    border: 1px solid #e0e0e0;
-    background: #fff;
-    border-top-color: #ececec;
-    border-radius: 8px;
-}
-
 .tx_tooltip .tx_bubble {
     float: none;
-    padding: 20px 20px;
+    padding: 0px 22px 7px 17px;
     *zoom: 1;
 }
 .tx_tooltip .thumb {
@@ -244,10 +268,6 @@ ul {
     margin-bottom: 20px;
     margin-left: 10px;
     margin-right: 10px;
-    
-}
-.tx_tooltip .tx_width {
-	padding: 0 20px;
 }
 .tx_tooltip .linkTx {
 	padding: 10px auto;
@@ -296,11 +316,6 @@ span .linkTx {
     background: url(https://ssl.pstatic.net/static/me/new/sp_me_new20160113.png) no-repeat -197px -38px;
     border: 0;
 }
-#add_form {
-	width : 500px;
-	height: 300px;
-}
-
 button {
     margin: 0;
     padding: 0;
@@ -309,7 +324,6 @@ button {
     cursor: pointer;
 }
 button {
-	cursor:pointer;
     appearance: auto;
     writing-mode: horizontal-tb !important;
     text-rendering: auto;
@@ -333,93 +347,53 @@ button {
     border-color: buttonborder;
     border-image: initial;
 }
-.bottom_btn {
-	cursor: pointer;
-	border-style:none;
-	border-radius:5px;
-	padding: 6px;
-	float:right;
-	margin-left: 12px;
-}
-.write_btn {
+#go_list_btn {
 	/* position:absolute; */
 	/* right: 200px; */
-	text-align:right;
 	background-color: white;
 	border: none;
 	padding: 8px 10px;
 	color: #ff953b;
 	font-weight: bold;
 	border-radius: 80px;
-	float:right;
+	display:inline-block;
 }
-#write_btn {
-	/* position:absolute; */
-	/* right: 200px; */
-	text-align:right;
-	background-color: white;
-	border: none;
-	padding: 8px 10px;
-	color: #ff953b;
-	font-weight: bold;
-	border-radius: 80px;
-	float:right;
+#go_list_btn:hover {
+  background-color: #ff995b;
+  color: white;
 }
 
-#add_write_btn {
-	height:50px;
-	text-align:right;
+.cmt_login_btn {
+	position:relative;
 	background-color: white;
-	border: none;
-	padding: 8px 10px;
-	color: #ff953b;
-	font-weight: bold;
-	border-radius: 80px;
-	float:right;
-}
-#add_form {
-	position: relative;
-	right:100px;
-	top: -10px;
-}
-#post_list {
-	position: relative;
-}
-#title {
+	color : black;
+	font-size: large;
 	border-style:none;
-	padding : 8px 20px;
+	left:560px;
+	margin-right:20px;
+	margin-bottom:20px;
+	
+}
+
+.cmt_nicknameDate {
+	display:inline-block;
+	margin-top:20px;
+	margin-left:10px;
+	margin-right:10px;
+	margin-bottom: 0px;
 }
 
 #title_group{
 	padding-left:5px;
 	padding-bottom:10px;
+	background-color:#eee;
 }
 
-.title_family {
+.title_famaily {
 	display:inline-block;
 	margin:10px;
 	margin-top:25px;
 	margin-bottom:13px;
-}
-
-#title_family_num {
-	margin-left:200px;
-}
-#title_family_title {
-	margin-left:28px;
-}
-#title_family_nickname {
-	margin-left:150px;
-}
-#title_family_date {
-	margin-left:40px;
-}
-#title_family_hits {
-	margin-left:50px;
-}
-#write_btn:hover {
-  background-color: #ff995b;
-  color: white;
 }
 /* FOOTER */
 

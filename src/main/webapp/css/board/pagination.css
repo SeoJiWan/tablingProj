@@ -1,80 +1,47 @@
-/* @import
-	url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400&display=swap');
-	
-*{
-	font-family: '87MMILSANG-Regular';
-	box-sizing: border-box;
-}
-
-@font-face {
-    font-family: '87MMILSANG-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201@1.0/87MMILSANG-Regular.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
-
-body {
-	color: grey;
-	font-family: 'Noto Serif KR', serif;
-	font-size: small;
-	margin-top:200px;
-}
-
-#postList {
-	margin-left:100px;
-	width: 80%;
-}
-
-#cmt {
-	margin-left:100px;
-	width: 80%;
-}
-
-#trHead {
-	background-color:  #ff993b;
-}
-
-th {
-	text-align: left;
-}
-
-td {
-	padding: 2% 1%;
-}
-
-input[type="button"] {
-	float: right;
-	margin-right: 5%;
-	text-align: center;
-}
- */
 .center {
-  	text-align: center;
+  text-align: center;
 }
 
 .pagination {
   display: inline-block;
-  margin-left:50px;
-  padding-left: 180px;
 }
 
 .pagination a {
-  color: black;
+  color: #ff993b;
   float: left;
-  padding: 8px 16px;
   text-decoration: none;
+  transition: color .3s;
+  background-color: white;
+  border-radius: 30%;
+  width:35px;
+  height:35px;
+  line-height:35px;
+  margin-left:10px;
 }
 
 .pagination a.active {
   background-color: #4CAF50;
   color: white;
-  border-radius: 5px;
+  border: 1px solid #4CAF50;
+}
+.pagination a:hover {
+	color:white;
+ 	background-color: #fdc880;
+}
+
+.pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+  border: 1px solid #4CAF50;
 }
 
 .pagination a:hover:not(.active) {
-	background-color:#ff995b;
-	color: white;
-	border-radius: 5px;
+  color: white;
+}
+
+.prevnext a{
+  border: 0;
+  font-size:30px;
 }
 
 textarea:focus {

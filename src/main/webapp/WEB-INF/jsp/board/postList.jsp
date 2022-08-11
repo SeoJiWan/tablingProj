@@ -9,7 +9,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=1280">
 	<title>커뮤니티 글목록</title>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+	<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous"> -->
 	<!-- Board CSS-->
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/css/board/boardList.css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/css/board/pagination.css" />
@@ -18,20 +18,20 @@
 	<link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css" />
 	<script src="https://kit.fontawesome.com/a9389f0a9d.js" crossorigin="anonymous"></script>
 
-  <!-- Favicons -->
-  <link href="../img/favicon.png" rel="icon">
-  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+	  <!-- Favicons -->
+	  <link href="../img/favicon.png" rel="icon">
+	  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+	
+	  <!-- Google Fonts -->
+	  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+	
+	  <!-- Bootstrap CSS File -->
+	  <!--   <link href="SumoLanding/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
-
-  <!-- Bootstrap CSS File -->
-  <link href="SumoLanding/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Libraries CSS Files -->
-  <link href="SumoLanding/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+ 	  <!-- Libraries CSS Files -->
+<!--   <link href="SumoLanding/lib/ionicons/css/ionicons.min.css" rel="stylesheet"> -->
 </head>
-<jsp:include page="/sidebar/boardSidebar.jsp"/>
+<%-- <jsp:include page="/sidebar/boardSidebar.jsp"/> --%>
 <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <!-- COMUNITYBOARD_LIST-->
@@ -43,67 +43,85 @@
 	            <div class="col-md-10 col-lg-8 col-xl-7">
 	                <div class="site-heading">
 	                    <h1>커뮤니티</h1>
-	                    <span class="subheading">Communication With ZULUP People !</span>
+	                    <span class="subheading">맛 잘 알 줄서 피플들과의 즐거운 대화!</span>
 	                </div>
 	            </div>
 	        </div>
 	    </div>
 	</header>
-	  	<form action="postAddForm.do" method="post" id="frm">
-		  <input type="hidden" id ="writer" name="writer" value="${loginMember.memberId}">
-		</form>
 		<div id="container" class="me_menu3">
 			<div class="section _section">
 				<div class="contents _contents">
 					<div class="frst_contents _noti_box" style=""> 
 						<div class="time_line _noti_list type_alrm"> 
 							<div class="daily_obj _ccast_list_group">
+							
 								<!-- ADD BUTTON-->
-								<h4 class="ico_time" style="height: 53px; padding-bottom: 0px; padding-left: 0px; margin-bottom: 0px;padding-top: 10px;""><button id = "write_btn" type="button" onclick="checkLogin()"><i class="uil uil-pen"></i>글쓰기</button></h4>
+								<h4 class="ico_time" style="height: 53px; padding-bottom: 0px; padding-left: 0px; margin-bottom: 0px;padding-top: 10px;"><button id = "write_btn" type="button" onclick="checkLogin()" style="cursor:pointer;"><i class="uil uil-pen"></i>글쓰기</button></h4>
+						        
+						        <!-- ADD FORM-->
+							     <div id="add_form" class="tx_tooltip_add" style= "display:none;">
+						        	<form action = "postAdd.do" method="post" id="frm">
+										<input type="hidden" id ="addWriter" name="addWriter" value="${loginMember.memberId}">
+										<input id="title" type="text" class="form-control" placeholder="제목을 입력해주세요" name="addTitle" maxlength="22" required>
+										<hr>
+										<textarea id="content" class="form-control" placeholder="내용을 입력하세요" name="addContent" maxlength="2000" style="margin: 0; width: 450px; height: 200px; padding : 30px 10px; border-radius: 5px; resize: none; border: none; overflow:hidden; text-align:left; margin: 0 auto;" required></textarea>
+										<div id = "add_write_btn">
+										<!-- 취소버튼 -->
+										<button id="btn_previous" type="button" class="bottom_btn" onclick="location.href='postListPaging.do?pageNum=1&postNum=10'">취소</button>
+										<!-- 등록버튼 -->
+											<button id="btn_register" class="bottom_btn" type="submit" onclick="checkAdd()">등록</button>
+							 			</div>
+							 		</form>
+								</div>
+										<div id = "title_family_num" class = "title_family">글 번호</div>
+										<div id = "title_family_title" class = "title_family">제목</div>
+										<div id = "title_family_nickname" class = "title_family">닉네임</div>
+										<div id = "title_family_date" class = "title_family">날짜</div>
+										<div id = "title_family_hits" class = "title_family">조회수</div>
 						        <!-- POSTLIST-->
+						        <div id="post_list">
 									<ul>
-										<li class="_ccast_list_item _ccast_item nlst   " readcheck="true" serviceid="nid" catgroupid="1" catid="999" timekey="1555525715519205549" style="display:inline">
+										<li class="_ccast_list_item _ccast_item nlst" readcheck="true" serviced="nid" catgroupid="1" catid="999" timekey="1555525715519205549" style="display:inline">
 											<div class="tx_box_obj">
 						        					<c:forEach var="boardList" items="${boardList}">
 														<div class="tx_tooltip">
 															<div class="tx_bubble">
 																<p class="thumb">
-																	<a href="#" title="연결 페이지로 이동(관리자 계정이면 회원 정보로 ?)" class="_ccast_item_url  N=a:amx*x.img" target="_blank" >
-																		<img src="${pageContext.request.contextPath }/img/boardListProfile.png" width="40" height="40" alt="프로필이미지">
+																	<!-- <a href="#" title="연결 페이지로 이동(관리자 계정이면 회원 정보로 ?)" class="_ccast_item_url  N=a:amx*x.img" target="_blank" > -->
+																		<img src="${pageContext.request.contextPath }/img/boardListProfile.png" width="40" height="40" alt="프로필이미지" >
 																		<span class="mask"></span>
-																	</a>
+																	<!-- </a> -->
 																</p>
 																<div class="bubble_content">
 																    <div class="tx_width">
 																		<span class="linkTx">
 																			<a href="postDetail.do?boardId=${boardList.boardId}">
-																				<strong class="ans_type _ccast_item_url  N=a:amx*b.content"></strong>
 																				<!-- TITLE -->
-																				<span class="alarm_tx _ccast_item_url  N=a:amx*b.content"><strong>No.${boardList.boardId}. </strong> ${boardList.title}</span>
-																				<span class="etc_obj">
-																				</span>
+																				<div id ="title_group">
+																					<div class = "title_family" style="margin-left:20px; font-size:10px; color:#989898;">
+																						<strong>No.${boardList.boardId}</strong>
+																					</div>
+																					<div class = "title_family" style="width:330px; font-size:14px;">
+																						${boardList.title}
+																					</div>
+																				</div>
 																			</a>
 																		</span>
-																        <div class="from_obj" style=" width: 480px;">
-																				<span id = "postDate"><strong>by ${boardList.nickName}</strong></span>
-																				<span class="alarm_time">| ${boardList.createDate} </span>
-																				<span>| 조회수: ${boardList.hits}</span>
+																        <div class="from_obj" style=" width: 480px; display:block; margin-top: 5px; width:480px;">
+																			<span id = "postDate"><strong><i class="fa-solid fa-pen-nib"></i> ${boardList.nickName}</strong></span>
+																			<span class="alarm_time"> <i class="fa-solid fa-calendar-days"></i> ${boardList.createDate} </span>
+																			<span> <i class="fa-regular fa-eye"></i> ${boardList.hits}</span>
 																    	</div>
 																    </div>
 																</div>							
 															</div>
-															<button type="button" class="env_bubble _noti_show_config N=a:amx*b.set" data-service="blog" >
-																<span class="blind">설정</span>
-															</button>
-															<!-- <button type="button" class="del_bubble _noti_del N=a:amx*b.del"><span class="blind">삭제</span></button> -->
-															<span class="bx_bg">
-																<span class="ico_timeDot"></span>
-															</span>
 														</div>
 													</c:forEach>
 											</div>
 										</li>
 									</ul>
+								</div>	
 							</div>
 						</div>
 					</div>
@@ -186,11 +204,36 @@
 		} */
 			
 		function checkLogin() {
-			if ( frm.writer.value == "") { //로그인폼으로 이동
+			if ( frm.addWriter.value == "") { //로그인폼으로 이동
 				alert("로그인이 필요합니다!")
 				window.location.href = "memberLoginForm.do";
 	    	  } else { //글쓰기폼으로 이동
-				frm.submit();
+	    		  let status = $('#add_form').css('display');
+	    		  console.log(status); //콘솔창에 로그를 남기며, 확인했으면 삭제하기
+	              if (status == 'none') {
+	                  $('#add_form').show();
+	                  $('#write_btn').text('닫기');
+	              } else {
+	                  $('#add_form').hide();
+	                  $('#write_btn').text('글쓰기');
+	            	}
+	        	}
+	    }
+		
+		function checkAdd() {
+			if (frm.title.value == "") { 
+				 alert("제목을 입력하세요!");
+				 return;
+	    	} else if (frm.content.value == "") {
+	               alert("내용을 입력하세요!");
+	               frm.content.focus();
+	            return;
+	    	  } else {
+	    		  if (confirm("글을 등록하시겠습니까?") == true) { 
+	  				frm.submit();
+	  	    	  } else { 
+	  	    		window.location.href = "postListPaging.do?pageNum=1&postNum=10";
+	  	    	  	}
 	    	  }
 		}
     </script>

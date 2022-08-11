@@ -12,12 +12,10 @@ import dev.controller.board.CommentAddController;
 import dev.controller.board.CommentDeleteController;
 import dev.controller.board.CommentUpdateController;
 import dev.controller.board.PostAddController;
-import dev.controller.board.PostAddFormController;
 import dev.controller.board.PostDeleteController;
 import dev.controller.board.PostDetailController;
 import dev.controller.board.PostListPagingController;
 import dev.controller.board.PostUpdateController;
-import dev.controller.board.PostUpdateFormController;
 import dev.controller.detail.DetailMainController;
 import dev.controller.interestedStore.InterestedStoreListController;
 import dev.controller.interestedStore.LikeStoreController;
@@ -141,9 +139,7 @@ public class FrontController extends HttpServlet {
 		//Board
 		mappings.put("/postListPaging.do", new PostListPagingController()); //게시판 첫페이지->postList.tiles
 		mappings.put("/postDetail.do", new PostDetailController()); //게시글->postDetail.tiles
-		mappings.put("/postAddForm.do", new PostAddFormController()); //addForm->addPostForm.tiles
 		mappings.put("/postAdd.do", new PostAddController()); //List->게시글 등록->postListPaging.do
-		mappings.put("/postUpdateForm.do", new PostUpdateFormController());//게시글->게시글 수정폼
 		mappings.put("/postUpdate.do", new PostUpdateController()); //게시글 수정폼->게시글 수정
 		mappings.put("/postDelete.do", new PostDeleteController());//글 삭제 -> 목록으로 연결
 		
