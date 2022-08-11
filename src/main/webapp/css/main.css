@@ -58,8 +58,6 @@ ul{
 li{
   display:inline-block;
   text-align:left;
-}
-li:nth-child(odd){
   padding-right:15px;
 }
 
