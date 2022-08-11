@@ -394,9 +394,45 @@ public class StoreRepository extends DAO {
 
 	// 랜덤 리스트 조회
 	public Store getStore() {
-		String sql = "SELECT * "
-				+ "FROM (SELECT ROWNUM AS rownumber, store_id, store_name, member_id, store_address, telephone, sit_capacity, available_time, holiday, represent_menu, store_img_url, food_category, approval_status "
-				+ "FROM stores) s " + "WHERE s.rownumber = ?";
+//		String sql = "SELECT * "
+//				+ "FROM (SELECT ROWNUM AS rownumber, store_id, store_name, member_id, store_address, telephone, sit_capacity, available_time, holiday, represent_menu, store_img_url, food_category, approval_status "
+//				+ "FROM stores) s " + "WHERE s.rownumber = ?";
+		String sql ="SELECT "
+				+ "    * "
+				+ "FROM "
+				+ "    ( "
+				+ "        SELECT "
+				+ "            ROWNUM rn, "
+				+ "            a.store_id, "
+				+ "            a.store_name, "
+				+ "            a.member_id, "
+				+ "            a.store_address, "
+				+ "            a.telephone, "
+				+ "            a.sit_capacity, "
+				+ "            a.available_time, "
+				+ "            a.holiday, "
+				+ "            a.represent_menu, "
+				+ "            a.store_img_url, "
+				+ "            a.food_category, "
+				+ "            a.approval_status, "
+				+ "            round(nvl(b.score, 0), 2) s "
+				+ "            FROM stores a "
+				+ "            , "
+				+ "            ( "
+				+ "                SELECT "
+				+ "                    store_name, "
+				+ "                    SUM(taste_score) / COUNT(*) score "
+				+ "                FROM "
+				+ "                    reviews "
+				+ "                GROUP BY "
+				+ "                    store_name "
+				+ "            ) b "
+				+ "        WHERE\n"
+				+ "                a.store_name = b.store_name (+) "
+				+ "             "
+				+ "    ) "
+				+ "WHERE "
+				+ "    rn = ?";
 		Store store = new Store();
 //		connect();
 		int randomStoreId = (int) (Math.random() * countStores()) + 1;
@@ -420,6 +456,7 @@ public class StoreRepository extends DAO {
 				urlList.add(rs.getString("store_img_url"));
 				store.setStoreImgUrl(urlList);
 				store.setApprovalStatus(rs.getInt("approval_status"));
+				store.setScore(rs.getDouble("s"));
 				// list.add(store);
 			}
 		} catch (SQLException e) {

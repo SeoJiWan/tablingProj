@@ -128,13 +128,13 @@
 				<div class="center">
 				  	<div class="pagination">
 					  	<c:if test="${pageInfo.prev }">
-					  		<a href="storeFilterSearchPaging.do?job=${job }&pageNum=${pageInfo.startPage - 1 }&postNum=${pageInfo.cri.postNum}${areaStr }${foodStr }">prev</a>
+					  		<a class="prevnext" href="storeFilterSearchPaging.do?job=${job }&pageNum=${pageInfo.startPage - 1 }&postNum=${pageInfo.cri.postNum}${areaStr }${foodStr }">prev</a>
 					  	</c:if>
 					  	<c:forEach var="num" begin="${pageInfo.startPage }" end="${pageInfo.endPage }">
 					  		<a href="storeFilterSearchPaging.do?job=${job }&pageNum=${num }&postNum=${pageInfo.cri.postNum}${areaStr }${foodStr }">${num }</a>
 					 	</c:forEach>
 					 	<c:if test="${pageInfo.next }">
-					  		<a href="storeFilterSearchPaging.do?job=${job }&pageNum=${pageInfo.endPage + 1 }&postNum=${pageInfo.cri.postNum}${areaStr }${foodStr }">next</a>
+					  		<a class="prevnext" href="storeFilterSearchPaging.do?job=${job }&pageNum=${pageInfo.endPage + 1 }&postNum=${pageInfo.cri.postNum}${areaStr }${foodStr }">next</a>
 					  	</c:if>
 				  	</div>
 				</div>
@@ -144,13 +144,13 @@
 				<div class="center">
 				  	<div class="pagination" id="pagingbutton">
 					  	<c:if test="${pageInfo.prev }">
-					  		<a href="storeSearchPaging.do?keyword=${keyword }&pageNum=${pageInfo.startPage - 1 }&postNum=${pageInfo.cri.postNum}">&lt;</a>
+					  		<a class="prevnext" href="storeSearchPaging.do?keyword=${keyword }&pageNum=${pageInfo.startPage - 1 }&postNum=${pageInfo.cri.postNum}">&lt;</a>
 					  	</c:if>
 					  	<c:forEach var="num" begin="${pageInfo.startPage }" end="${pageInfo.endPage }">
 					  		<a href="storeSearchPaging.do?keyword=${keyword }&pageNum=${num }&postNum=${pageInfo.cri.postNum}">${num }</a>
 					 	</c:forEach>
 					 	<c:if test="${pageInfo.next }">
-					  		<a href="storeSearchPaging.do?keyword=${keyword }&pageNum=${pageInfo.endPage + 1 }&postNum=${pageInfo.cri.postNum}">&gt;</a>
+					  		<a class="prevnext" href="storeSearchPaging.do?keyword=${keyword }&pageNum=${pageInfo.endPage + 1 }&postNum=${pageInfo.cri.postNum}">&gt;</a>
 					  	</c:if>
 				  	</div>
 				</div>

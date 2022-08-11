@@ -39,12 +39,6 @@
 <body>
 
   <div id="h">
-    <div class="logo">줄을서시오</div>
-    <div class="social hidden-xs">
-      <a href="#"><i class="ion-social-twitter"></i></a>
-      <a href="#"><i class="ion-social-instagram"></i></a>
-      <a href="#"><i class="ion-social-facebook"></i></a>
-    </div>
     <div class="container">
       <div class="row">
         <div class="col-md-8 col-md-offset-2 centered">
@@ -75,7 +69,7 @@
             <li>
               <!-- 이미지 -->
               <c:forEach var="img" items="${store.storeImgUrl }">
-               <a href="${pageContext.request.contextPath }/detailPage.do?storeName=${store.storeName}"><img src="${pageContext.request.contextPath }/img/store_img/${img }" width="360" height="250"></a>
+               <a href="${pageContext.request.contextPath }/detailPage.do?storeName=${store.storeName}"><img src="${pageContext.request.contextPath }/img/store_img/${img }" width="370" height="250"></a>
               </c:forEach>
               <!-- 가게 정보 -->
               <h4>${store.storeName }&nbsp;&nbsp;&nbsp;<span class="orange">${store.score }</span></h4>
@@ -99,12 +93,14 @@
         <h5>맛집 검색, 예약은 줄을서시오</h5>
 
         <p class="mt">
-          <a href="#"><i class="ion-social-twitter"></i></a>
+          <a href="https://twitter.com/home"><i class="ion-social-twitter"></i></a>
+          <a href="https://www.instagram.com/"><i class="ion-social-instagram"></i></a>
+          <a href="https://ko-kr.facebook.com/"><i class="ion-social-facebook"></i></a>
+          <%--
           <a href="#"><i class="ion-social-dribbble"></i></a>
-          <a href="#"><i class="ion-social-instagram"></i></a>
-          <a href="#"><i class="ion-social-facebook"></i></a>
           <a href="#"><i class="ion-social-pinterest"></i></a>
           <a href="#"><i class="ion-social-tumblr"></i></a>
+           --%>
         </p>
       </div>
       <div class="row">

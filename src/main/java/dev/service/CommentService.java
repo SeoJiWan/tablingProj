@@ -35,7 +35,10 @@ public class CommentService {
 		commentRepo.updateComment(cm);
 	}
 	
-	//댓글 저장
+	//댓글 갯수
+	public void countComment(int boardId) {
+		commentRepo.countComment(boardId);
+	}
 	
 	//댓글 삭제
 	public void deleteComment(Comment cm) {
