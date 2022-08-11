@@ -1,3 +1,21 @@
+.container{
+  margin: 0;
+  top: 20px;
+  left: 50%;
+  position: absolute;
+  text-align: center;
+  transform: translateX(-50%);
+  background-color: white;
+  border-radius: 9px;
+  border-top: 10px solid #ff993b;
+  border-bottom: 10px solid #ff993b;
+  border-left :1px solid #ff993b;
+  border-right :1px solid #ff993b;
+  width: 600px;
+  height: 900px;
+  /* box-shadow: 1px 1px 108.8px 19.2px rgb(25,31,53); */
+}
+
 .container_store_regist {
 	width: 500px;
 	margin: 0 auto;
@@ -13,4 +31,3 @@
 .table_store_register th {
 	width: 200px;
 }
-

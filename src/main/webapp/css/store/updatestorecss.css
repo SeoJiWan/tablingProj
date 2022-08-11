@@ -1,14 +1,13 @@
 .container{
   margin: 0;
-  margin-top : 30px;
-  top: 50px;
+  top: 20px;
   left: 50%;
   position: absolute;
   text-align: center;
   transform: translateX(-50%);
   background-color: white;
   border-radius: 9px;
-  border-top: 30px solid #ff993b;
+  border-top: 10px solid #ff993b;
   border-bottom: 10px solid #ff993b;
   border-left :1px solid #ff993b;
   border-right :1px solid #ff993b;

@@ -41,6 +41,14 @@ pageEncoding="UTF-8"%>
             <span class="title">회원 관리</span>
           </a>
         </li>
+               <li class="list">
+          <a href="memberLogout.do">
+            <span class="icon">
+             <i class="input-icon uil uil-signout"></i>
+            </span>
+            <span class="title">로그아웃</span>
+          </a>
+        </li>
       </ul>
     </div>
     <script src="${pageContext.request.contextPath }/js/sidebar.js"></script>
