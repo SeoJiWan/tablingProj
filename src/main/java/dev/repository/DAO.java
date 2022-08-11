@@ -21,6 +21,7 @@ public class DAO {
 	// field for DB configuration
 	private String cDriver = "oracle.jdbc.driver.OracleDriver";
 	private String cUrl = "jdbc:oracle:thin:@localhost:1521:xe";
+//	private String cUrl = "jdbc:oracle:thin:@192.168.0.64:xe";
 	private String cId = "tabling";
 	private String cPwd = "tabling";
 
