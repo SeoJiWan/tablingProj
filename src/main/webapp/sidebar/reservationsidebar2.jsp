@@ -41,6 +41,14 @@ pageEncoding="UTF-8"%>
             <span class="title">점포등록</span>
           </a>
         </li>
+               <li class="list">
+          <a href="memberLogout.do">
+            <span class="icon">
+             <i class="input-icon uil uil-signout"></i>
+            </span>
+            <span class="title">로그아웃</span>
+          </a>
+        </li>
       </ul>
     </div>
   </body>

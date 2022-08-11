@@ -3,8 +3,9 @@ pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link href="${pageContext.request.contextPath}/css/head.css" rel="stylesheet" type="text/css">
 <script src="https://kit.fontawesome.com/883c2a5320.js" crossorigin="anonymous"></script>
-<header class="head_container">
 
+<c:if test="${empty loginMember || loginMember.role == 2 }">
+<header class="head_container">
 <div class="main_headbar">
 	<div class="item1">
 		<!-- 비회원으로 서비스 이용시 로고 클릭 메인화면 연결 -->
@@ -34,7 +35,7 @@ pageEncoding="UTF-8"%>
     
     <div class="item6">
     	<c:if test="${empty loginMember.memberId }">
-		<a href="memberLoginForm.do"><img src="${pageContext.request.contextPath }/img/login.PNG" alt="logoin" class="header_img" /></a>
+		<a href="memberLoginForm.do"><img src="${pageContext.request.contextPath }/img/login.jpg" alt="logoin" class="header_img" /></a>
 		</c:if>
 		
 		<c:if test="${not empty loginMember.memberId }">
@@ -47,19 +48,20 @@ pageEncoding="UTF-8"%>
 <%-- 			<c:if test="${loginMember.role eq 2 }"> --%>
 <%-- 			<a>${loginMember.memberId } 손님 입장!</a> --%>
 <%-- 			</c:if> --%>
-			<a href="memberLogout.do"><img src="${pageContext.request.contextPath }/img/logout.PNG" alt="logoout" class="header_img" /></a>
+			<a href="memberLogout.do"><img src="${pageContext.request.contextPath }/img/logout.jpg" alt="logoout" class="header_img" /></a>
 		
 		</c:if>
     
-		<a href="postListPaging.do?pageNum=1&postNum=10"><img src="${pageContext.request.contextPath }/img/board.PNG" alt="logoout" class="header_img" /></a>
+		<a href="postListPaging.do?pageNum=1&postNum=10"><img src="${pageContext.request.contextPath }/img/board.JPG" alt="logoout" class="header_img" /></a>
 		
 		<c:if test="${not empty loginMember }">
-			<a href="memberInfoMyPage.do"><img src="${pageContext.request.contextPath }/img/mypage.PNG" alt="logoout" class="header_img" /></a>
+			<a href="memberInfoMyPage.do"><img src="${pageContext.request.contextPath }/img/user.JPG" alt="logoout" class="header_img" /></a>
 		</c:if>
 		<c:if test="${empty loginMember }">
-			<a href="#" onclick="loginRequired()"><img src="${pageContext.request.contextPath }/img/mypage.PNG" alt="logoout" class="header_img" /></a>
+			<a href="#" onclick="loginRequired()"><img src="${pageContext.request.contextPath }/img/user.JPG" alt="logoout" class="header_img" /></a>
 		</c:if>
 	</div>
 </div>
 </header>
+</c:if>
 
