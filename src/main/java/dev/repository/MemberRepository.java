@@ -7,14 +7,14 @@ import java.util.List;
 import dev.domain.Criteria;
 import dev.domain.Member;
 
-public class MemberRepository extends DAO{
+public class MemberRepository extends DAO {
 
 	/*
 	 * Method
 	 */
 	// 삽입
 	public void insert(Member member) {
-		String sql = "insert into members values(?, ?, ?, ?, ?)";
+		String sql = "insert into members ('member_id', 'password', 'nickname', 'phone_num', 'role') values(?, ?, ?, ?, ?)";
 		connect();
 
 		try {
@@ -41,11 +41,8 @@ public class MemberRepository extends DAO{
 
 	// 수정
 	public void update(Member member) {
-		String sql = "update members set "
-					+ "password = ?, "
-					+ "phone_num = ?, "
-					+ "nickname = ? "
-					+ "where member_id = ?";
+		String sql = "update members set " + "password = ?, " + "phone_num = ?, " + "nickname = ? "
+				+ "where member_id = ?";
 		connect();
 
 		try {
@@ -54,6 +51,30 @@ public class MemberRepository extends DAO{
 			ps.setString(2, member.getPhoneNum());
 			ps.setString(3, member.getNickName());
 			ps.setString(4, member.getMemberId());
+
+			int result = ps.executeUpdate();
+
+			if (result > 0) {
+				System.out.println(result + " 건 수정.");
+			} else {
+				System.out.println("수정 실패.");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+	}
+
+	// 프로필 이미지 수정
+	public void updateProfile(Member member) {
+		String sql = "update members set profile_img_url = ? where member_id = ?";
+		connect();
+
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, member.getProfileImgUrl());
+			ps.setString(2, member.getMemberId());
 
 			int result = ps.executeUpdate();
 
@@ -110,6 +131,7 @@ public class MemberRepository extends DAO{
 				member.setNickName(rs.getString(3));
 				member.setPhoneNum(rs.getString(4));
 				member.setRole(rs.getInt(5));
+				member.setProfileImgUrl(rs.getString(6));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -136,6 +158,7 @@ public class MemberRepository extends DAO{
 				member.setNickName(rs.getString(3));
 				member.setPhoneNum(rs.getString(4));
 				member.setRole(rs.getInt(5));
+				member.setProfileImgUrl(rs.getString(6));
 
 				list.add(member);
 			}
@@ -146,7 +169,7 @@ public class MemberRepository extends DAO{
 		}
 		return list;
 	}
-	
+
 	public boolean deleteMember(String memberId) {
 		String sql = "delete members where member_id = ?";
 
