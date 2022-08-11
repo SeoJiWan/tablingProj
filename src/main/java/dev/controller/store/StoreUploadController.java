@@ -7,15 +7,12 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-
 import dev.controller.Controller;
 import dev.controller.Utils;
 import dev.domain.Store;
@@ -49,10 +46,11 @@ public class StoreUploadController implements Controller {
 		String separator = File.separator;
 		
 		Store store = new Store();
-		HotelPicVO pvo = new HotelPicVO(); 
-		HotelService service = HotelService.getInstance();
+//		HotelPicVO pvo = new HotelPicVO(); 
+//		HotelService service = HotelService.getInstance();
 		
-		int currVal = service.getCurrentSequence();
+//		int currVal = service.getCurrentSequence();
+		int currVal = 1;
 		
 		try {
 			List<FileItem> items = fileUpload.parseRequest(req);
@@ -71,7 +69,8 @@ public class StoreUploadController implements Controller {
 						fileName = getCurrentTime() + it.getName().substring(index + 1);
 						System.out.println(fileName);
 						
-						uploadFolder = new File(file + separator + parameter.get("storeName") + currVal);						
+						uploadFolder = new File(file + separator + parameter.get("storeName") + currVal);
+						currVal++;
 						if(!uploadFolder.exists()) {
 							try {
 								uploadFolder.mkdir();
@@ -84,27 +83,27 @@ public class StoreUploadController implements Controller {
 						it.write(new File(uploadFolder + separator + fileName));
 						
 					} 
-					hvo.setHotelId(currVal);
-					hvo.setHotelName(parameter.get("hotel_name"));
-					hvo.setHotelLocation(parameter.get("hotel_location"));
-					hvo.setHotelDesc(parameter.get("hotel_desc"));
-					hvo.setHotelPrice(Integer.parseInt(parameter.get("hotel_price")));
-					hvo.setMemberId(parameter.get("member_id"));
-					hvo.setHotelType(parameter.get("hotel_type"));
-					hvo.setHotelType(parameter.get("maxP"));
-					
-					hvo.setHotelOptionKitchen(Integer.parseInt(parameter.getOrDefault("hotel_option_kitchen", "0")));
-					hvo.setHotelOptionParking(Integer.parseInt(parameter.getOrDefault("hotel_option_parking", "0")));
-					hvo.setHotelOptionSwim(Integer.parseInt(parameter.getOrDefault("hotel_option_swim", "0")));
-					hvo.setHotelOptionWifi(Integer.parseInt(parameter.getOrDefault("hotel_option_WIFI", "0")));
-					hvo.setHotelOptionWpet(Integer.parseInt(parameter.getOrDefault("hotel_option_wPet", "0")));
-										
-					pvo.setHotelId(currVal);
-					pvo.setPath("hotel_image/" + parameter.get("hotel_name") + currVal);
-					pvo.setName("/" + fileName.replace(separator, "/"));
-					
-					System.out.println(pvo.getPath());
-					System.out.println(pvo.getName());										
+//					hvo.setHotelId(currVal);
+//					hvo.setHotelName(parameter.get("hotel_name"));
+//					hvo.setHotelLocation(parameter.get("hotel_location"));
+//					hvo.setHotelDesc(parameter.get("hotel_desc"));
+//					hvo.setHotelPrice(Integer.parseInt(parameter.get("hotel_price")));
+//					hvo.setMemberId(parameter.get("member_id"));
+//					hvo.setHotelType(parameter.get("hotel_type"));
+//					hvo.setHotelType(parameter.get("maxP"));
+//					
+//					hvo.setHotelOptionKitchen(Integer.parseInt(parameter.getOrDefault("hotel_option_kitchen", "0")));
+//					hvo.setHotelOptionParking(Integer.parseInt(parameter.getOrDefault("hotel_option_parking", "0")));
+//					hvo.setHotelOptionSwim(Integer.parseInt(parameter.getOrDefault("hotel_option_swim", "0")));
+//					hvo.setHotelOptionWifi(Integer.parseInt(parameter.getOrDefault("hotel_option_WIFI", "0")));
+//					hvo.setHotelOptionWpet(Integer.parseInt(parameter.getOrDefault("hotel_option_wPet", "0")));
+//										
+//					pvo.setHotelId(currVal);
+//					pvo.setPath("hotel_image/" + parameter.get("hotel_name") + currVal);
+//					pvo.setName("/" + fileName.replace(separator, "/"));
+//					
+//					System.out.println(pvo.getPath());
+//					System.out.println(pvo.getName());										
 				}						
 			}
 		} catch (Exception e) {
