@@ -31,6 +31,7 @@ import dev.controller.member.MemberLogoutController;
 import dev.controller.member.MemberUpdateController;
 import dev.controller.member.MemberUpdateFormController;
 import dev.controller.member.MemberadminDeleteController;
+import dev.controller.member.ProfileUploadController;
 import dev.controller.reservation.ReservationCompleteController;
 import dev.controller.reservation.ReservationDeleteController;
 import dev.controller.reservation.ReservationFormController;
@@ -97,6 +98,9 @@ public class FrontController extends HttpServlet {
 		mappings.put("/interestedStoreList.do", new InterestedStoreListController());
 		mappings.put("/reservationList.do", new ReservationListController());
 		mappings.put("/reviewListByMemberId.do", new ReviewListByMemberIdController());
+		
+		mappings.put("/profileUpload.do", new ProfileUploadController());
+		
 		
 		//Reservation
 		mappings.put("/reservationDelete.do", new ReservationDeleteController());

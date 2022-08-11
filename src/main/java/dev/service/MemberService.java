@@ -137,4 +137,9 @@ public class MemberService {
 	public List<Member> getMemberList(Criteria cri) {
 		return memberRepository.getListPaging(cri);
 	}
+	
+	// 프로필 이미지 수정
+	public void changeProfile(Member member) {
+		memberRepository.updateProfile(member);
+	}
 }

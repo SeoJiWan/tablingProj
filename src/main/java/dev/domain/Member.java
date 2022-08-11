@@ -10,12 +10,21 @@ public class Member {
 	private String phoneNum;
 	private String nickName;
 	private int role; // 0: 시스템 관리자, 1: 점주, 2: 일반사용자 
+	private String profileImgUrl;
 	
+
 	/*
 	 * Method
 	 */
+	
 	public String getMemberId() {
 		return memberId;
+	}
+	public String getProfileImgUrl() {
+		return profileImgUrl;
+	}
+	public void setProfileImgUrl(String profileImgUrl) {
+		this.profileImgUrl = profileImgUrl;
 	}
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
@@ -47,6 +56,7 @@ public class Member {
 	@Override
 	public String toString() {
 		return "Member [memberId=" + memberId + ", password=" + password + ", phoneNum=" + phoneNum + ", nickName="
-				+ nickName + ", role=" + role + "]";
+				+ nickName + ", role=" + role + ", profileImgUrl=" + profileImgUrl + "]";
 	}
+	
 }

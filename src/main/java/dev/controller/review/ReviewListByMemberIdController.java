@@ -18,6 +18,8 @@ public class ReviewListByMemberIdController implements Controller {
 		// 멤버 아이디별 리뷰 조회 -> 내 리뷰 조회 기능
 		Member loginMember = (Member) req.getSession().getAttribute("loginMember");
 		
+		System.out.println("loginMember = " + loginMember);
+		
 		List<Review> list = reviewService.findAllReviewsByMemberId(loginMember.getMemberId());
 //		list.forEach(System.out::println);
 		
