@@ -1,9 +1,3 @@
-@charset "EUC-KR";
-
-* {
-  font-family: "87MMILSANG-Regular";
-}
-
 @font-face {
   font-family: "87MMILSANG-Regular";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201@1.0/87MMILSANG-Regular.woff2")
@@ -12,13 +6,30 @@
   font-style: normal;
 }
 
-#detailImg {
-  padding-bottom: 5%;
+* {
+  font-family: "87MMILSANG-Regular";
 }
 
-/* #storeImg{
-	window.innerWidth:
-} */
+#detail_container {
+  margin-top:100px;
+}
+
+/* 가게 이미지 */
+#detail_container #detailImg {
+  display: flex;
+  /* padding-bottom: 5%; */
+  /* background-color: antiquewhite; */
+}
+
+#detail_container #detailImg img {
+  flex-grow: 1;
+  margin-right: 20px;
+}
+
+#detail_container #detailImg img:last-child {
+  margin-right: 0px;
+}
+/* 가게 이미지 끝*/
 
 /* 가게 상세 정보 */
 #detail_container #storeInfo {
@@ -26,7 +37,7 @@
   /* margin: 0 auto; */
   margin-top: 100px;
   margin-left: 5%;
-/*   background-color: pink; */
+  /* background-color: pink; */
 }
 
 #detail_container .storeName {
@@ -48,13 +59,6 @@
   clear: both;
   width: 40px;
   height: 40px;
-  border: 0;
-  outline: 0;
-}
-
-/* ���ϱ� ��ư */
-#detail_container .like:hover {
-  cursor: pointer;
 }
 
 #detail_container .storeLine {
@@ -83,14 +87,14 @@
 }
 /* 가게 상세 정보 끝*/
 
-/* ���� �� */
+/* 예약 폼 */
 #reservationForm {
+  position: fixed;
+  top: 40%;
+  left: 60%;
   border: 1px solid #353535;
   width: 30%;
   height: 35%;
-  position: fixed;
-  top: 40%;
-  left: 56%;
   background-color: #ffffff;
   opacity: 100;
   text-align: center;
@@ -106,7 +110,7 @@
   margin: 1%;
 }
 
-/* ���� */
+/* 별점 */
 .star-rating {
   display: flex;
   flex-direction: row-reverse;
@@ -138,41 +142,73 @@
   -webkit-text-fill-color: orange;
 }
 
-/* ���� */
-.reviewForm {
+/* 리뷰 */
+#detail_container .reviewForm {
+  width: 60%;
+  /* background-color: palegoldenrod; */
+  margin-top: 50px;
   margin-left: 5%;
-  margin-top: 5%;
+  border-top: 1px solid rgb(224, 224, 224);
 }
 
-#content {
-  width: 40%;
-  height: 6.25em;
-  border: 1px solid black;
+#detail_container .star-rating {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+#detail_container .write_zone {
+  /* background-color: aliceblue; */
+  border: 1px solid rgb(224, 224, 224);
+  border-radius: 20px;
+  width: 700px;
+  margin-top: 50px;
+  height: 250px;
+  text-align: center;
+}
+
+#detail_container #content {
+  margin-top: 10px;
+  width: 620px;
+  height: 100px;
+  border: 1px solid rgb(224, 224, 224);
+  border-radius: 10px;
   resize: none;
-  padding: 2%;
+  padding: 15px;
 }
 
-#btn_review_insert {
-  position: absolute;
-  left: +45.5%;
-  bottom: -6%;
-  border: 0;
-  outline: 0;
-  cursor: pointer;
+#detail_container button {
+  float: right;
+  margin: 10px;
 }
 
-/* ���� ����Ʈ */
-#reviewList {
+
+/* 리뷰 리스트 */
+#detail_container .profile_img {
+	width:100px;
+	height: 100px;
+	border-radius: 50px;
+}
+
+#detail_container .reviewList {
+  clear: both;
+  background-color: pink;
+  margin-top: 50px;
   margin-left: 5%;
-  margin-top: 5%;
-  margin-bottom: 4%;
+  width: 60%;
 }
 
-#reviewList tr th {
-  border-bottom: 3px solid #aaf0d1;
-  padding: 1%;
+#detail_container .reviewList th, td{
+	padding:10px;
 }
 
-.reviewTr td {
-  padding: 1%;
+#detail_container .review_container {
+	display: flex;
+}
+
+#detail_container .member_area {
+	background-color: yellow;
+}
+
+#detail_container .review_area {
+	background-color: green;
 }

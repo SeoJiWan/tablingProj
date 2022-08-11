@@ -6,7 +6,7 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
-<link rel="stylesheet" href="css/detail/detailStyle.css?after">
+<link rel="stylesheet" href="css/detail/detailStyle.css">
 </head>
 <body>
 <div id="detail_container">
@@ -46,7 +46,7 @@
         </span>
       </div>
 
-        <table>
+        <table class="">
           <tr>
             <td>주소</td>
             <td>${storeDetail.storeAddress }</td>
@@ -129,86 +129,69 @@
       </div>
       
       
-      <!-- 리뷰 폼 --> 
-   <div class="reviewForm">
-			 <div class="star-rating space-x-4 mx-auto">
-		      <input type="radio" id="5-stars" name="rating" value="5"/>
-		      <label for="5-stars" class="star pr-4">★</label>
-		      <input type="radio" id="4-stars" name="rating" value="4"/>
-		      <label for="4-stars" class="star">★</label>
-		      <input type="radio" id="3-stars" name="rating" value="3"/>
-		      <label for="3-stars" class="star">★</label>
-		      <input type="radio" id="2-stars" name="rating" value="2"/>
-		      <label for="2-stars" class="star">★</label>
-		      <input type="radio" id="1-star" name="rating" value="1"/>
-		      <label for="1-star" class="star">★</label>
-   			 </div>
-			<textarea placeholder="Write Review" name="content" id="content"></textarea>
-			<input type="hidden" name="storeName" id="storeName"
-				value="${storeDetail.storeName }">
-
-			<c:if test="${not empty loginMember.memberId }">
-				<button type="button" id="btn_review_insert"
-					onclick="review_insert()">Upload</button>
-			</c:if>
-
-			<c:if test="${empty loginMember.memberId }">
-				<button type="button" onclick="loginForm()">Upload</button>
-			</c:if>
-	</div>
-	
-
-	<table id="reviewList">
-		<tr class="reveiwTr">
-			<th style="display: none">id</th>
-			<th style="display: none">storename</th>
-			<th>작성자</th>
-			<th>리뷰 내용</th>
-			<th>⭐</th>
-			<th> 작성일 </th>
-		</tr>
-
-		<c:forEach var="review" items="${list }">
-			<tr class="reveiwTr">
-				<td style="display: none">${review.reviewId }</td>
-				<th style="display: none">${review.storeName }</th>
-				<td>${review.memberId }</td>
-				<td>${review.content }</td>
-				<td><c:forEach var="a" begin="1" end="${review.tasteScore }">
-               		⭐
-            	</c:forEach></td>
-				<td>${review.createDate }</td>
-				<c:if test="${review.memberId eq loginMember.memberId }">
-					<td>
-						<button value="삭제" onclick='deleteCallback(event)' class=delete>삭제</button>
-					</td>
-					<td>
-						<button value="수정" onclick='updateCallback(event)' class=update>수정</button>
-					</td>
-				</c:if>
-			</tr>
-		</c:forEach>
-	</table>
-    </div>
+      <!-- 리뷰 폼 -->
+       <div class="reviewForm">
+        <div class="write_zone">
+           <div class="star-rating space-x-4 mx-auto">
+              <input type="radio" id="5-stars" name="rating" value="5"/>
+              <label for="5-stars" class="star pr-4">★</label>
+              <input type="radio" id="4-stars" name="rating" value="4"/>
+              <label for="4-stars" class="star">★</label>
+              <input type="radio" id="3-stars" name="rating" value="3"/>
+              <label for="3-stars" class="star">★</label>
+              <input type="radio" id="2-stars" name="rating" value="2"/>
+              <label for="2-stars" class="star">★</label>
+              <input type="radio" id="1-star" name="rating" value="1"/>
+              <label for="1-star" class="star">★</label>
+              </div>
+          <textarea placeholder="리뷰를 작성하세요" name="content" id="content"></textarea>
+          
+          <input type="hidden" name="storeName" id="storeName"
+            value="${storeDetail.storeName }">
+    
+          <c:if test="${not empty loginMember.memberId }">
+            <button type="button" id="btn_review_insert"
+              onclick="review_insert()">Upload</button>
+          </c:if>
+    
+          <c:if test="${empty loginMember.memberId }">
+            <button type="button" onclick="loginForm()">Upload</button>
+          </c:if>
+        </div>
+      </div>
       
 
-
-    <!-- <script type="text/javascript">
-      // 사진 리사이즈
-      function imgResize() {
-          let imgs = document.querySelectorAll('.store_img');
-          for (let i = 0; i < imgs.length; i++) {
-            imgs[i].style.width = (window.innerWidth / 5) - 26 + 'px';
-          }
-          
-      }
-      window.onload = function() {
-        imgResize();
-
-          // 브라우저 크기가 변할 시 동적으로 사이즈를 조절해야 하는경우
-          window.addEventListener('resize', imgResize);
-      }
-  </script> -->
+      
+     <div class="reviewList">
+     <h3>가게 리뷰</h3>
+     <c:forEach var="review" items="${list }">
+	  <div class="review_container">
+	  	  <!-- 멤버 프로필사진, 아이디 영역 -->
+	      <div class="member_area">
+	        <div class="member_profile"><img src="${pageContext.request.contextPath }/img/profile.jpg" alt="" class="profile_img"></div>
+	        <div class="member_id">${review.memberId }</div>
+	      </div>
+	      <!-- 리뷰 내용 영역 -->
+	      <div class="review_area">
+	        <div class="review_date">${review.createDate }}</div>
+	        <div class="review_content">${review.content }</div>
+	        <div class="review_score">
+	          <c:forEach var="a" begin="1" end="${review.tasteScore }">⭐</c:forEach>
+	        </div>
+	        <div>
+	        	 <c:if test="${review.memberId eq loginMember.memberId }">
+	        	 	<button value="삭제" onclick='deleteCallback(event)' class=delete>삭제</button>
+	        	 	<button value="수정" onclick='updateCallback(event)' class=update>수정</button>
+	        	 </c:if>
+	        </div>
+	      </div>
+    </div>
+	 </c:forEach>
+	 </div>
+	 
+	 </div>
+    
+      
     
       <script>
        function loginForm() {
