@@ -1,58 +1,113 @@
 @charset "EUC-KR";
 
-*{
-	font-family: '87MMILSANG-Regular';
+* {
+  font-family: "87MMILSANG-Regular";
 }
 
 @font-face {
-    font-family: '87MMILSANG-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201@1.0/87MMILSANG-Regular.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
+  font-family: "87MMILSANG-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201@1.0/87MMILSANG-Regular.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
 }
 
-#detailImg{
-	padding-bottom: 5%;
+#detailImg {
+  padding-bottom: 5%;
 }
 
+/* #storeImg{
+	window.innerWidth:
+} */
 
-/* ∞°∞‘ ªÛºº ¡§∫∏ */
-#storeInfo{
-	width: 80%;
-	margin: 0 auto;
+/* Í∞ÄÍ≤å ÏÉÅÏÑ∏ Ï†ïÎ≥¥ */
+#detail_container #storeInfo {
+  width: 60%;
+  /* margin: 0 auto; */
+  margin-top: 100px;
+  margin-left: 5%;
+/*   background-color: pink; */
 }
 
-.storeTitle{
-	font-size: x-large;
+#detail_container .storeName {
+  font-size: 30px;
 }
 
-/* øπæ‡ ∆˚ */
-#reservationForm{
-	border: 1px solid #353535;
-	width: 30%;
-	height: 35%;
-	position: fixed;
-	top: 40%;
-	left: 60%;
-	background-color: #ffffff;
-	opacity: 100;
-	text-align: center;
-	padding: 3%;
+#detail_container .score {
+  font-size: 33px;
+  color: orange;
+  margin-left: 10px;
 }
 
-#form{
-	margin: 0%;
-	padding-top: 3%;
+#detail_container #jjim {
+  /* background-color: red; */
+  float: right;
 }
 
-#form select{
-	margin: 1%;
+#detail_container .like {
+  clear: both;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  outline: 0;
 }
 
+/* ÔøΩÔøΩÔøΩœ±ÔøΩ ÔøΩÔøΩ∆∞ */
+#detail_container .like:hover {
+  cursor: pointer;
+}
 
+#detail_container .storeLine {
+  /* background-color: #2b2a29; */
+  height: 70px;
+  border-bottom: 1px solid rgb(224, 224, 224);
+}
 
-/* ∫∞¡° */
- .star-rating {
+#detail_container #storeInfo table {
+  width: 100%;
+  margin-top: 25px;
+  /* background-color: aqua; */
+  font-size: 16px;
+  border-collapse: collapse;
+}
+
+#detail_container #storeInfo table td:first-child {
+  width: 120px;
+  /* background-color: antiquewhite; */
+  color: rgb(123, 123, 123);
+}
+
+#detail_container #storeInfo table td {
+  padding: 15px;
+  /* border: 1px solid black; */
+}
+/* Í∞ÄÍ≤å ÏÉÅÏÑ∏ Ï†ïÎ≥¥ ÎÅù*/
+
+/* ÔøΩÔøΩÔøΩÔøΩ ÔøΩÔøΩ */
+#reservationForm {
+  border: 1px solid #353535;
+  width: 30%;
+  height: 35%;
+  position: fixed;
+  top: 40%;
+  left: 56%;
+  background-color: #ffffff;
+  opacity: 100;
+  text-align: center;
+  padding: 3%;
+}
+
+#form {
+  margin: 0%;
+  padding-top: 3%;
+}
+
+#form select {
+  margin: 1%;
+}
+
+/* ÔøΩÔøΩÔøΩÔøΩ */
+.star-rating {
   display: flex;
   flex-direction: row-reverse;
   font-size: 2.25rem;
@@ -62,41 +117,62 @@
   text-align: center;
   width: 5em;
 }
- 
+
 .star-rating input {
   display: none;
 }
- 
+
 .star-rating label {
   -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
   -webkit-text-stroke-width: 2.3px;
   -webkit-text-stroke-color: #2b2a29;
   cursor: pointer;
 }
- 
+
 .star-rating :checked ~ label {
   -webkit-text-fill-color: orange;
 }
- 
+
 .star-rating label:hover,
 .star-rating label:hover ~ label {
   -webkit-text-fill-color: orange;
 }
 
-
-/* ∏Æ∫‰ */
-#myform {
-	margin-left: 10%;
-	margin-top: 5%;
+/* ÔøΩÔøΩÔøΩÔøΩ */
+.reviewForm {
+  margin-left: 5%;
+  margin-top: 5%;
 }
 
-#content{
-	width:50%;
-	height: 30%;
+#content {
+  width: 40%;
+  height: 6.25em;
+  border: 1px solid black;
+  resize: none;
+  padding: 2%;
 }
 
-#btn_review_insert{
-	border:0;
-	outline:0;
+#btn_review_insert {
+  position: absolute;
+  left: +45.5%;
+  bottom: -6%;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
 }
 
+/* ÔøΩÔøΩÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩ∆Æ */
+#reviewList {
+  margin-left: 5%;
+  margin-top: 5%;
+  margin-bottom: 4%;
+}
+
+#reviewList tr th {
+  border-bottom: 3px solid #aaf0d1;
+  padding: 1%;
+}
+
+.reviewTr td {
+  padding: 1%;
+}

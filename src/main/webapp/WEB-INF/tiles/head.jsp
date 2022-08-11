@@ -3,7 +3,6 @@ pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link href="${pageContext.request.contextPath}/css/head.css" rel="stylesheet" type="text/css">
 <script src="https://kit.fontawesome.com/883c2a5320.js" crossorigin="anonymous"></script>
-<c:if test="${loginMember.role == 2  || empty loginMember }">
 <header class="head_container">
 
 <div class="main_headbar">
@@ -11,7 +10,7 @@ pageEncoding="UTF-8"%>
 		<!-- 비회원으로 서비스 이용시 로고 클릭 메인화면 연결 -->
 		<c:if test="${empty loginMember }">
 		<%-- 	        <a href="main.do"><img src="${pageContext.request.contextPath }/img/logo2.PNG" alt="logo" /></a> --%>
-		<a href="main.do"><img src="${pageContext.request.contextPath }/img/julseo.png" alt="logo" class="logo_img" /></a>
+		<a href="main.do"><img src="${pageContext.request.contextPath }/img/julseo.PNG" alt="logo" class="logo_img" /></a>
 		</c:if>
 		<!-- 관리자로 서비스 이용시 로고 클릭 관리자메인화면 연결 -->
 		<c:if test="${loginMember.role == 0 }">
@@ -19,11 +18,11 @@ pageEncoding="UTF-8"%>
 		</c:if>
 		<!-- 가게 사장님으로 서비스 이용시 로고 클릭 가게사징님메인화면 연결 -->
 		<c:if test="${loginMember.role == 1 }">
-		<a href="owner_main.do"><img src="${pageContext.request.contextPath }/img/julseo.png" alt="logo" class="logo_img"/></a>
+		<a href="owner_main.do"><img src="${pageContext.request.contextPath }/img/julseo.PNG" alt="logo" class="logo_img"/></a>
 		</c:if>
 		<!-- 손님으로 서비스 이용시 로고 클릭 손님메인화면 연결 -->
 		<c:if test="${loginMember.role == 2 }">
-		<a href="main.do"><img src="${pageContext.request.contextPath }/img/julseo.png" alt="logo" class="logo_img"/></a>
+		<a href="main.do"><img src="${pageContext.request.contextPath }/img/julseo.PNG" alt="logo" class="logo_img"/></a>
 		</c:if>
 	</div>
 	  
@@ -35,7 +34,7 @@ pageEncoding="UTF-8"%>
     
     <div class="item6">
     	<c:if test="${empty loginMember.memberId }">
-		<a href="memberLoginForm.do"><img src="${pageContext.request.contextPath }/img/login.jpg" alt="logoin" class="header_img" /></a>
+		<a href="memberLoginForm.do"><img src="${pageContext.request.contextPath }/img/login.PNG" alt="logoin" class="header_img" /></a>
 		</c:if>
 		
 		<c:if test="${not empty loginMember.memberId }">
@@ -48,20 +47,19 @@ pageEncoding="UTF-8"%>
 <%-- 			<c:if test="${loginMember.role eq 2 }"> --%>
 <%-- 			<a>${loginMember.memberId } 손님 입장!</a> --%>
 <%-- 			</c:if> --%>
-			<a href="memberLogout.do"><img src="${pageContext.request.contextPath }/img/logout.jpg" alt="logoout" class="header_img" /></a>
+			<a href="memberLogout.do"><img src="${pageContext.request.contextPath }/img/logout.PNG" alt="logoout" class="header_img" /></a>
 		
 		</c:if>
     
-		<a href="postListPaging.do?pageNum=1&postNum=10"><img src="${pageContext.request.contextPath }/img/board.JPG" " width="15" height="15" alt="logoout" class="header_img" /></a>
+		<a href="postListPaging.do?pageNum=1&postNum=10"><img src="${pageContext.request.contextPath }/img/board.PNG" alt="logoout" class="header_img" /></a>
 		
 		<c:if test="${not empty loginMember }">
-			<a href="memberInfoMyPage.do"><img src="${pageContext.request.contextPath }/img/user.JPG" alt="logoout" class="header_img" /></a>
+			<a href="memberInfoMyPage.do"><img src="${pageContext.request.contextPath }/img/mypage.PNG" alt="logoout" class="header_img" /></a>
 		</c:if>
 		<c:if test="${empty loginMember }">
-			<a href="#" onclick="loginRequired()"><img src="${pageContext.request.contextPath }/img/user.JPG" alt="logoout" class="header_img" /></a>
+			<a href="#" onclick="loginRequired()"><img src="${pageContext.request.contextPath }/img/mypage.PNG" alt="logoout" class="header_img" /></a>
 		</c:if>
 	</div>
 </div>
 </header>
-</c:if>
 
