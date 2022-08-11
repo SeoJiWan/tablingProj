@@ -14,7 +14,7 @@ public class MemberRepository extends DAO {
 	 */
 	// 삽입
 	public void insert(Member member) {
-		String sql = "insert into members values(?, ?, ?, ?, ?)";
+		String sql = "insert into members ('member_id', 'password', 'nickname', 'phone_num', 'role') values(?, ?, ?, ?, ?)";
 		connect();
 
 		try {
@@ -131,6 +131,7 @@ public class MemberRepository extends DAO {
 				member.setNickName(rs.getString(3));
 				member.setPhoneNum(rs.getString(4));
 				member.setRole(rs.getInt(5));
+				member.setProfileImgUrl(rs.getString(6));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -157,6 +158,7 @@ public class MemberRepository extends DAO {
 				member.setNickName(rs.getString(3));
 				member.setPhoneNum(rs.getString(4));
 				member.setRole(rs.getInt(5));
+				member.setProfileImgUrl(rs.getString(6));
 
 				list.add(member);
 			}

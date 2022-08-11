@@ -181,7 +181,7 @@
 	                  class="profile_img"
 	                  id="profile_img"
 	                  alt="profile"
-	                  src="img/profile_img/${src}"
+	                  src="img/profile_img/${loginMember.profileImgUrl }"
 	                />
 	              </td>
 	            </tr>
