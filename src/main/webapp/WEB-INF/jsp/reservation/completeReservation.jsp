@@ -21,10 +21,10 @@
 		</tr>
 		
 		<tr>
-			<td>${reservation.memberId }</td>
-			<td>${reservation.storeName }</td>
-			<td>${reservation.peopleNum }</td>
-			<td>${reservation.reservationTime }</td>
+			<td>${reservation.memberId}</td>
+			<td>${reservation.storeName}</td>
+			<td>${reservation.peopleNum}</td>
+			<td>${reservation.reservationTime}</td>
 		</tr>
 	</table>
 </body>

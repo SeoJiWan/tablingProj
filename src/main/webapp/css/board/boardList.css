@@ -297,8 +297,11 @@ span .linkTx {
     border: 0;
 }
 #add_form {
-	width : 500px;
+	width: 620px;
 	height: 300px;
+	position: relative;
+	right:-80px;
+	top: -10px;
 }
 
 button {
@@ -377,11 +380,7 @@ button {
 	border-radius: 80px;
 	float:right;
 }
-#add_form {
-	position: relative;
-	right:100px;
-	top: -10px;
-}
+
 #post_list {
 	position: relative;
 }
