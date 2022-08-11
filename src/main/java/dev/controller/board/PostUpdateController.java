@@ -6,9 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dev.controller.Controller;
-import dev.controller.Utils;
 import dev.domain.Board;
-import dev.service.BoardService;
 
 public class PostUpdateController implements Controller {
 
@@ -35,8 +33,11 @@ public class PostUpdateController implements Controller {
 
 		// 요청에 board 속성 값 담을 변수 지정
 		req.setAttribute("boardDetail", boardDetail);
+		
+		//ajax 통신
+		resp.getWriter().write("success");
 
-		Utils.forward(req, resp, "postDetail.do");
+//		Utils.forward(req, resp, "postDetail.do");
 	}
 
 }
