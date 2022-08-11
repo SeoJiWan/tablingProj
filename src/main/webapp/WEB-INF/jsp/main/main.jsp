@@ -39,12 +39,6 @@
 <body>
 
   <div id="h">
-    <div class="logo">줄을서시오</div>
-    <div class="social hidden-xs">
-      <a href="#"><i class="ion-social-twitter"></i></a>
-      <a href="#"><i class="ion-social-instagram"></i></a>
-      <a href="#"><i class="ion-social-facebook"></i></a>
-    </div>
     <div class="container">
       <div class="row">
         <div class="col-md-8 col-md-offset-2 centered">
