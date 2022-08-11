@@ -12,6 +12,7 @@ pageEncoding="UTF-8"%>
       rel="stylesheet"
       href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css"
     />
+  <script src="https://kit.fontawesome.com/883c2a5320.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
@@ -39,6 +40,14 @@ pageEncoding="UTF-8"%>
               <i class="input-icon uil uil-user-exclamation"></i>
             </span>
             <span class="title">회원 관리</span>
+          </a>
+        </li>
+       <li class="list">
+          <a href="memberLogout.do">
+            <span class="icon">
+             <i class="input-icon uil uil-signout"></i>
+            </span>
+            <span class="title">로그아웃</span>
           </a>
         </li>
       </ul>
