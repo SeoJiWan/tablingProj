@@ -125,9 +125,9 @@ textarea:focus {
 											<!-- 댓글 작성자만 수정, 삭제 가능 -->
 											<c:choose>
 												<c:when test="${!empty loginMember && commentVO.memberId eq loginMember.memberId || loginMember.role == 0}">
-													<input type="button" id ="commentDelete" name = "cmtDelete" "class= "comment_edit_delete_btn" value="삭제" style="display:inline-block" />
-													<input type="button" id ="cmtUpdate_btn" name = "cmtUpdate" class="comment_edit_delete_btn" value="수정" style="display:inline-block" />
-													<input type="button" id ="cmtUpdate_save_btn" name = "cmtSave" class="comment_edit_delete_btn" value="저장" style="display:none;"/>
+													<input type="button" id ="commentDelete" class= "comment_edit_delete_btn" value="삭제" style="display:inline-block" />
+													<input type="button" id ="cmtUpdate_btn" class="comment_edit_delete_btn" value="수정" style="display:inline-block"  onclick = "cmtUpdate_btn()" />
+													<input type="button" id ="cmtUpdate_save_btn" class="comment_edit_delete_btn" value="저장" style="display:none;"/>
 												</c:when>
 												<c:otherwise>
 													<input type="hidden" value="댓글수정" />
@@ -168,7 +168,7 @@ textarea:focus {
 			$("#postUpdate_save_btn").css("display", "none"); //저장버튼 비활성화
 	    	
 			let updatePostAnswer = function () {
-	    	  if (confirm("글을 수정하시겠습니까?") == true) {
+	    	  if (confirm("댓글을 수정하시겠습니까?") == true) {
 	    	    return 1;
 	    	  } else {
 	    	    return 0; //취소 -> 게시글
@@ -291,32 +291,13 @@ textarea:focus {
 	    });
 		<!-- ajax 댓글 수정 -->
 		/* 수정버튼을 누르면 updateForm을 통해 textarea폼 로드 */
-		/*$("input[name=cmtUpdate]").click(function () {
-			$("input[name=cmtUpdate]").removeAttr("readonly"); //textarea readonly 해제
-			$("input[name=cmtUpdate]").css("display", "none"); //수정 버튼 비활성화
-			$("input[name=cmtSave]").css("display", "inline-block"); //저장버튼 활성화
-			$("#text_wrapper").css("border", "solid"); //테두리 선 활성화
-			$("#text_wrapper").focus();// textarea focus/outline활성화 //과제
-		});*/
-		$("#postUpdate_btn").click(function () {
-			$("#add_cmt_frm_hide_mode").css("display","none"); //댓글 입력폼 안보이게
-			$("#cmt_list_hide_mode").css("display","none"); //댓글 리스트 안보이게
-			$("#postContent").removeAttr("readonly"); //textarea readonly 해제
-			$("#postUpdate_btn").css("display", "none"); //수정 버튼 비활성화
-			$("#postDelete").css("display", "none"); //삭제 버튼 비활성화
-			$("#postUpdate_save_btn").css("display", "inline-block"); //저장버튼 활성화
-			$("#postContent").css("border", "solid 1"); //테두리 선 활성화
-			$("#postContent").focus();// textarea focus
-		});
-
-		$("input[name=cmtUpdate]").click(function () {
-			$("input[name=cmtUpdate]").removeAttr("readonly"); //textarea readonly 해제
-			$("input[name=cmtUpdate]").css("display", "none"); //수정 버튼 비활성화
-			$("input[name=cmtSave]").css("display", "inline-block"); //저장버튼 활성화
+		$("#cmtUpdate_btn").click(function () {
+			$("#text_wrapper").removeAttr("readonly"); //textarea readonly 해제
+			$("#cmtUpdate_btn").css("display", "none"); //수정 버튼 비활성화
+			$("#cmtUpdate_save_btn").css("display", "inline-block"); //저장버튼 활성화
 			$("#text_wrapper").css("border", "solid"); //테두리 선 활성화
 			$("#text_wrapper").focus();// textarea focus/outline활성화 //과제
 		});
-		
 		
 		/* 저장 버튼 클릭시 수정내용 반영 -> 댓글 리스트 로드 */
 		$("#cmtUpdate_save_btn").click(function () {

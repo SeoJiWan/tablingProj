@@ -43,7 +43,7 @@
 	            <div class="col-md-10 col-lg-8 col-xl-7">
 	                <div class="site-heading">
 	                    <h1>커뮤니티</h1>
-	                    <span class="subheading">맛 잘 알 줄서 피플들과의 즐거운 대화!</span>
+	                    <span class="subheading">맛 잘 알 줄서 피플들과의 즐거운 소통!</span>
 	                </div>
 	            </div>
 	        </div>
@@ -68,7 +68,7 @@
 										<textarea id="content" class="form-control" placeholder="내용을 입력하세요" name="addContent" maxlength="2000" style="margin: 0; width: 450px; height: 200px; padding : 30px 10px; border-radius: 5px; resize: none; border: none; overflow:hidden; text-align:left; margin: 0 auto;" required></textarea>
 										<div id = "add_write_btn">
 										<!-- 취소버튼 -->
-										<button id="btn_previous" type="button" class="bottom_btn" onclick="location.href='postListPaging.do?pageNum=1&postNum=10'">취소</button>
+										<button id="btn_previous" type="button" class="bottom_btn" onclick="location.href='postListPaging.do?pageNum=1&postNum=4'">취소</button>
 										<!-- 등록버튼 -->
 											<button id="btn_register" class="bottom_btn" type="submit" onclick="checkAdd()">등록</button>
 							 			</div>
@@ -81,37 +81,29 @@
 										<div id = "title_family_hits" class = "title_family">조회수</div>
 						        <!-- POSTLIST-->
 						        <div id="post_list">
-									<ul>
-										<li class="_ccast_list_item _ccast_item nlst" readcheck="true" serviced="nid" catgroupid="1" catid="999" timekey="1555525715519205549" style="display:inline">
 											<div class="tx_box_obj">
 						        					<c:forEach var="boardList" items="${boardList}">
 														<div class="tx_tooltip">
-															<div class="tx_bubble">
+															<div class="tx_bubble" style="display:flex;">
 																<p class="thumb">
 																	<!-- <a href="#" title="연결 페이지로 이동(관리자 계정이면 회원 정보로 ?)" class="_ccast_item_url  N=a:amx*x.img" target="_blank" > -->
 																		<img src="${pageContext.request.contextPath }/img/boardListProfile.png" width="40" height="40" alt="프로필이미지" >
-																		<span class="mask"></span>
 																	<!-- </a> -->
 																</p>
 																<div class="bubble_content">
-																    <div class="tx_width">
+																    <div class="tx_width" style="display:table-row; color:black;">
 																		<span class="linkTx">
 																			<a href="postDetail.do?boardId=${boardList.boardId}">
 																				<!-- TITLE -->
-																				<div id ="title_group">
-																					<div class = "title_family" style="margin-left:20px; font-size:10px; color:#989898;">
-																						<strong>No.${boardList.boardId}</strong>
-																					</div>
-																					<div class = "title_family" style="width:330px; font-size:14px;">
-																						${boardList.title}
-																					</div>
-																				</div>
+																				<span class="alarm_tx _ccast_item_url  N=a:amx*b.content" style=" margin-top:10px; display:block; width: 480px; color:black;"><strong>No.${boardList.boardId}   </strong> ${boardList.title}</span>
+																				<span class="etc_obj">
+																				</span>
 																			</a>
 																		</span>
-																        <div class="from_obj" style=" width: 480px; display:block; margin-top: 5px; width:480px;">
-																			<span id = "postDate"><strong><i class="fa-solid fa-pen-nib"></i> ${boardList.nickName}</strong></span>
-																			<span class="alarm_time"> <i class="fa-solid fa-calendar-days"></i> ${boardList.createDate} </span>
-																			<span> <i class="fa-regular fa-eye"></i> ${boardList.hits}</span>
+																        <div class="from_obj" style="height: 20px; width: 550px; margin-top: 5px; display:table-row; float:right; color:black;">
+																				<span id = "postDate"><strong><i class="fa-solid fa-pen-nib" style="font-size:12px;"></i> ${boardList.nickName}</strong></span>
+																				<span class="alarm_time"> <i class="fa-solid fa-calendar-days" style="font-size:12px;"></i> ${boardList.createDate} </span>
+																				<span style="margin-left:20px;"> <i class="fa-regular fa-eye"></i> ${boardList.hits}</span>
 																    	</div>
 																    </div>
 																</div>							
@@ -119,8 +111,6 @@
 														</div>
 													</c:forEach>
 											</div>
-										</li>
-									</ul>
 								</div>	
 							</div>
 						</div>
@@ -232,7 +222,7 @@
 	    		  if (confirm("글을 등록하시겠습니까?") == true) { 
 	  				frm.submit();
 	  	    	  } else { 
-	  	    		window.location.href = "postListPaging.do?pageNum=1&postNum=10";
+	  	    		window.location.href = "postListPaging.do?pageNum=1&postNum=4";
 	  	    	  	}
 	    	  }
 		}

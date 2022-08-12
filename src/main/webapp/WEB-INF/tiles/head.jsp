@@ -11,19 +11,19 @@ pageEncoding="UTF-8"%>
 		<!-- 비회원으로 서비스 이용시 로고 클릭 메인화면 연결 -->
 		<c:if test="${empty loginMember }">
 		<%-- 	        <a href="main.do"><img src="${pageContext.request.contextPath }/img/logo2.PNG" alt="logo" /></a> --%>
-		<a href="main.do"><img src="${pageContext.request.contextPath }/img/julseo.PNG" alt="logo" class="logo_img" /></a>
+		<a href="main.do"><img src="${pageContext.request.contextPath }/img/newLogo.png" alt="logo" class="logo_img" /></a>
 		</c:if>
 		<!-- 관리자로 서비스 이용시 로고 클릭 관리자메인화면 연결 -->
 		<c:if test="${loginMember.role == 0 }">
-		<a href="admin_main.do?pageNum=1&postNum=10"><img src="${pageContext.request.contextPath }/img/julseo.PNG" alt="logo" class="logo_img"/></a>
+		<a href="admin_main.do?pageNum=1&postNum=10"><img src="${pageContext.request.contextPath }/img/newLogo.PNG" alt="logo" class="logo_img"/></a>
 		</c:if>
 		<!-- 가게 사장님으로 서비스 이용시 로고 클릭 가게사징님메인화면 연결 -->
 		<c:if test="${loginMember.role == 1 }">
-		<a href="owner_main.do"><img src="${pageContext.request.contextPath }/img/julseo.PNG" alt="logo" class="logo_img"/></a>
+		<a href="owner_main.do"><img src="${pageContext.request.contextPath }/img/newLogo.png" alt="logo" class="logo_img"/></a>
 		</c:if>
 		<!-- 손님으로 서비스 이용시 로고 클릭 손님메인화면 연결 -->
 		<c:if test="${loginMember.role == 2 }">
-		<a href="main.do"><img src="${pageContext.request.contextPath }/img/julseo.PNG" alt="logo" class="logo_img"/></a>
+		<a href="main.do"><img src="${pageContext.request.contextPath }/img/newLogo.png" alt="logo" class="logo_img"/></a>
 		</c:if>
 	</div>
 	  
