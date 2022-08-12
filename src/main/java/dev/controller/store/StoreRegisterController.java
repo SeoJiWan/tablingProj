@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dev.controller.Controller;
+import dev.controller.Utils;
 import dev.domain.Member;
 import dev.domain.Store;
 
@@ -46,6 +47,8 @@ public class StoreRegisterController implements Controller{
 		store.setFoodCategory(req.getParameter("food_category"));
 		
 		storeService.registerStore(store);
+		
+		Utils.forward(req, resp, "storereservation.do?pageNum=1&postNum=10");
 		
 	}
 

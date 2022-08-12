@@ -119,7 +119,10 @@ public class FrontController extends HttpServlet {
 		mappings.put("/updatestore.do", new updatestore()); //2
 		mappings.put("/storeRegisterForm.do", new StoreRegisterFormController());
 		mappings.put("/storeRegister.do", new StoreRegisterController());
-		mappings.put("/owner_main.do", new Storereservation());
+		// 점주 회원가입시 바로 점포등록페이지로 이동 -> 안그럼 점포가 없어서 에러가 뜸
+		mappings.put("/owner_main.do", new StoreRegisterFormController());
+		mappings.put("/storereservation.do", new Storereservation());
+		
 		
 		//InterestedStore
 

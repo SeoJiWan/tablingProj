@@ -14,7 +14,7 @@ public class MemberRepository extends DAO {
 	 */
 	// 삽입
 	public void insert(Member member) {
-		String sql = "insert into members ('member_id', 'password', 'nickname', 'phone_num', 'role') values(?, ?, ?, ?, ?)";
+		String sql = "insert into members (member_id, password, nickname, phone_num, role) values(?, ?, ?, ?, ?)";
 		connect();
 
 		try {
