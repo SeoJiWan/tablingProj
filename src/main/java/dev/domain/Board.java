@@ -10,8 +10,11 @@ public class Board {
 	private int hits;
 	// -- 조인문 활용
 	private String nickName;
+	private String profile;
    
-   //--------생성자
+
+
+//--------생성자
    public Board(){};
    
    
@@ -27,6 +30,12 @@ public class Board {
    }
    
    //--------getter setter
+   public String getProfile() {
+		return profile;
+	}
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
    public String getNickName() {
       return nickName;
    }
