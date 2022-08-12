@@ -231,14 +231,6 @@ ul {
     border-top-color: #ececec;
     border-radius: 8px;
 }
-.tx_tooltip_add {
-    position: relative;
-    border: 1px solid #e0e0e0;
-    background: #fff;
-    border-top-color: #ececec;
-    border-radius: 8px;
-}
-
 .tx_tooltip .tx_bubble {
     float: none;
     padding: 20px 20px;
@@ -303,14 +295,6 @@ span .linkTx {
     background: url(https://ssl.pstatic.net/static/me/new/sp_me_new20160113.png) no-repeat -197px -38px;
     border: 0;
 }
-#add_form {
-	width: 620px;
-	height: 300px;
-	position: relative;
-	right:-80px;
-	top: -10px;
-}
-
 button {
     margin: 0;
     padding: 0;
@@ -319,7 +303,6 @@ button {
     cursor: pointer;
 }
 button {
-	cursor:pointer;
     appearance: auto;
     writing-mode: horizontal-tb !important;
     text-rendering: auto;
@@ -343,54 +326,7 @@ button {
     border-color: buttonborder;
     border-image: initial;
 }
-.bottom_btn {
-	cursor: pointer;
-	border-style:none;
-	border-radius:5px;
-	padding: 6px;
-	float:right;
-	margin-left: 12px;
-}
-.write_btn {
-	/* position:absolute; */
-	/* right: 200px; */
-	text-align:right;
-	background-color: white;
-	border: none;
-	padding: 8px 10px;
-	color: #ff953b;
-	font-weight: bold;
-	border-radius: 80px;
-	float:right;
-}
-#write_btn {
-	/* position:absolute; */
-	/* right: 200px; */
-	text-align:right;
-	background-color: white;
-	border: none;
-	padding: 8px 10px;
-	color: #ff953b;
-	font-weight: bold;
-	border-radius: 80px;
-	float:right;
-}
 
-#add_write_btn {
-	height:50px;
-	text-align:right;
-	background-color: white;
-	border: none;
-	padding: 8px 10px;
-	color: #ff953b;
-	font-weight: bold;
-	border-radius: 80px;
-	float:right;
-}
-
-#post_list {
-	position: relative;
-}
 #title {
 	border-style:none;
 	padding : 8px 20px;
@@ -409,7 +345,7 @@ button {
 }
 
 #title_family_num {
-	margin-left:200px;
+	margin-left:150px;
 }
 #title_family_title {
 	margin-left:28px;
@@ -418,10 +354,23 @@ button {
 	margin-left:150px;
 }
 #title_family_date {
-	margin-left:40px;
+	margin-left:60px;
 }
 #title_family_hits {
 	margin-left:50px;
+}
+
+#write_btn {
+	/* position:absolute; */
+	/* right: 200px; */
+	text-align:right;
+	background-color: white;
+	border: none;
+	padding: 8px 10px;
+	color: #ff953b;
+	font-weight: bold;
+	border-radius: 80px;
+	float:right;
 }
 #write_btn:hover {
   background-color: #ff995b;
