@@ -7,7 +7,7 @@ pageEncoding="UTF-8"%>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Curve Outside in Active Tab</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/sidebar.css?after" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/sidebar.css" />
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css" />
   </head>
   <body>

@@ -48,7 +48,7 @@ pageEncoding="UTF-8"%>
 <%-- 			<c:if test="${loginMember.role eq 2 }"> --%>
 <%-- 			<a>${loginMember.memberId } 손님 입장!</a> --%>
 <%-- 			</c:if> --%>
-			<a href="memberLogout.do"><img src="${pageContext.request.contextPath }/img/logout.jpg" alt="logoout" class="header_img" /></a>
+			<a href="memberLogout.do"><img src="${pageContext.request.contextPath }/img/logout.jpg" alt="logoout" class="header_img" onclick="logout_alert()"/></a>
 		
 		</c:if>
     
