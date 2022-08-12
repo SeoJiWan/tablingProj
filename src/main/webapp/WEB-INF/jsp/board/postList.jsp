@@ -89,7 +89,7 @@
 															<div class="tx_bubble">
 																<p class="thumb">
 																	<!-- <a href="#" title="연결 페이지로 이동(관리자 계정이면 회원 정보로 ?)" class="_ccast_item_url  N=a:amx*x.img" target="_blank" > -->
-																		<img src="${pageContext.request.contextPath }/img/boardListProfile.png" width="40" height="40" alt="프로필이미지" >
+																		<img src="img/profile_img/${boardList.profile }" class="profile_img" width="40" height="40" alt="프로필이미지" >
 																		<span class="mask"></span>
 																	<!-- </a> -->
 																</p>
