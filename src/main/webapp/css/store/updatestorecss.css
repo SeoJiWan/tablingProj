@@ -1,6 +1,6 @@
 .container{
   margin: 0;
-  top: 100px;
+  top: 50px;
   left: 50%;
   position: absolute;
   transform: translateX(-50%);
