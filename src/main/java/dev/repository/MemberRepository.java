@@ -250,4 +250,31 @@ public class MemberRepository extends DAO {
 		}
 		return list;
 	}
+	
+	public List<Member> All() {
+		List<Member> list = new ArrayList<Member>();
+		String sql = "select * from members order by 1";
+		connect();
+
+		try {
+			ps = conn.prepareStatement(sql);
+
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				Member member = new Member();
+				member.setMemberId(rs.getString(1));
+				member.setPassword(rs.getString(2));
+				member.setNickName(rs.getString(3));
+				member.setPhoneNum(rs.getString(4));
+				member.setRole(rs.getInt(5));
+
+				list.add(member);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return list;
+	}
 }

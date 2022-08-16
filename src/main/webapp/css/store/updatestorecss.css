@@ -1,9 +1,8 @@
 .container{
   margin: 0;
-  top: 20px;
+  top: 100px;
   left: 50%;
   position: absolute;
-  text-align: center;
   transform: translateX(-50%);
   background-color: white;
   border-radius: 9px;
@@ -12,43 +11,44 @@
   border-left :1px solid #ff993b;
   border-right :1px solid #ff993b;
   width: 600px;
-  height: 900px;
+  height: 750px;
   /* box-shadow: 1px 1px 108.8px 19.2px rgb(25,31,53); */
 }
 
 
-.box h4 {
-  font-family: 'Source Sans Pro', sans-serif;
+#updateform h4 {
+  font-family: '87MMILSANG-Regular';
   color: #ff993b; 
   font-size: 18px;
   margin-top:40px;
   margin-bottom:40px;
+  text-align : center;
 }
 
-.box h4 span {
+#updateform input[type = "text"] {
+  background: #FFFAFA;
+  border: 0.05em solid #ff993b;
+  border-radius: 5px;
+  color: black;
+  text-align : center; 
+}
+
+.form-label {
+	font-weight : bold;
+	
+}
+
+#updateform h4 span {
   color: black;
   font-weight: bold;
   
 }
 
-.box input[type = "text"] {
-  display: block;
-  margin: 20px auto;
-  background: #FFFAFA;
-  border: 0.05em solid #ff993b;
-  border-radius: 5px;
-  padding: 14px 10px;
-  width: 320px;
-  outline: none;
-  color: black;
-  text-align : center;
-  
-}
 ::-webkit-input-placeholder {
   color: #565f79;
 }
 
-.box input[type = "text"]:focus {
+#updateform input[type = "text"]:focus {
   border: 1px solid #79A6FE;
   
 }
@@ -62,7 +62,7 @@ a:hover {
   text-decoration: underline;
   }
 
-.btn1 {
+#btn1 {
   border:0;
   background: #F5AE3A;
   color: #fff;
@@ -78,7 +78,7 @@ a:hover {
   cursor: pointer;
 }
 
-.btn1:hover {
+#btn1:hover {
   background: #ff993b;
 }
 

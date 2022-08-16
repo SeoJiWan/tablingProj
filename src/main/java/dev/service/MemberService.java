@@ -130,6 +130,15 @@ public class MemberService {
 		return answer;
 	}
 	
+	public List<Member> AllMembers() {
+		List<Member> list = memberRepository.All();
+		// 조회 시 비밀번호 복호화해서 가져오기
+		for (Member member : list) {
+			member.setPassword(decryption(member.getPassword()));
+		}
+		return list;
+	}
+	
 	public boolean removeMember(String memberId) {
 		return memberRepository.deleteMember(memberId);
 	}
