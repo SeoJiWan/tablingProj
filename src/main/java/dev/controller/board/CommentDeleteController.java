@@ -13,14 +13,21 @@ public class CommentDeleteController implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-		String commentId = req.getParameter("commentId");
-		
-		Comment comment = new Comment();
-		comment.setCommentId(Integer.parseInt(commentId));
-		
-		commentService.deleteComment(comment);
-		
-		resp.getWriter().write("success");
-	}
+		resp.setContentType("text/json; charset=utf-8");
+		String comment = req.getParameter("commentId");
+		int commentId = Integer.parseInt(comment.trim());
+		boolean isDeleted = commentService.deleteComment(commentId);
 
+		// {"retCode" : "Success"}
+		try {
+			if (isDeleted) 
+			// {retCode : Success}
+			resp.getWriter().print("{\"retCode\" : \"Success\"}");
+			else
+				resp.getWriter().print("{\"retCode\" : \"Fail\"}");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }
+
