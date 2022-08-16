@@ -26,15 +26,15 @@ pageEncoding="UTF-8"%>
           </a>
         </li>
         <li class="list">
-          <a href="${pageContext.request.contextPath }/ownerupdate.do">
+          <a href="${pageContext.request.contextPath }/storeListByOwner.do">
             <span class="icon">
               <i class="input-icon uil uil-store"></i>
             </span>
-            <span class="title">점포수정</span>
+            <span class="title">내 점포조회</span>
           </a>
         </li>
         <li class="list active">
-          <a href="${pageContext.request.contextPath }/owner_main.do">
+          <a href="${pageContext.request.contextPath }/storeRegisterForm.do">
             <span class="icon">
               <i class="input-icon uil uil-store"></i>
             </span>

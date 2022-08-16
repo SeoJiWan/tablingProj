@@ -71,10 +71,10 @@ public class ProfileUploadController implements Controller {
 		}
 		memberService.changeProfile(loginMember);
 
-		// 이미지 src 넘겨주기
-		req.setAttribute("src", fileName);
-		System.out.println("fileName = " + fileName);
-		Utils.forward(req, resp, "mypage/mypage.tiles");
+//		// 이미지 src 넘겨주기
+//		req.setAttribute("src", fileName);
+//		System.out.println("fileName = " + fileName);
+//		Utils.forward(req, resp, "mypage/mypage.tiles");
 
 	}
 

@@ -197,5 +197,10 @@ public class StoreService {
 	public List<Reservations> reservationList(String stroeName) {
 		return storeRepository.reservationList(stroeName);
 	}
+	
+	// 0816_wana - 내가 등록한 점포들 조회
+	public List<Store> findStoresByOwner(String memberId) {
+		return storeRepository.selectStoreListMyMemberId(memberId);
+	}
 
 }

@@ -45,6 +45,7 @@ import dev.controller.review.UpdateReviewController;
 import dev.controller.review.Updatereviewform;
 import dev.controller.review.updatereview;
 import dev.controller.store.StoreAcceptListPagingControl;
+import dev.controller.store.StoreListByOwnerController;
 import dev.controller.store.StoreListPagingController;
 import dev.controller.store.StoreRegisterController;
 import dev.controller.store.StoreSearchPagingController;
@@ -115,12 +116,16 @@ public class FrontController extends HttpServlet {
 		mappings.put("/degreeStoreAjax.do", new degreeStoreAjaxController());
 		mappings.put("/updateStoreAjax.do", new updateStoreAjaxController());
 //		mappings.put("/updatemanagement.do", new updatemanagement());
+		// 0816_wana - 내 점포 리스트 출력
+		mappings.put("/storeListByOwner.do", new StoreListByOwnerController());
+		// 0816_wana -  내 점포 정보 수정
 		mappings.put("/ownerupdate.do", new updatemanagement()); //1
 		mappings.put("/updatestore.do", new updatestore()); //2
 		mappings.put("/storeRegisterForm.do", new StoreRegisterFormController());
 		mappings.put("/storeRegister.do", new StoreRegisterController());
 		// 점주 회원가입시 바로 점포등록페이지로 이동 -> 안그럼 점포가 없어서 에러가 뜸
-		mappings.put("/owner_main.do", new StoreRegisterFormController());
+//		mappings.put("/owner_main.do", new StoreRegisterFormController());
+		mappings.put("/owner_main.do", new Storereservation());
 		mappings.put("/storereservation.do", new Storereservation());
 		
 		
