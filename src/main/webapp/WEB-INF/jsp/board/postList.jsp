@@ -57,15 +57,15 @@
 	     <div id="add_form" class="add_form" style= "display:none;">
         	<form action = "postAdd.do" method="post" id="frm">
 				<input type="hidden" id ="addWriter" name="addWriter" value="${loginMember.memberId}">
-				<input id="title" type="text" class="form-control" placeholder="제목을 입력해주세요" name="addTitle" maxlength="22" required>
+				<input id="title" type="text" placeholder="제목은 22자 내로 입력해주세요" name="addTitle" maxlength="22" required>
 				<div id = "add_write_btn">
 					<!-- 등록버튼 -->
 					<button id="btn_register" class="bottom_btn" type="submit" onclick="checkAdd()">등록</button>
 					<!-- 취소버튼 -->
 					<button id="btn_previous" type="button" class="bottom_btn" onclick="location.href='postListPaging.do?pageNum=1&postNum=6'">취소</button>
 	 			</div>
-				<hr>
-				<textarea id="content" placeholder="내용을 입력하세요" name="addContent" maxlength="2000" required></textarea>
+				<hr style= "margin:0;">
+				<textarea id="content" placeholder="바른말 고운말은 줄서 이웃들과의 소통을 한층 더 즐겁게 해줄거에요!" name="addContent" maxlength="2000" required></textarea>
 				
 	 		</form>
 		</div>
@@ -84,8 +84,8 @@
 					<div class = post_title>
 						<!-- 글 제목 -->
 						<a href="postDetail.do?boardId=${boardList.boardId}">
-								<span class = post_title_boardId>No.${boardList.boardId}</span>
-								<span class = post_title_boardTitle>${boardList.title}</span>
+							<span class = post_title_boardId>No.${boardList.boardId}</span>
+							<span class = post_title_boardTitle>${boardList.title}</span>
 						</a>
 					</div>
 			        <div class="post_title_info">

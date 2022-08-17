@@ -142,30 +142,35 @@ ul li {
 }
 
 #add_form {
-	width : 440px;
-	height: 240px;
+	width: 780px;
+	height: 300px;
 	border: solid 1px #b3b3b3;
 	border-radius:8px;
 }
+
 input:focus {
 	outline:none;
 }
+
 textarea:focus {
 	outline: none;
 }
 
 #title {
-	width:360px;
+	width: 700px;
 	border:none;
 	margin:0 auto;
-	padding:2px;
+	padding: 10px;
+	border-radius: 10px;
 }
+
 #add_write_btn {
 	display:inline-block;
 }
+
 #content {
-	width: 430px;
-	height: 180px;
+	width: 775px;
+	height: 250px;
 	padding : 20px;
 	resize: none;
 	overflow:auto;
@@ -173,7 +178,6 @@ textarea:focus {
 	margin: 0;
 	border: none;
 }
-
 
 #post_area {
 	margin-top:20px;
@@ -232,6 +236,9 @@ a .post_title_boardId {
 a .post_title_boardTitle {
 	margin-left:90px;
 	font-size: 14px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 button {
