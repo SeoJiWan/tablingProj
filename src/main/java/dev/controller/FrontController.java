@@ -19,6 +19,7 @@ import dev.controller.board.PostUpdateController;
 import dev.controller.detail.DetailMainController;
 import dev.controller.interestedStore.InterestedStoreListController;
 import dev.controller.interestedStore.LikeStoreController;
+import dev.controller.member.KakaoLoginController;
 import dev.controller.member.MemberCheckIdDuplController;
 import dev.controller.member.MemberDeleteController;
 import dev.controller.member.MemberFindPwdController;
@@ -92,6 +93,8 @@ public class FrontController extends HttpServlet {
 		mappings.put("/memberListPaging.do", new MemberListPagingControl());
 		mappings.put("/memberadminDelete.do", new MemberadminDeleteController());
 		mappings.put("/memberFindPwd.do", new MemberFindPwdController());
+		mappings.put("/kakaoLogin.do", new KakaoLoginController());
+		
 		
 		
 		// my page --> 순서대로 컨트롤러 로직 실행 후 마지막에 mypage.jsp 로 데이터 뿌려줌 

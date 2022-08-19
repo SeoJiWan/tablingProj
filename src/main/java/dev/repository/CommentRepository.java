@@ -39,7 +39,7 @@ public class CommentRepository extends DAO{
 		public List<Comment> getCommentList(int boardId) {
 			connect();
 			ArrayList<Comment> commentList = new ArrayList<>();
-			String sql = "SELECT c.comment_id, c.board_id, c.member_id ,m.nickname, c.content, c.create_date "
+			String sql = "SELECT c.comment_id, c.board_id, c.member_id ,m.nickname, m.profile_img_url, c.content, c.create_date "
 						  + "FROM comments c "
 						  + "JOIN members m ON (c.member_id = m.member_id) "
 						  + "WHERE c.board_id=? "
@@ -56,7 +56,8 @@ public class CommentRepository extends DAO{
 																		 rs.getInt("board_id"),
 																		 rs.getString("content"),
 																		 rs.getString("create_date"),
-																		 rs.getString("nickname"));
+																		 rs.getString("nickname"),
+																		 rs.getString("profile_img_url"));
 													
 					commentList.add(comment);
 				}

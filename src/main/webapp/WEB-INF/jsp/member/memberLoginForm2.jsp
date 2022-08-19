@@ -149,6 +149,7 @@
             <a href="https://www.instagram.com/" class="social" target="_blank"
               ><i class="fab fa-linkedin-in"></i
             ></a>
+         
           </div>
           <span>or use your account</span>
           <input
@@ -170,7 +171,21 @@
             >비밀번호를 잊으셨나요?</a
           >
           <button type="button" id="btn_login">로그인</button>
+          
+
+	 	  <!-- 카카오 로그인 api btn -->
+	 	  <div class="alert alert-danger d-none" id="alert-kakao-login" style="margin-top: 30px">
+			  <a id="btn-kakao-login" href="">
+				<img src="//k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" width="200" alt="카카오 로그인 버튼"/>
+			  </a>
+		  </div>
         </form>
+        
+        <!-- 카카오 로그인 api form -->
+         <form id="form-kakao-login" method="post" action="kakaoLogin.do">
+			<input type="hidden" name="kakao_nickname"/>
+			<input type="hidden" name="kakao_img"/>
+	  	</form>
       </div>
       <!-- 로그인 폼 끝 -->
 
@@ -191,6 +206,52 @@
         </div>
       </div>
     </div>
+    
+	<!-- JQUERY AJAX 사용 -->
+    <script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
+    
+	<!-- 카카오 로그인 api script -->
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+	<script type="text/javascript">
+	$(function(){
+
+		$("#btn-kakao-login").click(function(event){
+			// a태그 기능 실행멈춤.
+			event.preventDefault();
+			// 카카오 로그인 실행시 오류메시지를 표시하는 경고창을 화면에 보이지 않게 한다.
+			$("alert-kakao-login").addClass("d-none");
+			// 사용자 키를 전달, 카카오 로그인 서비스 초기화.
+			window.Kakao.init('d8c22a90f6a47f584d63cb9b20ce8077');
+			// 카카오 로그인 서비스 실행하기 및 사용자 정보 가져오기.
+			Kakao.Auth.login({
+				success:function(auth){
+					Kakao.API.request({
+						url: '/v2/user/me',
+						success: function(response){
+							// 사용자 정보를 가져와서 폼에 추가.
+							var account = response.kakao_account;
+							console.log(account);
+							
+							$('#form-kakao-login input[name=kakao_nickname]').val(account.profile.nickname);
+							$('#form-kakao-login input[name=kakao_img]').val(account.profile.thumbnail_image_url);
+							// 사용자 정보가 포함된 폼을 서버로 제출한다.
+							document.querySelector('#form-kakao-login').submit();
+						},
+						fail: function(error){
+							// 경고창에 에러메시지 표시
+							$('alert-kakao-login').removeClass("d-none").text("카카오 로그인 처리 중 오류가 발생했습니다.")
+						}
+					}); // api request
+				}, // success 결과.
+				fail:function(error){
+					// 경고창에 에러메시지 표시
+					$('alert-kakao-login').removeClass("d-none").text("카카오 로그인 처리 중 오류가 발생했습니다.")
+				}
+			}); // 로그인 인증.
+		}) // 클릭이벤트
+	})// 카카오로그인 끝.
+	</script>
+
 
     <script type="text/javascript">
       const signUpButton = document.getElementById("signUp");
@@ -206,8 +267,7 @@
       });
     </script>
 
-    <!-- JQUERY AJAX 사용 -->
-    <script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
+
 
     <!-- 비밀번호 찾기 -->
     <script type="text/javascript">
