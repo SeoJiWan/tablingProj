@@ -30,24 +30,28 @@ public class CommentService {
 	public List<Comment> commentList(int boardId){
 		return commentRepo.getCommentList(boardId);
 	}
-	//댓글 수정
-	public void updateComment(Comment cm) {
-		commentRepo.updateComment(cm);
-	}
 	
 	//댓글 갯수
 	public void countComment(int boardId) {
 		commentRepo.countComment(boardId);
 	}
 	
-	//댓글 삭제
-	public void deleteComment(Comment cm) {
-		commentRepo.deleteComment(cm);
+	 //댓글 수정
+	public boolean updateComment(int commentId, String content) {
+		return commentRepo.updateComment(commentId, content);
 	}
+	
+	//댓글 삭제
+	public boolean deleteComment(int commentId) {
+		return commentRepo.deleteComment(commentId);
+	}	
 	
 	//페이징?
 	 public List<Comment> getcommentPaging(Criteria criteria) {
 		 return commentRepo.getCommentListPaging(criteria);
 	 }
 	
+
+
+	 
 }

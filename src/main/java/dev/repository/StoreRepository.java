@@ -708,6 +708,37 @@ public class StoreRepository extends DAO {
 		}
 		return store;
 	}
+	
+	// 0816_wana - 내가 등록한 점포들 조회
+	public List<Store> selectStoreListMyMemberId(String member_id) {
+		List<Store> list = new ArrayList<>();
+		String sql = "select * from stores where member_id = ?";
+		connect();
+
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, member_id);
+
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				Store store = new Store();
+				store.setStoreName(rs.getString(2));
+				store.setMemberId(rs.getString(3));
+				store.setStoreAddress(rs.getString(4));
+				store.setTelephone(rs.getString(5));
+				store.setAvailableTime(rs.getString(7));
+				store.setFoodCategory(rs.getString(11));
+				
+				list.add(store);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return list;
+	}
 
 	// 삽입
 	public void insert(Store store) {
