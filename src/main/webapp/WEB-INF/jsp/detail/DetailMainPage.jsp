@@ -227,6 +227,17 @@
   	 </table>
   	 </div>
 
+  
+  <!-- 예약 시 날짜 선택 제한 -->
+  <script type="text/javascript">
+  var now_utc = Date.now()
+  console.log(now_utc);
+  var timeOff = new Date().getTimezoneOffset()*60000 - 86400000;
+  console.log(timeOff);
+  var today = new Date(now_utc-timeOff).toISOString().split("T")[0];
+  console.log(today);
+  document.getElementById("date").setAttribute("min", today);
+  </script>
 
   <script>
     function loginForm() {
