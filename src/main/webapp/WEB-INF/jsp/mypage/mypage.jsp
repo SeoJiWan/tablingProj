@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -176,12 +177,24 @@
 	          <table class="table_title_mypage">
 	            <tr>
 	              <td class="profile_img">
-	                <img
-	                  class="profile_img"
-	                  id="profile_img"
-	                  alt="profile"
-	                  src="img/profile_img/${loginMember.profileImgUrl }"
-	                />
+	              <!-- 로그인 타입에 따라 분리하여 이미지 출력 (카카오 계정이면 카카오톡 프사) -->
+	              <c:set var="img" value="${loginMember.profileImgUrl }"></c:set>
+	                <c:if test="${!fn:startsWith(img, 'http')}">
+		                <img
+		                  class="profile_img"
+		                  id="profile_img"
+		                  alt="profile"
+		                  src="img/profile_img/${loginMember.profileImgUrl }"
+		                />
+	                </c:if>
+	                <c:if test="${fn:startsWith(img, 'http')}">
+		                <img
+		                  class="profile_img"
+		                  id="profile_img"
+		                  alt="profile"
+		                  src="${loginMember.profileImgUrl }"
+		                />
+	                </c:if>
 	                <div class="filebox">
 					  <label for="ex_file">업로드</label>
 					  <input type="file" id="ex_file" accept="image/png, image/jpeg" onchange="readURL(this);"> 

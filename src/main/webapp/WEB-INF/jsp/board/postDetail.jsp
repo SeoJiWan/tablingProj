@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -38,7 +39,26 @@
 				<!-- 게시글 제목영역 : 닉네임, 제목, & 드롭박스 버튼 영역(수정, 삭제?)-->
 				<div id="post_detail_head_area" class = "under_line">
 					<div id = "post_detail_head_area_title">${boardDetail.title}</div>
-					<img src="${pageContext.request.contextPath }/img/profile_img/default_profile.jpg" alt="프로필이미지">
+					
+					<!-- 로그인 타입에 따라 분리하여 이미지 출력 (카카오 계정이면 카카오톡 프사) -->
+	                <c:set var="img" value="${boardDetail.profile }"></c:set>
+	                <c:if test="${!fn:startsWith(img, 'http')}">
+		                <img
+		                  class="profile_img"
+		                  id="profile_img"
+		                  alt="profile"
+		                  src="img/profile_img/${boardDetail.profile }"
+		                />
+	                </c:if>
+	                <c:if test="${fn:startsWith(img, 'http')}">
+		                <img
+		                  class="profile_img"
+		                  id="profile_img"
+		                  alt="profile"
+		                  src="${boardDetail.profile }"
+		                />
+	                </c:if>
+					
 					<div id = "post_detail_head_area_info">
 							${boardDetail.nickName}<br>
 						<div id = "post_detail_head_area_date_hits">
@@ -115,10 +135,27 @@
 							<c:when test="${!empty loginMember.memberId}">
 								<form action = "commentAdd.do" method = "post" id = "addCommentFrm">
 									<div id = "cmt_add_profile_area" class = "under_line">
-										<%-- <img src="${pageContext.request.contextPath }/img/profile_img/${loginMember.profileImgUrl}" width="25" height="25" alt="프로필이미지"> --%>
-										<img src="${pageContext.request.contextPath }/img/profile_img/default_profile.jpg" alt="프로필이미지"> 
+
+										<!-- 로그인 타입에 따라 분리하여 이미지 출력 (카카오 계정이면 카카오톡 프사) -->
+										<c:set var="img" value="${loginMember.profileImgUrl }"></c:set>
+						                <c:if test="${!fn:startsWith(img, 'http')}">
+							                <img
+							                  class="profile_img"
+							                  id="profile_img"
+							                  alt="profile"
+							                  src="img/profile_img/${loginMember.profileImgUrl }"
+							                />
+						                </c:if>
+						                <c:if test="${fn:startsWith(img, 'http')}">
+							                <img
+							                  class="profile_img"
+							                  id="profile_img"
+							                  alt="profile"
+							                  src="${loginMember.profileImgUrl }"
+							                />
+						                </c:if> 
 										<div id = cmt_add_nickname class = "cmt_nickname">
-											${boardDetail.nickName}
+											${loginMember.nickName}
 										</div>
 										<input type="hidden" id="cmtBoardId" name="cmtBoardId" value="${boardDetail.boardId}">
 										<input type="hidden" id="cmtWriter" name="cmtWriter" value="${loginMember.memberId}">
@@ -148,7 +185,27 @@
 									${cmtInfo.commentId}
 								</p>
 								<div id = "cmt_list_profile_area" class = "under_line">
-									<img src="${pageContext.request.contextPath }/img/profile_img/default_profile.jpg" alt="프로필이미지"> 
+<%-- 									<img src="${pageContext.request.contextPath }/img/profile_img/default_profile.jpg" alt="프로필이미지">  --%>
+
+									<!-- 로그인 타입에 따라 분리하여 이미지 출력 (카카오 계정이면 카카오톡 프사) -->
+					                <c:set var="img" value="${cmtInfo.profile }"></c:set>
+					                <c:if test="${!fn:startsWith(img, 'http')}">
+						                <img
+						                  class="profile_img"
+						                  id="profile_img"
+						                  alt="profile"
+						                  src="img/profile_img/${cmtInfo.profile }"
+						                />
+					                </c:if>
+					                <c:if test="${fn:startsWith(img, 'http')}">
+						                <img
+						                  class="profile_img"
+						                  id="profile_img"
+						                  alt="profile"
+						                  src="${cmtInfo.profile }"
+						                />
+					                </c:if>
+					                
 									<div class = "cmt_llist_nickname">
 										${cmtInfo.nickName}<br>
 										<div class = "cmt_list_profile_area_cmtDate">${cmtInfo.commentDate }</div>

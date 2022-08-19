@@ -9,13 +9,16 @@ public class Comment {
 	private String commentDate;
 	// -- 조인문 활용
 	private String nickName;
-	
+	private String profile;
+
+
+
 	//--------생성자
 	public Comment() {};
 	
 	
 	public Comment(int commentId, String memberId, int boardId, String content, String commentDate,
-			String nickName) {
+			String nickName, String profile) {
 		super();
 		this.commentId = commentId;
 		this.memberId = memberId;
@@ -23,10 +26,19 @@ public class Comment {
 		this.content = content;
 		this.commentDate = commentDate;
 		this.nickName = nickName;
+		this.profile = profile;
 	}
 
 
 	//--------getter setter
+	
+	public String getProfile() {
+		return profile;
+	}
+
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
 	
 	public int getCommentId() {
 		return commentId;

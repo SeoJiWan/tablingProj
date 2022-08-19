@@ -86,7 +86,7 @@ public class BoardRepository extends DAO{
 	public Board getPost(int boardId) {
 		updateHits(boardId); //게시글 클릭->조회수++메소드 실행
 		connect();
-		String sql = "SELECT b.board_id, b.member_id ,m.nickname, b.title, b.content, b.create_date, b.hits "
+		String sql = "SELECT b.board_id, b.member_id ,m.nickname, m.profile_img_url, b.title, b.content, b.create_date, b.hits "
 					  + "FROM boards b "
 					  + "JOIN members m ON (b.member_id = m.member_id) WHERE board_id=?";
 		
@@ -102,6 +102,7 @@ public class BoardRepository extends DAO{
 				bd.setBoardId(boardId);
 				bd.setMemberId(rs.getString("member_id"));
 				bd.setNickName(rs.getString("nickname"));
+				bd.setProfile(rs.getString("profile_img_url"));
 				bd.setTitle(rs.getString("title"));
 				bd.setContent(rs.getString("content"));
 				bd.setCreateDate(rs.getString("create_date"));
