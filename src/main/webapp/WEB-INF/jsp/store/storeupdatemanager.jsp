@@ -11,7 +11,7 @@
 <body>
   <div class="container">
     <form id="updateform" name="form1" class="box" id="updateform" action="updatestore.do" method="post"  onsubmit="return false">
-    <c:set var="vo" value="${stores }"></c:set>
+    <c:set var="vo" value="${store }"></c:set>
       <h4>Store<span> 점포 수정</span></h4>
       	<span>점포명</span>
         <input type="text" name="store_name" value="${vo.storeName }">

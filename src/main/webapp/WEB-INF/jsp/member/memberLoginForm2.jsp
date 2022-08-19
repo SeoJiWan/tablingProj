@@ -426,16 +426,16 @@
               $("#log_pwd").val("");
               $("#log_id").focus();
             } else {
-              //alert("로그인 성공!");
-              //window.location.href = "mainDecision.do";
+              alert("로그인 성공!");
+              window.location.href = "mainDecision.do";
 
-              Swal.fire(
-                "로그인 성공!",
-                "메인페이지로 이동합니다",
-                "success"
-              ).then(function () {
-                window.location.href = "mainDecision.do";
-              });
+//               Swal.fire(
+//                 "로그인 성공!",
+//                 "메인페이지로 이동합니다",
+//                 "success"
+//               ).then(function () {
+//                 window.location.href = "mainDecision.do";
+//               });
 
               //window.location.href = "admin_main.do?pageNum=1&postNum=10";
               //window.location.href = "main.do";

@@ -20,11 +20,14 @@ public class updatemanagement implements Controller {
 		Member loginMember = (Member) req.getSession().getAttribute("loginMember");
 	    String loginMemberId = loginMember.getMemberId();
 		
-		Store st = storeService.storemanagement(loginMemberId);
+//		Store st = storeService.storemanagement(loginMemberId);
+	    // 0816_wana - 점주가 점포조회 후 해당 점포를 파라미터로 넘겨줌
+	    String storeName = req.getParameter("storeName");
+	    Store store = storeService.findOneStore(storeName);
 		
 		System.out.println("member = " + loginMemberId);
 		
-		req.setAttribute("stores", st);
+		req.setAttribute("store", store);
 		
 		Utils.forward(req, resp, "/store/storeupdatemanager.tiles");
 	}
