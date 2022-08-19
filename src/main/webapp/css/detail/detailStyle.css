@@ -51,7 +51,6 @@
 }
 
 #detail_container #jjim {
-  /* background-color: red; */
   float: right;
 }
 
@@ -117,15 +116,18 @@
 	margin-top: 5%;
 }
 
-#reserve-btn {
+#completed_reservation {
 	margin-left: 80%;
-	margin-top: 20%;
 	font-size: medium;
+	margin-top: 17%;
 }
 
-#reserve-btn:hover {
+#completed_reservation:hover {
 	cursor: pointer;
 }
+
+
+
 /* === modal 적용 === */
 /* modal 감싸는 창 */
 .modal_wrap {
@@ -167,14 +169,7 @@
   padding: 10px;
 }
 
-input {
-  background-color: #eee;
-  border-radius: 5px;
-  border: #fff;
-  padding: 12px 15px;
-  margin: 8px 0;
-  width: 70%;
-}
+
 
 .btn_popup_cancle {
   margin-right: 40px;
