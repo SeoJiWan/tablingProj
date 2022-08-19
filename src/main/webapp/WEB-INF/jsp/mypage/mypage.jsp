@@ -197,7 +197,7 @@
 	                </c:if>
 	                <div class="filebox">
 					  <label for="ex_file">업로드</label>
-					  <input type="file" id="ex_file" accept="image/png, image/jpeg" onchange="readURL(this);"> 
+					  <input type="file" id="ex_file" name="ex_file" accept="image/png, image/jpg, image/jpeg" onchange="readURL(this);"> 
 					</div>
 	                <button type="submit" class="btn_profile">프로필수정</button>
 	              </td>

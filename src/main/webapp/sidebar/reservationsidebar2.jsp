@@ -28,7 +28,7 @@ pageEncoding="UTF-8"%>
         <li class="list active">
           <a href="${pageContext.request.contextPath }/storeListByOwner.do">
             <span class="icon">
-              <i class="input-icon uil uil-store"></i>
+              <i class="input-icon uil uil-apps"></i>
             </span>
             <span class="title">내 점포조회</span>
           </a>

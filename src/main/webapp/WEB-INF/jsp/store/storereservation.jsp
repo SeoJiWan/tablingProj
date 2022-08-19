@@ -9,6 +9,7 @@
 	rel="stylesheet" type="text/css">
 </head>
 <jsp:include page="/sidebar/reservationsidebar.jsp"/>
+<a href="#"><img src="${pageContext.request.contextPath }/img/newLogo.png" alt="logo" class="logo_img" /></a>
 <body>
 	<div id = "reservation_body">
 		<h2>예약자 현황</h2>

@@ -1,6 +1,7 @@
 package dev.controller.member;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,9 @@ public class KakaoLoginController implements Controller{
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+		
+		resp.setContentType("text/html;charset=utf-8");
+		req.setCharacterEncoding("UTF-8");
 		
 		HttpSession ss = req.getSession();
 		
@@ -39,7 +43,11 @@ public class KakaoLoginController implements Controller{
 		
 		ss.setAttribute("loginMember", loginMember);
 		
-		Utils.forward(req, resp, "main.do");
+		PrintWriter out = resp.getWriter();
+		out.println("<script>alert('카카오 로그인 성공!');location.href='main.do';</script>");
+
+		out.flush();
+		out.close();
 				
 		
 	}

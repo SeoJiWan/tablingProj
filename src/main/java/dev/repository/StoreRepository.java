@@ -144,7 +144,7 @@ public class StoreRepository extends DAO {
 	public List<Store> searchKeyword(String keyword) {
 		String sql = "SELECT * FROM stores" + " WHERE store_name like '%" + keyword + "%'" + " OR store_address like '%"
 				+ keyword + "%'" + " OR represent_menu like '%" + keyword + "%'" + " OR food_category like '%" + keyword
-				+ "%'";
+				+ "%' AND approval_status = 1";
 		// ORDER BY 별점순 구현
 		List<Store> list = new ArrayList<>();
 		connect();
@@ -259,7 +259,7 @@ public class StoreRepository extends DAO {
 				+ "                FROM " + "                    reviews " + "                GROUP BY "
 				+ "                    store_name " + "            ) b " + "        WHERE "
 				+ "                a.store_name = b.store_name(+) " + "            AND ROWNUM <= ? " + "    ) "
-				+ "WHERE " + "    rn > ? ORDER BY s desc";
+				+ "WHERE " + "    rn > ? AND approval_status = 1 ORDER BY s desc";
 //		String sql = "select * from(select rownum rn, store_id, store_name, member_id, store_address, telephone, sit_capacity, available_time, holiday, represent_menu, store_img_url, food_category, approval_status"
 //				+ " from (SELECT *" + " from stores" + " where store_name like '%'||?||'%' "
 //				+ " or store_address like '%'||?||'%' " + " or represent_menu like '%'||?||'%' "
@@ -432,7 +432,7 @@ public class StoreRepository extends DAO {
 				+ "             "
 				+ "    ) "
 				+ "WHERE "
-				+ "    rn = ?";
+				+ "    rn = ? AND approval_status = 1";
 		Store store = new Store();
 //		connect();
 		int randomStoreId = (int) (Math.random() * countStores()) + 1;
@@ -712,7 +712,7 @@ public class StoreRepository extends DAO {
 	// 0816_wana - 내가 등록한 점포들 조회
 	public List<Store> selectStoreListMyMemberId(String member_id) {
 		List<Store> list = new ArrayList<>();
-		String sql = "select * from stores where member_id = ?";
+		String sql = "select * from stores where member_id = ? AND approval_status = 1";
 		connect();
 
 		try {

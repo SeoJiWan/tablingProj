@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/interested_store/interested_storeList.css">
 </head>
 <jsp:include page="/sidebar/reservationsidebar2.jsp"/>
+<a href="#"><img src="${pageContext.request.contextPath }/img/newLogo.png" alt="logo" class="logo_img" /></a>
 <body>
 	 <!-- 마이페이지 - 찜목록 -->
     <div id="container_mypage_zzims">
