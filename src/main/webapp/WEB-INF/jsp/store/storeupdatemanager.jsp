@@ -16,6 +16,7 @@
 </head>
 <jsp:include page="/sidebar/reservationsidebar2.jsp" />
 <body>
+<a href="#"><img src="${pageContext.request.contextPath }/img/newLogo.png" alt="logo" class="logo_img" /></a>
 	<div class="container">
 		<form class="row g-4" id="updateform" name="form1" id="updateform" action="updatestore.do" method="post" onsubmit="return false">
 			<c:set var="vo" value="${stores }"></c:set>

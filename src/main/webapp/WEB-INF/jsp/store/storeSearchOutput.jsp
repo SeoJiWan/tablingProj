@@ -98,7 +98,7 @@
 			</div>
 		</div>
 		<div id="map" style="width:400px;height:450px;">
-			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b694ecb00a1ae0fb560cc03cabd9b003"></script>
+			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=842f22926484a32c27abf37c1005706a"></script>
 			<script>
 			var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 			var options = { //지도를 생성할 때 필요한 기본 옵션

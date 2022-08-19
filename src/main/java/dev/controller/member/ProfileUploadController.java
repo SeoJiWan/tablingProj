@@ -26,12 +26,13 @@ public class ProfileUploadController implements Controller {
 
 		String realPath = req.getSession().getServletContext().getRealPath("/");
 		System.out.println("realPath1 = " + realPath);
-		realPath +=  "\\img\\profile_img";
+		realPath +=  "img\\profile_img";
 		System.out.println("realPath = " + realPath);
 		
 		File DirPath = new File(realPath);
 		String millis = String.valueOf(System.currentTimeMillis());
 		String fileName = loginMember.getMemberId() + "_profile" + millis + ".jpg";
+		System.out.println("fileName = " + fileName);
 		boolean isInput = false;
 
 		DiskFileItemFactory factory = new DiskFileItemFactory();
@@ -39,9 +40,11 @@ public class ProfileUploadController implements Controller {
 		// 파일크기 5메가
 		factory.setSizeThreshold(5 * 1024 * 1024);
 		ServletFileUpload upload = new ServletFileUpload(factory);
+		System.out.println("upload = " + upload);
 		
 		try {
 			List<FileItem> items = upload.parseRequest(req);
+			System.out.println("items");
 			items.forEach(System.out::println);
 			for (int i = 0; i < items.size(); i++) {
 				FileItem fileItem = (FileItem) items.get(i);
@@ -56,6 +59,8 @@ public class ProfileUploadController implements Controller {
 						File uploadFile = new File(DirPath + "\\" + fileName);
 						fileItem.write(uploadFile);
 						isInput = true;
+						System.out.println("isINput = true");
+						System.out.println("uploadFile = " + uploadFile);
 					}
 				}
 			}
@@ -68,13 +73,14 @@ public class ProfileUploadController implements Controller {
 
 		if (isInput) {
 			loginMember.setProfileImgUrl(fileName);
+			System.out.println("fileName2 = " + fileName);
 		}
 		memberService.changeProfile(loginMember);
 
 //		// 이미지 src 넘겨주기
 //		req.setAttribute("src", fileName);
 //		System.out.println("fileName = " + fileName);
-//		Utils.forward(req, resp, "mypage/mypage.tiles");
+		Utils.forward(req, resp, "mypage/mypage.tiles");
 
 	}
 

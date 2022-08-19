@@ -14,6 +14,7 @@
 </head>
 <jsp:include page="/sidebar/reservationsidebar3.jsp"/>
 <body>
+<a href="#"><img src="${pageContext.request.contextPath }/img/newLogo.png" alt="logo" class="logo_img" /></a>
 	<div class="container">
 		<form class="row g-4" action="storeRegister.do" method="post" id="updateform" name="form1" class="box" id="updateform" onsubmit="return check()">
 			<h4>

@@ -10,6 +10,7 @@
 </head>
 <jsp:include page="../../tiles/head.jsp"/>
 <jsp:include page="/sidebar/sidebarList.jsp"/>
+<a href="#"><img src="${pageContext.request.contextPath }/img/newLogo.png" alt="logo" class="logo_img" /></a>
 <body>
 	<h2>승인 점포 목록</h2>
 	<table id=tab>
