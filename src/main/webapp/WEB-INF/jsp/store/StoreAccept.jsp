@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>점포 관리</title>
-   <link href="${pageContext.request.contextPath}/css/store/StoreCss.css" rel="stylesheet" type="text/css">
+   <link href="${pageContext.request.contextPath}/css/store/StoreCss.css?ver=2" rel="stylesheet" type="text/css">
 </head>
 <jsp:include page="../../tiles/head.jsp"/>
 <jsp:include page="/sidebar/adminsidebar.jsp"/>

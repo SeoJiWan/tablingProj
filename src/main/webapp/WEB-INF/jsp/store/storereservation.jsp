@@ -5,7 +5,7 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
-<link href="${pageContext.request.contextPath}/css/store/StoreCss.css"
+<link href="${pageContext.request.contextPath}/css/store/StoreCss2.css?ver=2"
 	rel="stylesheet" type="text/css">
 </head>
 <jsp:include page="/sidebar/reservationsidebar.jsp"/>
@@ -38,16 +38,16 @@
 		<div class="pagination">
 			<c:if test="${pageInfo.prev }">
 				<a id="menu"
-					href="owner_main.do?pageNum=${pageInfo.startPage - 1 }&postNum=${pageInfo.cri.postNum}">Prev</a>
+					href="storereservation.do?pageNum=${pageInfo.startPage - 1 }&postNum=${pageInfo.cri.postNum}">Prev</a>
 			</c:if>
 			<c:forEach var="num" begin="${pageInfo.startPage }"
 				end="${pageInfo.endPage }">
 				<a
-					href="owner_main.do?pageNum=${num}&postNum=${pageInfo.cri.postNum}">${num }</a>
+					href="storereservation.do?pageNum=${num}&postNum=${pageInfo.cri.postNum}">${num }</a>
 			</c:forEach>
 			<c:if test="${pageInfo.next }">
 				<a id="menu"
-					href="owner_main.do?pageNum=${pageInfo.endPage + 1 }&postNum=${pageInfo.cri.postNum}">Next</a>
+					href="storereservation.do?pageNum=${pageInfo.endPage + 1 }&postNum=${pageInfo.cri.postNum}">Next</a>
 			</c:if>
 		</div>
 	</div>

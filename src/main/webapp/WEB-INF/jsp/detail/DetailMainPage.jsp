@@ -735,27 +735,6 @@
           }
 
           </script>
-          <script>
-          function check() {
-        	  
-        	  var f = document.reserv;
-        	  
-        	  if(f.peopleNum.value == "") {
-        		  alert("인원수를 선택해주십시오");
-        		  return false
-        	  }
-        	  if(f.timeZone.value == "") {
-        		  alert("날짜를 선택해주십시오");
-        		  return false
-        	  }
-        	  if(f.date.value == "") {
-        		  alert("시간을 선택해주십시오");
-        		  return false
-        	  }
-        	  
-          }
-          
-          </script>
     </body>
     </html>
 
