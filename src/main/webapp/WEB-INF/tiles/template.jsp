@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -45,29 +45,34 @@ function enterkey() {
 			window.location.href = "storeSearchPaging.do?keyword=" + keyword + "&pageNum=" + pageNum + "&postNum=" + postNum;
 		}
 	}
-} 
+}
+
+function logout_alert() {
+	alert("로그아웃 되었습니다.");
+}
+
 
 function loginRequired() {
-// 	if (confirm("로그인이 필요한 서비스입니다.\n 이동하시겠습니까?") == true) {
-// 		window.location.href = "memberLoginForm.do";
-// 	}
-// 	else {
-// 		return 0;
-// 	}
-	Swal.fire({
-            title: '로그인이 필요합니다.',
-            text: "로그인페이지로 이동하시겠습니까?",
-            icon: 'info',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: '이동',
-            cancelButtonText: '취소'
-        }).then((result) => {
-            if (result.isConfirmed) {
-            	location.href = "memberLoginForm.do";
-            }
-        })
+	if (confirm("로그인이 필요한 서비스입니다.\n이동하시겠습니까?") == true) {
+		window.location.href = "memberLoginForm.do";
+	}
+	else {
+		return 0;
+	}
+// 	Swal.fire({
+//             title: '로그인이 필요합니다.',
+//             text: "로그인페이지로 이동하시겠습니까?",
+//             icon: 'info',
+//             showCancelButton: true,
+//             confirmButtonColor: '#3085d6',
+//             cancelButtonColor: '#d33',
+//             confirmButtonText: '이동',
+//             cancelButtonText: '취소'
+//         }).then((result) => {
+//             if (result.isConfirmed) {
+//             	location.href = "memberLoginForm.do";
+//             }
+//         })
 }
 </script>
 

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -18,7 +19,7 @@ pageEncoding="UTF-8"%>
     <div class="navigation">
       <ul>
         <li class="list">
-          <a href="${pageContext.request.contextPath }/owner_main.do?pageNum=1&postNum=10">
+          <a href="${pageContext.request.contextPath }/storereservation.do?pageNum=1&postNum=10">
             <span class="icon">
               <i class="input-icon uil uil-user-exclamation"></i>
             </span>
@@ -26,11 +27,11 @@ pageEncoding="UTF-8"%>
           </a>
         </li>
         <li class="list">
-          <a href="${pageContext.request.contextPath }/ownerupdate.do">
+          <a href="${pageContext.request.contextPath }/storeListByOwner.do">
             <span class="icon">
               <i class="input-icon uil uil-store"></i>
             </span>
-            <span class="title">점포수정</span>
+            <span class="title">내 점포조회</span>
           </a>
         </li>
         <li class="list active">

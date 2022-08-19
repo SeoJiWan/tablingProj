@@ -26,7 +26,7 @@ public class MemberListPagingControl implements Controller {
 		
 		req.setAttribute("list", pageList);
 		
-		List<Member> totalList = memberService.findAllMembers();
+		List<Member> totalList = memberService.AllMembers();
 		int total = totalList.size();
 		req.setAttribute("pageInfo", new Page(cri, total));
 		

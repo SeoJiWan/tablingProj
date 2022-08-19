@@ -32,6 +32,9 @@ public class PostListPagingController implements Controller {
 				
 				//---------PageList서비스 호출
 				List<Board> pageList = boardService.getPaging(criteria);
+				for (Board board : pageList) {
+					board.setProfile(memberService.findOneMember(board.getMemberId()).getProfileImgUrl());
+				}
 
 				req.setAttribute("boardList", pageList);
 				

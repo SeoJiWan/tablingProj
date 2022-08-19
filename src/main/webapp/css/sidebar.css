@@ -17,9 +17,9 @@
   overflow-x: hidden;
   transition: width 0.5s;
   position: fixed;
-  top: 0;
+  top: 80px;
   left: 0;
-  z-index: 0;
+  z-index: 16;
 }
 
 .navigation:hover {

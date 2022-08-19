@@ -1,12 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/css/member/memberMyPage.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/member/memberMyPage.css?after">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/interested_store/interested_storeList.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/reservation/reservationListResult.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/review/reviewsById.css?after">
@@ -183,13 +182,14 @@
 	                  alt="profile"
 	                  src="img/profile_img/${loginMember.profileImgUrl }"
 	                />
+	                <div class="filebox">
+					  <label for="ex_file">업로드</label>
+					  <input type="file" id="ex_file" accept="image/png, image/jpeg" onchange="readURL(this);"> 
+					</div>
+	                <button type="submit" class="btn_profile">프로필수정</button>
 	              </td>
 	            </tr>
 	            <tr>
-	            	<td>
-	            		<input type="file" id="profile" name="profile" accept="image/png, image/jpeg" onchange="readURL(this);">
-	            		<button type="submit" class="btn_profile">프로필저장</button>
-	            	</td>
 	            </tr>
 	            <tr></tr>
 	            <tr>
@@ -414,7 +414,7 @@
 
     <script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
     <script type="text/javascript">
-    // 프로필 사진 첨부파일로 열어서 미리보기
+    // 프로필 사진 첨부파일 열어서 미리보기
 	function readURL(input) {
 	  if (input.files && input.files[0]) {
 	    var reader = new FileReader();

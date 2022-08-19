@@ -15,7 +15,7 @@ public class Criteria {
 	
 	//기본세팅값: 1page, 10ea
 	public Criteria() {
-		this(1, 10);
+		this(1, 5);
 	}
 	
 	public int getPageNum() {
