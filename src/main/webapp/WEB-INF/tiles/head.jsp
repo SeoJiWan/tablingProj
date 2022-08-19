@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link href="${pageContext.request.contextPath}/css/head.css" rel="stylesheet" type="text/css">
 <script src="https://kit.fontawesome.com/883c2a5320.js" crossorigin="anonymous"></script>
@@ -52,7 +51,7 @@ pageEncoding="UTF-8"%>
 		
 		</c:if>
     
-		<a href="postListPaging.do?pageNum=1&postNum=10"><img src="${pageContext.request.contextPath }/img/board.JPG" alt="logoout" class="header_img" /></a>
+		<a href="postListPaging.do?pageNum=1&postNum=6"><img src="${pageContext.request.contextPath }/img/board.JPG" alt="logoout" class="header_img" /></a>
 		
 		<c:if test="${not empty loginMember }">
 			<a href="memberInfoMyPage.do"><img src="${pageContext.request.contextPath }/img/user.JPG" alt="logoout" class="header_img" /></a>

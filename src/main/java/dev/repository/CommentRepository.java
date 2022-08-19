@@ -125,47 +125,50 @@ public class CommentRepository extends DAO{
 			System.out.println("조회된 값이 없습니다");
 			return null;
 		}
-		//댓글 내용 수정
-		public void updateComment(Comment comment) {
-			connect();
-			String sql = "UPDATE comments SET content=?, create_date=TO_CHAR(SYSDATE, 'YY.MM.DD HH24:MI') WHERE comment_id=?";
-			
+		
+		//댓글 삭제
+		public boolean deleteComment(int commentId) {
+			String sql = "DELETE FROM comments WHERE comment_id = ?";
+
 			try {
+				connect();
 				ps = conn.prepareStatement(sql);
-				ps.setString(1, comment.getContent());
-				ps.setInt(2, comment.getCommentId());
-				
+				ps.setInt(1, commentId);
+
 				int result = ps.executeUpdate();
-				
+				System.out.println("댓글" + result + " 건이 삭제 되었습니다.");
 				if (result > 0) {
-					System.out.println(result + "건 수정 완료");
-				} else {
-					System.out.println("수정 실패");
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} disconnect();
-		}
-		//게시글 삭제
-		public void deleteComment(Comment cm) {
-			connect();
-			String sql = "DELETE FROM comments WHERE comment_id=?";
-			
-			try {
-				ps = conn.prepareStatement(sql);
-				ps.setInt(1, cm.getCommentId());
-				
-				int result = ps.executeUpdate();
-				if (result > 0) {
-					System.out.println("댓글" + result + "건 삭제 완료");
-				} else {
-					System.out.println("삭제 실패");
+					return true;
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} finally {
 				disconnect();
 			}
+			return false;
+		}
+		
+		//댓글 수정
+		public boolean updateComment(int commentId, String content) {
+			String sql = "UPDATE comments SET content = ?, create_date=TO_CHAR(SYSDATE, 'YY.MM.DD HH24:MI') WHERE comment_id=?";
+
+			try {
+				connect();
+				ps = conn.prepareStatement(sql);
+				ps.setString(1, content);
+				ps.setInt(2, commentId);
+
+				int result = ps.executeUpdate();
+				System.out.println("댓글" + result + " 건이 수정되었습니다.");
+				if (result > 0) {
+					return true;
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				disconnect();
+			}
+			return false;
 		}
 		
 		//페이징
