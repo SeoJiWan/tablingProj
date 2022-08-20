@@ -23,6 +23,7 @@ public class MemberLogoutController implements Controller{
 		if (loginMember.getMemberId() != null) {
 			ss.setAttribute("loginMember", null);
 			
+			
 			Utils.forward(req, resp, "main.do");
 		}
 	}

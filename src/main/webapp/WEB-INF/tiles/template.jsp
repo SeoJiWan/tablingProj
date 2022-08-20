@@ -46,12 +46,18 @@ function enterkey() {
 		}
 	}
 }
+</script>
 
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script type="text/javascript">
 function logout_alert() {
+	window.Kakao.init('d8c22a90f6a47f584d63cb9b20ce8077');
+	window.Kakao.isInitialized();
 	alert("로그아웃 되었습니다.");
 }
+</script>
 
-
+<script type="text/javascript">
 function loginRequired() {
 	if (confirm("로그인이 필요한 서비스입니다.\n이동하시겠습니까?") == true) {
 		window.location.href = "memberLoginForm.do";

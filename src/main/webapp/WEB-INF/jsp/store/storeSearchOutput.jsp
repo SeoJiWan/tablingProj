@@ -13,7 +13,7 @@
 <link href="SumoLanding/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="SumoLanding/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
 <!-- 기본 css -->
-<link href="${pageContext.request.contextPath }/css/store/storeSearchOutput.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/css/store/storeSearchOutput.css?after" rel="stylesheet">
 <!-- 페이징 css -->
 <link href="${pageContext.request.contextPath }/css/store/paging.css" rel="stylesheet">
 </head>
@@ -97,55 +97,134 @@
 			</div>
 			</div>
 		</div>
-		<div id="map" style="width:400px;height:450px;">
-			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=842f22926484a32c27abf37c1005706a"></script>
-			<script>
-			var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
-			var options = { //지도를 생성할 때 필요한 기본 옵션
-				center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
-				level: 3 //지도의 레벨(확대, 축소 정도)
-			};
-			var map = new kakao.maps.Map(container, options);
+		
+		<!-- 카카오 지도 api -->
+		<div id="map"></div>
+		<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	d8c22a90f6a47f584d63cb9b20ce8077&libraries=services"></script>
+		<script>
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	    mapOption = {
+	        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+	        level: 6 // 지도의 확대 레벨
+	    };  
 	
-			var positions = [
-			    {
-			        title: '${store.storeName }', 
-			        latlng: new kakao.maps.LatLng(33.450705, 126.570677)
-			    },
-			    {
-			        title: '${store.storeName }', 
-			        latlng: new kakao.maps.LatLng(33.450936, 126.569477)
-			    },
-			    {
-			        title: '텃밭', 
-			        latlng: new kakao.maps.LatLng(33.450879, 126.569940)
-			    },
-			    {
-			        title: '근린공원',
-			        latlng: new kakao.maps.LatLng(33.451393, 126.570738)
-			    }
-			];
-			// 마커 이미지의 이미지 주소입니다
-			var imageSrx`c = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
-			    
-			for (var i = 0; i < positions.length; i ++) {
-			    
-			    // 마커 이미지의 이미지 크기 입니다
-			    var imageSize = new kakao.maps.Size(24, 35); 
-			    
-			    // 마커 이미지를 생성합니다    
-			    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
-			    
-			    // 마커를 생성합니다
-			    var marker = new kakao.maps.Marker({
-			        map: map, // 마커를 표시할 지도
-			        position: positions[i].latlng, // 마커를 표시할 위치
-			        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-			        image : markerImage // 마커 이미지 
-			    });
-			}
-			</script>
-		</div>
+		// 지도를 생성합니다    
+		var map = new kakao.maps.Map(mapContainer, mapOption); 
+		
+		// 주소-좌표 변환 객체를 생성합니다
+		var geocoder = new kakao.maps.services.Geocoder();
+		
+		var listData = [];
+		
+		<c:forEach items="${list}" var="item">
+		listData.push({groupAddress:'${item.storeAddress}', storeName:'${item.storeName}', tel: '${item.telephone}'})
+		</c:forEach>
+		
+		// 주소로 좌표를 검색합니다
+		for (let i = 0; i < listData.length; i++) {
+			geocoder.addressSearch(listData[i].groupAddress, function(result, status) {
+			//geocoder.addressSearch('대구광역시 중구 서성로13길 8(서성로1가)', function(result, status) {
+			
+			    // 정상적으로 검색이 완료됐으면 
+			     if (status === kakao.maps.services.Status.OK) {
+			
+			         var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+			
+			         // 결과값으로 받은 위치를 마커로 표시합니다
+			         var marker = new kakao.maps.Marker({
+			             map: map,
+			             position: coords
+			         });
+			        
+			     	 // 마커 위에 커스텀오버레이를 표시합니다
+			         // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+			         var overlay = new kakao.maps.CustomOverlay({
+						 yAnchor: 3,
+			             position: marker.getPosition()       
+			         });
+						            
+		            // 커스텀 오버레이
+		            var wrap = document.createElement('div');
+		            wrap.className = 'wrap';
+		            //wrap.innerHTML = listData[i].text;
+		            //wrap.style.cssText = 'background: white; border: 1px solid black';
+		            
+		            var info = document.createElement('div');
+		            info.className = 'info';
+		            wrap.appendChild(info);
+		            
+		            var title = document.createElement('div');
+		            title.className = 'title';
+		            title.innerHTML = listData[i].storeName;
+		            info.appendChild(title);
+		            
+		            var closeBtn = document.createElement('button');
+		            closeBtn.className = 'close';
+		            closeBtn.onclick = function () {
+		                overlay.setMap(null);
+		            };
+		            title.appendChild(closeBtn);
+		            overlay.setContent(wrap);
+
+		            kakao.maps.event.addListener(marker, 'click', function() {
+		                overlay.setMap(map);
+		            });
+		            
+		            var body = document.createElement('div');
+		            body.className = 'body';
+		            info.appendChild(body);
+		            
+		            var img = document.createElement('div');
+		            img.className = 'img';
+		            body.appendChild(img);
+		            
+		            var aImg = document.createElement('a');
+		            var aSrc = '${pageContext.request.contextPath }/detailPage.do?storeName=' + listData[i].storeName;
+		            aImg.setAttribute('href', aSrc);
+		            img.appendChild(aImg);
+		            
+		            var imgSrc = document.createElement('img');
+		            var storeImgSrc = 'img/store_img/' + listData[i].storeName + '1.jpg';
+		            imgSrc.setAttribute('src', storeImgSrc);
+		            imgSrc.setAttribute('alt', 'storeImg');
+		            imgSrc.setAttribute('width', '73px');
+		            imgSrc.setAttribute('height', '70px');
+		            aImg.appendChild(imgSrc);
+		            
+		            var desc = document.createElement('div');
+		            desc.className = 'desc';
+		            body.appendChild(desc);
+		            
+		            var ellipsis = document.createElement('div');
+		            ellipsis.className = 'ellipsis';
+		            ellipsis.innerHTML = listData[i].groupAddress;
+		            desc.appendChild(ellipsis);
+		            
+		            var jibun = document.createElement('div');
+		            jibun.className = 'jibun';
+		            jibun.innerHTML = listData[i].tel;
+		            desc.appendChild(jibun);
+			         
+			       // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+			        kakao.maps.event.addListener(marker, 'click', function() {
+			            overlay.setMap(map);
+			        });
+			      	 
+			    	// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+			        function closeOverlay() {
+			            overlay.setMap(null);     
+			        }
+			     	 
+			        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+			        map.setCenter(coords);
+			    } 
+			}); 
+		}
+
+		</script>
+		
+		
 		<div id="list">
 	
 			<c:if test="${empty list and num == 1}">>
