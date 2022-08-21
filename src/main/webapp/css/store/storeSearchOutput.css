@@ -19,6 +19,7 @@
   #container{
     width:50%;
     margin: 0 auto;
+    margin-top: 100px;
   }
 /*필터*/
 h1, h2, h3, h4, h5, h6 {
@@ -64,7 +65,7 @@ li:nth-child(odd){
 #map{
  position: absolute;
  right:100px;
- width: 450px;
+ width: 23%;
  height: 550px;
  border: 1px solid rgba(0, 0, 0, 0.5);
 }
