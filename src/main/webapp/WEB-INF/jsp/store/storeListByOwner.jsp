@@ -14,7 +14,7 @@
 	 <!-- 마이페이지 - 찜목록 -->
     <div id="container_mypage_zzims">
       <div class="ul_zzim_list">
-        <h1>찜 목록</h1>
+        <h1>내 점포 목록</h1>
         <h3>점포정보 수정 시 이미지를 클릭하세요 :)</h3>
         <ul>
           <c:forEach var="store" items="${stores }">

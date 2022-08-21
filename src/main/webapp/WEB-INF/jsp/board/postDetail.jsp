@@ -431,7 +431,7 @@
 			let co = com.childNodes[5].firstElementChild.value; // 댓글 내용
 			console.log(co);
 			let c = com.childNodes[5].firstElementChild; // textarea
-			let delbutton = com.childNodes[3].childNodes[7].firstElementChild; // 삭제버튼 
+			let delbutton = com.childNodes[3].childNodes[9].firstElementChild; // 삭제버튼 
 			let upbutton = delbutton.nextElementSibling; // 수정버튼
 			let backbutton = upbutton.nextElementSibling; // 취소버튼
 			let savebutton = backbutton.nextElementSibling; // 저장버튼
@@ -448,7 +448,7 @@
 	    	let com = e.target.parentElement.parentElement.parentElement;
 			let co = com.childNodes[5].firstElementChild.value; // 댓글 내용
 			let c = com.childNodes[5].firstElementChild; // textarea
-			let delbutton = com.childNodes[3].childNodes[7].firstElementChild; // 삭제버튼 
+			let delbutton = com.childNodes[3].childNodes[9].firstElementChild; // 삭제버튼 
 			let upbutton = delbutton.nextElementSibling; // 수정버튼
 			let backbutton = upbutton.nextElementSibling; // 취소버튼
 			let savebutton = backbutton.nextElementSibling; // 저장버튼
@@ -468,7 +468,7 @@
 	    	let co = com.childNodes[5].firstElementChild.value; // 댓글 내용
 			console.log(co);
 			let c = com.childNodes[5].firstElementChild; // textarea
-			let delbutton = com.childNodes[3].childNodes[7].firstElementChild; // 삭제버튼 
+			let delbutton = com.childNodes[3].childNodes[9].firstElementChild; // 삭제버튼 
 			let upbutton = delbutton.nextElementSibling; // 수정버튼
 			let backbutton = upbutton.nextElementSibling; // 취소버튼
 			let savebutton = backbutton.nextElementSibling; // 저장버튼
