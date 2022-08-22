@@ -34,7 +34,7 @@
 			</div>
 			<div class="col-12">
 				<label for="inputMenu" class="form-label">대표메뉴</label> 
-				<input type="text" name="represent_menu" class="form-control" id="inputAddress" placeholder="주소를 입력해주세요">
+				<input type="text" name="represent_menu" class="form-control" id="inputAddress" placeholder="대표메뉴를 입력해주세요">
 			</div>
 			<div class="col-md-6">
 				<label for="inputtime" class="form-label">이용시간</label> 

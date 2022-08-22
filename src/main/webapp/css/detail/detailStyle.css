@@ -139,6 +139,7 @@
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(3px);
+  z-index: 3;
 }
 
 /* 모달 팝업창 */

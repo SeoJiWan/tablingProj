@@ -19,7 +19,7 @@
 <a href="#"><img src="${pageContext.request.contextPath }/img/newLogo.png" alt="logo" class="logo_img" /></a>
 	<div class="container">
 		<form class="row g-4" id="updateform" name="form1" id="updateform" action="updatestore.do" method="post" onsubmit="return false">
-			<c:set var="vo" value="${stores }"></c:set>
+			<c:set var="vo" value="${store }"></c:set>
 			<h4>
 				Store<span> 점포 수정</span>
 			</h4>

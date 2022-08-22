@@ -17,8 +17,9 @@
     font-family: '87MMILSANG-Regular';
   }
   #container{
-    width:50%;
+    width:723px;
     margin: 0 auto;
+    margin-left:600px;
     margin-top: 100px;
   }
 /*필터*/
@@ -99,7 +100,7 @@ display:inline-block;
 .layer-popup {
   display: none;
   position: fixed;
-  top: 0;
+  top: 80px;
   right: 0;
   bottom: 0;
   left: 0;

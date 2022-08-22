@@ -436,9 +436,17 @@ public class StoreRepository extends DAO {
 		Store store = new Store();
 //		connect();
 		int randomStoreId = (int) (Math.random() * countStores()) + 1;
+		System.out.println("randomStoreId = " + randomStoreId);
+		
 		// Store store = new Store();
 		try {
 			ps = conn.prepareStatement(sql);
+//			if (randomStoreId == 130 || randomStoreId == 131 || randomStoreId == 132 || randomStoreId == 1) {
+//				return null;
+//			}
+//			else {
+//				ps.setInt(1, randomStoreId);
+//			}
 			ps.setInt(1, randomStoreId);
 			rs = ps.executeQuery();
 			while (rs.next()) {
@@ -458,6 +466,7 @@ public class StoreRepository extends DAO {
 				store.setApprovalStatus(rs.getInt("approval_status"));
 				store.setScore(rs.getDouble("s"));
 				// list.add(store);
+				System.out.println("store = " + store);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -469,7 +478,7 @@ public class StoreRepository extends DAO {
 
 	// 전체 가게 수 조회
 	public int countStores() {
-		String sql = "SELECT NVL(MAX(ROWNUM),0) FROM stores";
+		String sql = "SELECT NVL(MAX(ROWNUM),0) FROM stores where approval_status = 1";
 		connect();
 		Store store = new Store();
 		try {
@@ -592,7 +601,7 @@ public class StoreRepository extends DAO {
 		List<Store> listPage = new ArrayList<>();
 		String sql = "select store_name, store_address, telephone, available_time, food_category "
 				+ "from(select rownum rn, store_name, store_address, telephone, available_time, food_category "
-				+ "from(select store_name, store_address, telephone, available_time, food_category from stores where approval_status=1 order by rownum) "
+				+ "from(select store_name, store_address, telephone, available_time, food_category from stores where approval_status=1 order by store_id desc) "
 				+ "where rownum <= ?) " + "where rn > ?";
 
 		connect();

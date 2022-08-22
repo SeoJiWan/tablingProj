@@ -21,7 +21,8 @@ public class MemberLogoutController implements Controller{
 		Member loginMember = (Member) ss.getAttribute("loginMember");
 		
 		if (loginMember.getMemberId() != null) {
-			ss.setAttribute("loginMember", null);
+//			ss.setAttribute("loginMember", null);
+			ss.removeAttribute("loginMember");
 			
 			
 			Utils.forward(req, resp, "main.do");

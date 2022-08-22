@@ -68,6 +68,7 @@ public class StoreService {
 		// 사진 랜덤 지정
 		for (Store store : list) {
 			String url = Arrays.asList(store.getStoreImgUrl().get(0).split("-")).get((int) (Math.random() * 4));
+			System.out.println(Arrays.asList(store.getStoreImgUrl().get(0).split("-")).get((int) (Math.random() * 4)));
 			List<String> urlList = new ArrayList<String>();
 			urlList.add(url);
 			store.setStoreImgUrl(urlList);

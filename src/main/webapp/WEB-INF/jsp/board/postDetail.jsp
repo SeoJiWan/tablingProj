@@ -35,10 +35,11 @@
 				<input type="hidden" id="boardId" name="boardId" value="${boardDetail.boardId}">
 				<input type="hidden" id="hits" name="hits" value="${boardDetail.hits}">
 				<input type="hidden" id="content" name="content" value="${boardDetail.content}">
-				<input type="hidden" id="title" name="title" value="${boardDetail.title}">
 				<!-- 게시글 제목영역 : 닉네임, 제목, & 드롭박스 버튼 영역(수정, 삭제?)-->
-				<div id="post_detail_head_area" class = "under_line">
-					<div id = "post_detail_head_area_title">${boardDetail.title}</div>
+	            <div id="post_detail_head_area" class = "under_line">
+	               <div id = "post_detail_head_area_title">
+	                  <textarea id="title" name="title" class="postTitle" maxlength="22" readonly>${boardDetail.title}</textarea>
+	               </div>
 					
 					<!-- 로그인 타입에 따라 분리하여 이미지 출력 (카카오 계정이면 카카오톡 프사) -->
 	                <c:set var="img" value="${boardDetail.profile }"></c:set>
@@ -241,17 +242,19 @@
 		<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
 		<script type="text/javascript">
 			/* ajax 글 수정 */
-			$("#postUpdate_btn").click(function () {
-				$("#cmt_area").css("display","none"); //댓글 리스트 안보이게
-				$("#postContent").removeAttr("readonly"); //textarea readonly 해제
-				$("#postUpdate_btn").css("display", "none"); //수정 버튼 비활성화
-				$("#postDelete").css("display", "none"); //삭제 버튼 비활성화
-				$("#postUpdate_save_btn").css("display", "inline-block"); //저장버튼 활성화
-				$("postUpdate_cancel_btn").css("display", "inline-block"); //취소버튼 활성화
-				$("#postContent").css("border", "solid 1"); //테두리 선 활성화
-				$("#postContent").focus();// textarea focus
-			});
-			
+	        $("#postUpdate_btn").click(function () {
+	           $("#cmt_area").css("display","none"); //댓글 리스트 안보이게
+	           $("#title").removeAttr("readonly"); //제목 readonly 해제
+	           $("#postContent").removeAttr("readonly"); //콘텐츠 readonly 해제
+	           $("#postUpdate_btn").css("display", "none"); //수정 버튼 비활성화
+	           $("#postDelete").css("display", "none"); //삭제 버튼 비활성화
+	           $("#postUpdate_save_btn").css("display", "inline-block"); //저장버튼 활성화
+	           $("postUpdate_cancel_btn").css("display", "inline-block"); //취소버튼 활성화
+	           $("#title").css("border", "solid 1"); //수정 선 활성화
+	           $("#postContent").css("border", "solid 1"); //테두리 선 활성화
+	           $("#postContent").focus();// textarea focus
+	        });
+				
 			/* 저장 버튼 클릭시 수정내용 반영 -> 다시 게시글로 */
 				$("#postUpdate_save_btn").click(function () {
 				$("#postUpdate").attr("readonly", "readonly"); //textarea readonly 활성화
